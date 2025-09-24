@@ -1,1 +1,235 @@
-<!doctype html><html><head><meta charset='utf-8'><title>Site</title></head><body>placeholder</body></html>
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ENEEEM · Coimbra — 10ª Edição</title>
+  <meta name="description" content="ENEEEM — Encontro Nacional de Engenharia Mecânica · Coimbra · 10ª Edição" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#inicio" class="brand">
+        <div class="brand-mark">EN</div>
+        <div class="brand-text">
+          <strong>ENEEEM</strong>
+          <span>Coimbra · 10ª Edição</span>
+        </div>
+      </a>
+      <nav id="mainNav" class="nav">
+        <a href="#inicio">Início</a>
+        <a href="#historia">História</a>
+        <a href="#programa">Programa</a>
+        <a href="#parceiros">Empresas</a>
+        <a href="#contactos">Contactos</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="badge">10ª Edição</span>
+          <h1>ENEEEM · Coimbra</h1>
+          <p>
+            O Encontro Nacional de Engenharia Mecânica reúne estudantes, profissionais e empresas
+            para dois dias de palestras, workshops e networking na cidade de Coimbra.
+          </p>
+          <div class="hero-actions">
+            <a href="#programa" class="btn">Consultar horários</a>
+            <a href="#historia" class="btn-outline">Saber mais →</a>
+          </div>
+          <div class="hero-meta">
+            <span>📍 Coimbra</span>
+            <span>🗓️ Datas a anunciar</span>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="image-frame">
+            <img src="https://images.unsplash.com/photo-1565170843891-c9f8f43a47c6?q=80&w=1600&auto=format&fit=crop" alt="Vista de Coimbra">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTÓRIA -->
+    <section id="historia" class="section section-alt">
+      <div class="container">
+        <div class="section-title">
+          <h2>História do ENEEEM</h2>
+          <p>Uma década de partilha de conhecimento, inovação e comunidade.</p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="card-header">Origem</div>
+            <div class="card-body">
+              O ENEEEM nasceu da vontade de aproximar academia e indústria, promovendo a Engenharia Mecânica
+              portuguesa num ambiente descontraído, colaborativo e visionário.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">Crescimento</div>
+            <div class="card-body">
+              Ao longo das edições, o evento consolidou parcerias, alargou a oferta formativa e tornou-se uma
+              referência nacional para estudantes e profissionais.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">10ª Edição</div>
+            <div class="card-body">
+              Em Coimbra, celebramos 10 edições com um programa diversificado, novas experiências e uma forte
+              ligação à cidade.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-wrap">
+          <div class="timeline" id="timeline">
+            <!-- items gerados por JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMA -->
+    <section id="programa" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Programa & Horários</h2>
+          <p>Consulta rápida das atividades principais.</p>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-dia="Dia 1">Dia 1</button>
+          <button class="tab" data-dia="Dia 2">Dia 2</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" id="tabelaPrograma">
+            <thead>
+              <tr>
+                <th>Hora</th>
+                <th>Atividade</th>
+                <th>Local</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- linhas geradas por JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <p class="note">* Programa ilustrativo. Sujeito a alterações.</p>
+      </div>
+    </section>
+
+    <!-- EMPRESAS & PARCEIROS -->
+    <section id="parceiros" class="section section-alt">
+      <div class="container">
+        <div class="section-title">
+          <h2>Empresas & Parceiros</h2>
+          <p>Quem acredita e investe na Engenharia Mecânica.</p>
+        </div>
+
+        <div class="logo-grid" id="logos">
+          <!-- logos gerados por JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTOS -->
+    <section id="contactos" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contactos</h2>
+          <p>Fala connosco para parcerias, dúvidas ou sugestões.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-title">Informações</div>
+            <ul class="contact-list">
+              <li>📧 <a href="mailto:info@eneeemsample.pt">info@eneeemsample.pt</a></li>
+              <li>☎️ <a href="tel:+351900000000">+351 900 000 000</a></li>
+              <li>📍 Coimbra, Portugal</li>
+            </ul>
+            <div class="socials">
+              <a href="#" aria-label="Instagram">Instagram</a>
+              <a href="#" aria-label="Facebook">Facebook</a>
+              <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <div class="contact-title">Formulário de contacto</div>
+            <label>Nome
+              <input type="text" name="nome" placeholder="O seu nome" required>
+            </label>
+            <label>Email
+              <input type="email" name="email" placeholder="nome@exemplo.com" required>
+            </label>
+            <label class="full">Mensagem
+              <textarea name="mensagem" rows="5" placeholder="Escreva a sua mensagem" required></textarea>
+            </label>
+            <button type="submit" class="btn">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-mark">EN</div>
+          <strong>ENEEEM</strong>
+        </div>
+        <p>Encontro Nacional de Engenharia Mecânica — evento académico e profissional em Coimbra.</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Links úteis</div>
+        <ul class="footer-links">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#historia">História</a></li>
+          <li><a href="#programa">Programa</a></li>
+          <li><a href="#parceiros">Empresas</a></li>
+          <li><a href="#contactos">Contactos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">Local</div>
+        <ul class="footer-links">
+          <li>📍 Coimbra, Portugal</li>
+          <li>🗓️ Datas a anunciar</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">Redes sociais</div>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> ENEEEM. Todos os direitos reservados.</span>
+      <span>Site ilustrativo e estático · Azul, branco e cinza · Tipografia moderna</span>
+    </div>
+  </footer>
+</body>
+</html>
