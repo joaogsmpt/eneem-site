@@ -1,0 +1,5 @@
+body{font-family:Inter;}
+/* Header-only navigation centered */
+.header-inner.only-nav{ justify-content:center; position:relative; }
+.header-inner.only-nav .center-nav{ margin: 0 auto; }
+.header-inner.only-nav .menu-btn{ position:absolute; right:16px; }
