@@ -165,35 +165,35 @@
     });
 
     /* ===== GSAP enhancements (opcional) ===== */
-function enhanceWithGSAP(){
-  if (typeof window.gsap === 'undefined') return;
-  const gsap = window.gsap;
-  if (reducedMotion) return;
-
-  // Título do hero (stagger suave já existente)
-  const titleSpans = document.querySelectorAll('.hero-title span');
-  gsap.fromTo(titleSpans, { autoAlpha: 0, filter: 'blur(6px)' }, {
-    autoAlpha: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.08
-  });
-
-  if (window.ScrollTrigger) {
-    // 1) Revelações gerais (exclui #sobre para evitar triggers duplicados)
-    document.querySelectorAll('.reveal:not(#sobre .reveal)').forEach(el => {
-      gsap.from(el, {
-        y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
-      });
-    });
-
-    // 2) Realce leve específico para a secção #sobre (pedido)
-    document.querySelectorAll('#sobre .reveal').forEach(el => {
-      gsap.from(el, {
-        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
-      });
-    });
-  }
-}
+   function enhanceWithGSAP(){
+     if (typeof window.gsap === 'undefined') return;
+     const gsap = window.gsap;
+     if (reducedMotion) return;
+   
+     // Título do hero (stagger suave já existente)
+     const titleSpans = document.querySelectorAll('.hero-title span');
+     gsap.fromTo(titleSpans, { autoAlpha: 0, filter: 'blur(6px)' }, {
+       autoAlpha: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.08
+     });
+   
+     if (window.ScrollTrigger) {
+       // 1) Revelações gerais (exclui #sobre para evitar triggers duplicados)
+       document.querySelectorAll('.reveal:not(#sobre .reveal)').forEach(el => {
+         gsap.from(el, {
+           y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+           scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+         });
+       });
+   
+       // 2) Realce leve específico para a secção #sobre (pedido)
+       document.querySelectorAll('#sobre .reveal').forEach(el => {
+         gsap.from(el, {
+           y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+           scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+         });
+       });
+     }
+   }
 
 
   /* ===== Debounce util ===== */
