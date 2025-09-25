@@ -1,9 +1,8 @@
 /* ================================
-   X ENEEM — main.js
-   Interações: parallax leve, revelações on-scroll, smooth scroll, scroll-spy.
-   GSAP opcional (melhora as animações). Fallback completo em JS puro.
+   ENEEM — main.js
+   Interações: smooth scroll, reveal on-scroll, scroll-spy, hero stagger.
+   GSAP opcional (ScrollTrigger) com fallback completo.
    ================================ */
-
 (function(){
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -12,115 +11,83 @@
     splitHeroTitle();
     initSmoothScroll();
     initScrollReveal();
-    initParallax();
     initNavSpy();
     initScrollCue();
-    enhanceWithGSAP(); // tenta usar GSAP se disponível
+    enhanceWithGSAP();
   });
 
+  /* Util: ano no footer */
   function setYear(){
     const y = document.querySelector('[data-year]');
     if (y) y.textContent = new Date().getFullYear();
   }
 
-  /* ===== Smooth Scroll ===== */
-  function initSmoothScroll(){
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const id = link.getAttribute('href');
-        if (!id || id === '#') return;
-        const target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        const headerOffset = document.querySelector('.site-header')?.offsetHeight || 0;
-        const rect = target.getBoundingClientRect();
-        const offset = window.scrollY + rect.top - (headerOffset + 12);
-        if (reducedMotion) {
-          window.scrollTo(0, offset);
-        } else {
-          window.scrollTo({ top: offset, behavior: 'smooth' });
-        }
-        history.replaceState(null, '', id);
-      });
-    });
-  }
-
-  /* ===== Scroll Cue ===== */
-  function initScrollCue(){
-    const cue = document.querySelector('.scroll-cue');
-    if (!cue) return;
-    cue.addEventListener('click', () => {
-      const target = document.querySelector(cue.dataset.scrollTo || '#sobre');
-      if (!target) return;
-      const headerOffset = document.querySelector('.site-header')?.offsetHeight || 0;
-      const rect = target.getBoundingClientRect();
-      const offset = window.scrollY + rect.top - (headerOffset + 12);
-      if (reducedMotion) window.scrollTo(0, offset);
-      else window.scrollTo({ top: offset, behavior: 'smooth' });
-    });
-  }
-
-  /* ===== Split hero title in words for stagger animation ===== */
+  /* Stagger simples (hero) — sem GSAP */
   function splitHeroTitle(){
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
     const spans = title.querySelectorAll('span');
-    const duration = 1000; // 1s total
-    spans.forEach((s) => {
-      s.style.transition = `opacity ${duration}ms linear`;
-      s.style.transitionDelay = `0ms`;
-      requestAnimationFrame(() => { s.style.opacity = 1; });
+    if (reducedMotion){
+      spans.forEach(s => { s.style.opacity = 1; s.style.filter = 'none'; });
+      return;
+    }
+    let delay = 0;
+    spans.forEach(s => {
+      s.style.transition = 'opacity .9s ease, filter .9s ease';
+      s.style.transitionDelay = `${delay}ms`;
+      requestAnimationFrame(() => { s.style.opacity = 1; s.style.filter = 'blur(0px)'; });
+      delay += 80;
     });
   }
 
-  /* ===== IntersectionObserver reveal ===== */
+  /* Smooth scroll com offset do header + URL update */
+  function initSmoothScroll(){
+    const header = document.querySelector('.site-header');
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('href');
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        const headerOffset = header ? header.offsetHeight : 0;
+        const rect = target.getBoundingClientRect();
+        const y = window.scrollY + rect.top - (headerOffset + 12);
+        if (reducedMotion) window.scrollTo(0, y);
+        else window.scrollTo({ top: y, behavior: 'smooth' });
+        // Atualiza hash (sem saltar)
+        history.pushState(null, '', id);
+      });
+    });
+  }
+
+  /* Revelação com IntersectionObserver (fallback principal) */
   function initScrollReveal(){
     const els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || reducedMotion) {
-      els.forEach(el => el.classList.add('in-view'));
-      return;
+    if (!els.length) return;
+
+    if ('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      els.forEach(el => io.observe(el));
+    } else {
+      // Fallback muito básico
+      els.forEach(el => el.classList.add('is-visible'));
     }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-    els.forEach(el => io.observe(el));
   }
 
-  /* ===== Parallax leve ===== */
-  function initParallax(){
-    if (reducedMotion) return;
-    const layers = document.querySelectorAll('[data-depth]');
-    if (!layers.length) return;
-
-    const onScroll = debounce(() => {
-      const y = window.scrollY || window.pageYOffset;
-      layers.forEach(layer => {
-        const depth = parseFloat(layer.dataset.depth || '0');
-        // deslocamento máximo ~15% da altura do elemento
-        const maxOffset = (layer.clientHeight || 800) * 0.15;
-        const translate = Math.max(-maxOffset, Math.min(maxOffset, y * depth));
-        layer.style.transform = `translateY(${translate}px)`;
-      });
-    }, 16);
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  /* ===== Scroll-Spy (nav ativa por secção) ===== */
+  /* Scroll-Spy: marca link ativo conforme secção visível */
   function initNavSpy(){
-    const links = Array.from(document.querySelectorAll('[data-spy]'));
-    const map = new Map(links.map(link => [link.getAttribute('href'), link]));
-
-    const sections = links
-      .map(l => document.querySelector(l.getAttribute('href')))
-      .filter(Boolean);
+    const navLinks = Array.from(document.querySelectorAll('[data-spy]'));
+    if (!navLinks.length) return;
+    const sections = navLinks.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    const map = new Map(navLinks.map(l => [l.getAttribute('href'), l]));
 
     function setActive(id){
       map.forEach((link, href) => {
@@ -129,80 +96,67 @@
       });
     }
 
-    if (!('IntersectionObserver' in window)) {
-      window.addEventListener('scroll', () => {
-        const fromTop = window.scrollY + (document.querySelector('.site-header')?.offsetHeight || 0) + 20;
-        let current = sections[0]?.id ? '#' + sections[0].id : null;
-        sections.forEach(sec => {
-          if (sec.offsetTop <= fromTop) current = '#' + sec.id;
+    const opts = { rootMargin: '-40% 0px -50% 0px', threshold: 0.0 };
+    if ('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting){
+            setActive(`#${entry.target.id}`);
+          }
         });
-        if (current) setActive(current);
-      }, { passive: true });
-      return;
-    }
-
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActive('#' + entry.target.id);
+      }, opts);
+      sections.forEach(s => io.observe(s));
+    } else {
+      // Fallback
+      function onScroll(){
+        let best = sections[0];
+        const fromTop = window.scrollY + (window.innerHeight * 0.4);
+        for (const s of sections){
+          if (s.offsetTop <= fromTop) best = s;
         }
-      });
-    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
-
-    sections.forEach(sec => obs.observe(sec));
+        if (best) setActive(`#${best.id}`);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
   }
 
-  /* ===== GSAP enhancements (opcional) ===== */
+  /* Botão cue no hero para saltar para #sobre */
+  function initScrollCue(){
+    const cue = document.querySelector('.scroll-cue');
+    if (!cue) return;
+    cue.addEventListener('click', () => {
+      const target = document.querySelector(cue.dataset.scrollTo || '#sobre');
+      if (!target) return;
+      const headerOffset = document.querySelector('.site-header')?.offsetHeight || 0;
+      const rect = target.getBoundingClientRect();
+      const y = window.scrollY + rect.top - (headerOffset + 12);
+      if (reducedMotion) window.scrollTo(0, y);
+      else window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  }
+
+  /* GSAP (opcional) — realces adicionais se existir */
   function enhanceWithGSAP(){
     if (typeof window.gsap === 'undefined') return;
-    const gsap = window.gsap;
     if (reducedMotion) return;
-
-    // Animação do título (stagger suave)
-    const titleSpans = document.querySelectorAll('.hero-title span');
-    gsap.fromTo(titleSpans, { autoAlpha: 0, filter: 'blur(6px)' }, {
-      autoAlpha: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.08
-    });
-
-    /* ===== GSAP enhancements (opcional) ===== */
-   function enhanceWithGSAP(){
-     if (typeof window.gsap === 'undefined') return;
-     const gsap = window.gsap;
-     if (reducedMotion) return;
-   
-     // Título do hero (stagger suave já existente)
-     const titleSpans = document.querySelectorAll('.hero-title span');
-     gsap.fromTo(titleSpans, { autoAlpha: 0, filter: 'blur(6px)' }, {
-       autoAlpha: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.08
-     });
-   
-     if (window.ScrollTrigger) {
-       // 1) Revelações gerais (exclui #sobre para evitar triggers duplicados)
-       document.querySelectorAll('.reveal:not(#sobre .reveal)').forEach(el => {
-         gsap.from(el, {
-           y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-           scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
-         });
-       });
-   
-       // 2) Realce leve específico para a secção #sobre (pedido)
-       document.querySelectorAll('#sobre .reveal').forEach(el => {
-         gsap.from(el, {
-           y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-           scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
-         });
-       });
-     }
-   }
-
-
-  /* ===== Debounce util ===== */
-  function debounce(fn, wait){
-    let t;
-    return function(...args){
-      clearTimeout(t);
-      t = setTimeout(() => fn.apply(this, args), wait);
-    };
+    const gsap = window.gsap;
+    if (window.ScrollTrigger) {
+      // Evita duplicar: aplica GSAP nas .reveal excepto quando já visíveis
+      document.querySelectorAll('.reveal:not(#sobre .reveal)').forEach(el => {
+        gsap.from(el, {
+          y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        });
+      });
+      // Realce pedido para #sobre
+      document.querySelectorAll('#sobre .reveal').forEach(el => {
+        gsap.from(el, {
+          y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+    }
   }
 
 })();
