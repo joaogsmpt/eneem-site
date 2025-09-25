@@ -151,7 +151,7 @@ body {
   line-height: 0.9;
   letter-spacing: .04em;
 }
-.hero-title span { display: inline-block; opacity: 0; filter: blur(6px); }
+.hero-title span { display: inline-block; opacity: 0; }
 .hero-tagline { color: var(--color-text-2); margin: 0 0 .25rem; }
 .hero-meta { color: var(--color-text-2); margin: 0 0 var(--space-3); }
 
@@ -270,7 +270,7 @@ body {
 /* Reduzir movimento quando prefere-se redução */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal, .hero-title span { transition: none !important; transform: none !important; opacity: 1 !important; filter: none !important; }
+  .reveal, .hero-title span { display: inline-block; opacity: 0; }
 }
 
 
@@ -280,3 +280,8 @@ body {
 .site-header .container { justify-content: center !important; }
 
 /* Hero fade mais profissional (blur->nítido controlado via JS) */
+
+
+/* === Overrides solicitados === */
+/* Remover seta/ponto no canto superior esquerdo (skip-link oculto) */
+.skip-link { display: none !important; }
