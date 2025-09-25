@@ -175,3 +175,25 @@ body{
 .event-card[data-type="social"]{ border-color: #ff9bd640 }
 .event-card[data-type="dinner"]{ border-color: #ffc1a840 }
 .event-card[data-type="checkin"]{ border-color: #9be1ff40 }
+
+
+/* Layout fix: stack Programa contents vertically (title -> intro -> tabs -> cards) */
+#programa .container{ display:block }
+#programa .program-tabs{ margin:.5rem 0 var(--space-2) }
+#programa .program-panels{ margin-top:0 }
+
+
+/* Programa: layout robusto */
+#programa .container{ display:block }
+#programa .program-wrap{ display:grid; gap: var(--space-2) }
+#programa .program-header{ margin-bottom: .25rem }
+#programa .program-tabs{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:.25rem 0 var(--space-2) }
+#programa .program-panels{ margin-top:0 }
+
+/* Timeline grid: 2 colunas em ecrãs médios, 1 coluna no mobile */
+.timeline{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem }
+@media (max-width: 1200px){ .timeline{ grid-template-columns: repeat(8, 1fr) } }
+@media (max-width: 900px){ .timeline{ grid-template-columns: 1fr } }
+.event-card{ grid-column: span 6 }
+@media (max-width: 1200px){ .event-card{ grid-column: span 4 } }
+@media (max-width: 900px){ .event-card{ grid-column: auto } }
