@@ -175,9 +175,3 @@ body{
 .event-card[data-type="social"]{ border-color: #ff9bd640 }
 .event-card[data-type="dinner"]{ border-color: #ffc1a840 }
 .event-card[data-type="checkin"]{ border-color: #9be1ff40 }
-
-
-/* Layout fix: stack Programa contents vertically (title -> intro -> tabs -> cards) */
-#programa .container{ display:block }
-#programa .program-tabs{ margin:.5rem 0 var(--space-2) }
-#programa .program-panels{ margin-top:0 }
