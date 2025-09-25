@@ -21,3 +21,24 @@
 }
 
 [data-parallax]{will-change:transform;transform:translate3d(0,0,0)}
+
+
+/* Watermark "X ENEEM" no hero (fade-out com scroll) */
+.hero__watermark{
+  position:absolute;
+  inset:auto 0 8%; /* bottom */
+  text-align:center;
+  font-family:Montserrat, Inter, sans-serif;
+  font-weight:800;
+  font-size:clamp(3.2rem, 12vw, 12rem);
+  letter-spacing:.02em;
+  color:#e6f0ff;
+  opacity:.12; /* início suave */
+  pointer-events:none;
+  user-select:none;
+  transform-origin:center;
+  transition:opacity .4s ease, transform .4s ease;
+}
+@media (max-width: 960px){
+  .hero__watermark{ inset:auto 0 10%; font-size:clamp(2.4rem, 14vw, 8rem); }
+}

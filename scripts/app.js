@@ -87,7 +87,7 @@ const qsa = (s, r = document) => [...r.querySelectorAll(s)];
       }
     });
   }, { threshold: 0.2 });
-  qsa('.reveal-on-scroll').forEach(el => io.observe(el));
+  qsa('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-up').forEach(el => io.observe(el));
 })();
 
 /* Parallax subtil */
@@ -178,4 +178,33 @@ const qsa = (s, r = document) => [...r.querySelectorAll(s)];
 (() => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+
+
+/* Watermark fade-out on scroll */
+(() => {
+  const wm = document.querySelector('.hero__watermark');
+  const hero = document.querySelector('.hero');
+  if (!wm || !hero) return;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (n, a, b) => Math.min(Math.max(n, a), b);
+
+  const update = () => {
+    const heroHeight = hero.offsetHeight || window.innerHeight;
+    const end = Math.max(200, Math.min(heroHeight, window.innerHeight) * 0.6);
+    const y = window.scrollY;
+    const t = clamp(y / end, 0, 1); // 0 -> 1
+    // Fade out + micro translate
+    wm.style.opacity = String(clamp(0.12 * (1 - t), 0, 0.12));
+    wm.style.transform = `translateY(${t*12}px) scale(${1 - t*0.03})`;
+  };
+
+  if (prefersReduced){
+    wm.style.opacity = '.1';
+    return;
+  }
+
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
 })();

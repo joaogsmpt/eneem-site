@@ -38,3 +38,17 @@ p{font-size:var(--step-0);line-height:1.6;color:var(--text-1);margin:0 0 1em}
 .center{text-align:center}
 .reveal-on-scroll{opacity:0;transform:translateY(16px);transition:opacity .35s ease, transform .35s ease}
 .reveal-on-scroll.is-visible{opacity:1;transform:none}
+
+
+/* Directional reveals */
+.reveal-left, .reveal-right, .reveal-up{
+  opacity:0;
+  will-change: transform, opacity;
+  transition: opacity .45s ease, transform .45s ease;
+}
+.reveal-left{ transform: translateX(-24px); }
+.reveal-right{ transform: translateX(24px); }
+.reveal-up{ transform: translateY(16px); }
+.reveal-left.is-visible, .reveal-right.is-visible, .reveal-up.is-visible{
+  opacity:1; transform:none;
+}
