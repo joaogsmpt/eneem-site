@@ -65,10 +65,12 @@
   function splitHeroTitle(){
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
+    // spans já existem no HTML; garantimos delays
     const spans = title.querySelectorAll('span');
-    spans.forEach((s) => {
-      s.style.transition = 'opacity 1000ms linear';
-      requestAnimationFrame(() => { s.style.opacity = 1; });
+    spans.forEach((s, i) => {
+      s.style.transition = 'opacity 520ms var(--ease), transform 520ms var(--ease)';
+      s.style.transitionDelay = (i * 90) + 'ms';
+      requestAnimationFrame(() => { s.style.opacity = 1; s.style.transform = 'translateY(0)'; });
     });
   }
 
@@ -158,7 +160,9 @@
 
     // Animação do título (stagger suave)
     const titleSpans = document.querySelectorAll('.hero-title span');
-    gsap.fromTo(titleSpans, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.0, ease: 'none', stagger: 0 });
+    gsap.fromTo(titleSpans, { y: 24, autoAlpha: 0 }, {
+      y: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', stagger: 0.08
+    });
 
     // Revelações on-scroll
     if (window.ScrollTrigger) {
