@@ -68,9 +68,9 @@
     // spans já existem no HTML; garantimos delays
     const spans = title.querySelectorAll('span');
     spans.forEach((s, i) => {
-      s.style.transition = 'opacity 520ms var(--ease), transform 520ms var(--ease)';
-      s.style.transitionDelay = (i * 90) + 'ms';
-      requestAnimationFrame(() => { s.style.opacity = 1; s.style.transform = 'translateY(0)'; });
+      s.style.transition = 'opacity 700ms var(--ease), filter 900ms var(--ease)';
+      s.style.transitionDelay = (i * 100) + 'ms';
+      requestAnimationFrame(() => { s.style.opacity = 1; s.style.filter = 'blur(0px)'; });
     });
   }
 
@@ -160,8 +160,8 @@
 
     // Animação do título (stagger suave)
     const titleSpans = document.querySelectorAll('.hero-title span');
-    gsap.fromTo(titleSpans, { y: 24, autoAlpha: 0 }, {
-      y: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', stagger: 0.08
+    gsap.fromTo(titleSpans, { autoAlpha: 0, filter: 'blur(6px)' }, {
+      autoAlpha: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.08
     });
 
     // Revelações on-scroll
