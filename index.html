@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>X ENEEM — Coimbra · 10ª Edição</title>
+  <meta name="description" content="X ENEEM — Encontro Nacional de Engenharia Mecânica · Coimbra · 10ª Edição. Um site imersivo, cinematográfico, tema azul-escuro." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="X ENEEM — Coimbra · 10ª Edição">
+  <meta property="og:description" content="Vem fazer parte da mudança. ENEEM — 10ª Edição, Coimbra.">
+  <meta property="og:image" content="assets/img/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- PWA (opcional) -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="preload" href="styles/main.css" as="style">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/sections.css">
+
+  <!-- CSS crítico mínimo (acima da dobra) -->
+  <style>
+    :root{
+      --bg-0:#0a1220;--bg-1:#0f1b2d;--bg-2:#13243b;
+      --accent:#1e6fff;--accent-2:#21b6ff;
+      --text-0:#e6f0ff;--text-1:#b7c7e6;--muted:#6e7c97;
+      --ok:#2ecc71;--warn:#ffb020;--err:#ff5a5a;
+      --ring:rgba(30,111,255,.45);--shadow:0 10px 30px rgba(8,16,32,.45)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:linear-gradient(180deg,var(--bg-0),var(--bg-1));color:var(--text-0);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    header.site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(120%) blur(8px);background:rgba(10,18,32,.80)}
+    header.site-header.is-scrolled{background:rgba(19,36,59,.85);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+    .container{max-width:1280px;margin-inline:auto;padding-inline:20px}
+    nav.navbar{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+    .logo{display:flex;gap:.6rem;align-items:center;text-decoration:none;color:var(--text-0);font-weight:700}
+    .logo svg{width:28px;height:28px}
+    .nav-links{display:flex;gap:.5rem}
+    .nav-links a{padding:.6rem .9rem;border-radius:999px;text-decoration:none;color:var(--text-0)}
+    .nav-links a:hover{background:rgba(30,111,255,.16)}
+    .menu-btn{display:none}
+    @media (max-width: 768px){.menu-btn{display:inline-flex}.nav-links{display:none}}
+    .hero{position:relative;min-height:100svh;display:grid;place-items:center;overflow:clip}
+    .hero__bg{position:absolute;inset:-2px;z-index:-2;background:
+      radial-gradient(1200px 600px at 70% 20%, rgba(30,111,255,.10), transparent 60%),
+      linear-gradient(180deg,var(--bg-0),var(--bg-1) 55%, var(--bg-2))}
+    .hero__media{position:absolute;inset:0;z-index:-1;opacity:.28;mix-blend:screen;background: url('assets/img/hero.svg') center/cover no-repeat;}
+    .hero__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,16,32,.6),rgba(8,16,32,.2) 40%, rgba(8,16,32,.7));z-index:-1}
+    .hero__inner{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;padding:72px 0}
+    @media (max-width: 960px){.hero__inner{grid-template-columns:1fr;padding:64px 0}}
+    .eyebrow{display:inline-flex;gap:.5rem;align-items:center;padding:.35rem .75rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:.85rem;color:var(--text-1);letter-spacing:.12em;text-transform:uppercase}
+    h1.hero__title{font-family:Montserrat,Inter,sans-serif;font-weight:800;line-height:1.05;font-size:clamp(2rem,6vw,4rem);margin:12px 0}
+    .hero__subtitle{color:var(--text-1);max-width:60ch}
+    .hero__cta{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;border-radius:999px;padding:.85rem 1.15rem;font-weight:600;text-decoration:none}
+    .btn--primary{background:var(--accent);color:var(--text-0);box-shadow:var(--shadow)}
+    .btn--ghost{border:1px solid rgba(255,255,255,.18);color:var(--text-0)}
+    .scroll-cue{position:absolute;bottom:18px;left:50%;translate:-50% 0;opacity:.7;font-size:.85rem}
+    @media (prefers-reduced-motion: reduce){.scroll-cue{display:none}}
+  </style>
+
+  <!-- JSON-LD (ajusta org/site conforme necessário) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"X ENEEM",
+    "url":"./",
+    "potentialAction":{"@type":"SearchAction","target":"./?q={search_term_string}","query-input":"required name=search_term_string"}
+  }
+  </script>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header" data-js="header">
+    <div class="container">
+      <nav class="navbar" aria-label="Principal">
+        <a class="logo" href="#top" aria-label="Página inicial">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="M12 7l4 2.25v4.5L12 16l-4-2.25v-4.5L12 7Z"/>
+          </svg>
+          <span>ENEEM</span>
+        </a>
+        <button class="menu-btn btn btn--ghost" data-js="menu-toggle" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Abrir menu">Menu</button>
+        <div class="nav-links" data-js="desktop-nav">
+          <a href="#sobre">Sobre</a>
+          <a href="#features">Features</a>
+          <a href="#galeria">Galeria</a>
+          <a href="#imprensa">Imprensa</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+    <div id="mobile-drawer" class="drawer" hidden aria-hidden="true">
+      <div class="drawer__overlay" data-js="drawer-overlay" tabindex="-1"></div>
+      <nav class="drawer__panel" aria-label="Menu móvel">
+        <button class="drawer__close" data-js="drawer-close" aria-label="Fechar menu">✕</button>
+        <a href="#sobre" data-js="drawer-link">Sobre</a>
+        <a href="#features" data-js="drawer-link">Features</a>
+        <a href="#galeria" data-js="drawer-link">Galeria</a>
+        <a href="#imprensa" data-js="drawer-link">Imprensa</a>
+        <a href="#contacto" data-js="drawer-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__media" aria-hidden="true"></div>
+      <div class="hero__overlay"></div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow">X ENEEM · Coimbra</span>
+          <h1 class="hero__title">Queres fazer parte da mudança?</h1>
+          <p class="hero__subtitle">Uma experiência imersiva para estudantes e profissionais de Engenharia Mecânica, com talks, painéis e networking — agora na 10ª edição.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#sobre">Saber mais</a>
+            <a class="btn btn--ghost" href="#contacto">Inscreve-te</a>
+          </div>
+        </div>
+        <div class="hero__visual reveal-on-scroll" data-parallax data-parallax-speed="0.15" aria-hidden="true">
+          <figure class="frame">
+            <img src="assets/img/panel1.svg" alt="Ambiente tecnológico com tons azuis" width="1200" height="900" loading="eager" />
+          </figure>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">▼ Desliza</div>
+    </section>
+
+    <section id="sobre" class="section section--alt reveal-on-scroll">
+      <div class="container">
+        <header class="section__header">
+          <h2>Sobre o ENEEM</h2>
+          <p class="lead">O Encontro Nacional de Engenharia Mecânica junta a comunidade para partilha de conhecimento, inspiração e oportunidade.</p>
+        </header>
+
+        <div class="alt-grid">
+          <article class="panel panel--image-left" data-parallax data-parallax-speed="0.08">
+            <div class="panel__media" aria-hidden="true" style="background-image:url('assets/img/panel1.svg')"></div>
+            <div class="panel__body">
+              <h3>História</h3>
+              <p>Chegámos à 10ª edição com um percurso focado em criar pontes entre a academia e a indústria.</p>
+            </div>
+          </article>
+
+          <article class="panel panel--image-right" data-parallax data-parallax-speed="0.08">
+            <div class="panel__media" aria-hidden="true" style="background-image:url('assets/img/panel2.svg')"></div>
+            <div class="panel__body">
+              <h3>Missão</h3>
+              <p>Promover conhecimento prático e networking significativo, potenciando carreiras e projetos.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section reveal-on-scroll">
+      <div class="container">
+        <header class="section__header">
+          <h2>O que vais encontrar</h2>
+          <p class="lead">Palestras, workshops, empresas e uma comunidade que puxa por ti.</p>
+        </header>
+
+        <div class="features">
+          <article class="feature">
+            <h3>Keynotes</h3>
+            <p>Falares com quem está a moldar o futuro da engenharia.</p>
+          </article>
+          <article class="feature">
+            <h3>Workshops</h3>
+            <p>Mãos na massa: ferramentas, métodos e casos reais.</p>
+          </article>
+          <article class="feature">
+            <h3>Carreiras & Networking</h3>
+            <p>Empresas, oportunidades e contactos que ficam.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="section section--alt reveal-on-scroll">
+      <div class="container">
+        <header class="section__header">
+          <h2>Galeria</h2>
+          <p class="lead">Momentos de edições anteriores.</p>
+        </header>
+
+        <div class="gallery" data-js="gallery">
+          <figure class="gallery__item">
+            <a href="assets/img/gallery1.svg" data-lightbox data-title="Auditório">
+              <img src="assets/img/gallery1.svg" alt="Auditório com luz azul" loading="lazy" width="600" height="400">
+            </a>
+            <figcaption>Auditório</figcaption>
+          </figure>
+
+          <figure class="gallery__item">
+            <a href="assets/img/gallery2.svg" data-lightbox data-title="Workshop">
+              <img src="assets/img/gallery2.svg" alt="Workshop prático" loading="lazy" width="600" height="400">
+            </a>
+            <figcaption>Workshop</figcaption>
+          </figure>
+
+          <figure class="gallery__item">
+            <a href="assets/img/gallery3.svg" data-lightbox data-title="Tecnologia">
+              <img src="assets/img/gallery3.svg" alt="Detalhe tecnológico" loading="lazy" width="600" height="400">
+            </a>
+            <figcaption>Tecnologia</figcaption>
+          </figure>
+
+          <figure class="gallery__item">
+            <a href="assets/img/gallery4.svg" data-lightbox data-title="Networking">
+              <img src="assets/img/gallery4.svg" alt="Networking" loading="lazy" width="600" height="400">
+            </a>
+            <figcaption>Networking</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="imprensa" class="section reveal-on-scroll">
+      <div class="container">
+        <header class="section__header">
+          <h2>O que dizem</h2>
+          <p class="lead">Depoimentos e imprensa.</p>
+        </header>
+
+        <div class="quotes" data-js="quotes" aria-roledescription="carrossel">
+          <div class="quotes__track">
+            <blockquote class="quote" tabindex="-1">“Evento imperdível para quem quer crescer na engenharia.” <cite>— Revista Tech</cite></blockquote>
+            <blockquote class="quote" tabindex="-1">“Qualidade das talks e networking de alto nível.” <cite>— Participante</cite></blockquote>
+            <blockquote class="quote" tabindex="-1">“A ponte perfeita entre academia e indústria.” <cite>— Jornal Local</cite></blockquote>
+          </div>
+          <div class="quotes__dots" aria-label="Navegação de citações"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section section--alt reveal-on-scroll">
+      <div class="container">
+        <header class="section__header">
+          <h2>Junta-te a nós</h2>
+          <p class="lead">Recebe novidades e abre portas para a próxima edição.</p>
+        </header>
+
+        <form id="newsletterForm" class="newsletter" novalidate>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required aria-describedby="emailHelp">
+            <small id="emailHelp" class="help">Usa um email válido.</small>
+          </label>
+          <button class="btn btn--primary" type="submit">Subscrever</button>
+          <p class="form-msg" aria-live="polite" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Topo">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="M12 7l4 2.25v4.5L12 16l-4-2.25v-4.5L12 7Z"/>
+          </svg>
+          <span>ENEEM</span>
+        </a>
+        <p class="muted">© <span id="year"></span> ENEEM. Todos os direitos reservados.</p>
+      </div>
+      <nav aria-label="Links">
+        <a href="#sobre">Sobre</a>
+        <a href="#features">Features</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#imprensa">Imprensa</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="socials" aria-label="Sociais">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="LinkedIn">IN</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+      <div class="legal">
+        <a href="privacy.html">Privacidade</a>
+        <a href="terms.html">Termos</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="scripts/lightbox.js"></script>
+  <script defer src="scripts/app.js"></script>
+  <noscript>Este site funciona melhor com JavaScript ativo.</noscript>
+</body>
+</html>

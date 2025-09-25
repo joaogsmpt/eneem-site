@@ -1,0 +1,66 @@
+/* Botões */
+.btn{display:inline-flex;gap:.6rem;align-items:center;border-radius:9999px;padding:.85rem 1.15rem;font-weight:600;text-decoration:none;transition:transform .2s ease, filter .2s ease, box-shadow .3s}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--accent);color:var(--text-0);box-shadow:var(--shadow)}
+.btn--primary:hover{filter:brightness(1.05)}
+.btn--ghost{background:transparent;border:1px solid rgba(255,255,255,.16);color:var(--text-0)}
+.btn--ghost:hover{background:rgba(30,111,255,.12)}
+
+/* Header / Nav */
+.site-header{border-bottom:1px solid rgba(255,255,255,.06)}
+.navbar a{border-radius:999px}
+
+/* Drawer mobile */
+.drawer[hidden]{display:none}
+.drawer{position:fixed;inset:0;z-index:60}
+.drawer__overlay{position:absolute;inset:0;background:rgba(8,16,32,.6)}
+.drawer__panel{position:absolute;top:0;right:0;width:min(86vw,380px);height:100%;background:var(--bg-2);box-shadow:-10px 0 30px rgba(0,0,0,.4);display:flex;flex-direction:column;padding:20px;gap:.5rem}
+.drawer__panel a{padding:.8rem 1rem;border-radius:12px}
+.drawer__panel a:hover{background:rgba(255,255,255,.05)}
+.drawer__close{align-self:flex-end;border:1px solid rgba(255,255,255,.12);background:transparent;border-radius:10px;padding:.5rem .7rem;color:var(--text-0)}
+
+/* Frames / cartões */
+.frame{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow)}
+
+/* Quotes (carrossel) */
+.quotes{position:relative}
+.quotes__track{display:flex;gap:24px;will-change:transform;transition:transform .4s ease}
+.quote{min-width:100%;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;font-size:var(--step-1)}
+.quote cite{display:block;margin-top:.5rem;color:var(--text-1);font-style:normal}
+.quotes__dots{display:flex;gap:6px;justify-content:center;margin-top:12px}
+.quotes__dots button{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.25);border:0}
+.quotes__dots button[aria-current="true"]{background:var(--accent)}
+
+/* Gallery */
+.gallery{--cols:2;display:grid;grid-template-columns:repeat(var(--cols),1fr);gap:12px}
+.gallery__item{background:linear-gradient(180deg,var(--bg-1),var(--bg-2));border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.gallery__item img{aspect-ratio:3/2;object-fit:cover;width:100%;height:auto}
+.gallery__item figcaption{padding:10px;color:var(--text-1);font-size:.9rem}
+@media (min-width:768px){.gallery{--cols:3}}
+@media (min-width:1024px){.gallery{--cols:4}}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:rgba(4,8,16,.7)}
+.lb[hidden]{display:none}
+.lb__dialog{position:relative;max-width:min(92vw,1200px);max-height:90vh}
+.lb__img{display:block;max-width:100%;max-height:90vh;border-radius:10px;box-shadow:var(--shadow)}
+.lb__close,.lb__prev,.lb__next{position:absolute;top:8px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:10px;padding:.5rem .7rem}
+.lb__close{right:8px}
+.lb__prev{left:8px;top:50%;transform:translateY(-50%)}
+.lb__next{right:8px;top:50%;transform:translateY(-50%)}
+.lb__caption{margin-top:8px;color:var(--text-1);text-align:center}
+
+/* Form newsletter */
+.newsletter{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;max-width:640px}
+.newsletter .field{display:flex;flex-direction:column;gap:.4rem}
+.newsletter input{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:var(--text-0);border-radius:12px;padding:.85rem 1rem}
+.newsletter input:focus{outline:2px solid var(--ring);outline-offset:2px}
+.newsletter .help{font-size:.85rem;color:var(--text-1)}
+.form-msg{min-height:1.2em;font-size:.95rem}
+
+/* Footer */
+.site-footer{border-top:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
+.footer__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:16px;padding:28px 0}
+.footer__grid nav,.socials,.legal{display:flex;flex-direction:column;gap:.4rem}
+@media (max-width:900px){.footer__grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.footer__grid{grid-template-columns:1fr}}
