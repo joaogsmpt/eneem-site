@@ -202,3 +202,8 @@ body{
 /* Tweaks: mais respiro no topo e títulos das atividades maiores */
 #programa.section-padded{ padding-top: calc(min(12vh, 6rem) + 2rem) }
 #programa .event-title{ font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height:1.2; font-weight:800 }
+
+
+/* ===== Header fixo sempre visível ===== */
+body{ padding-top: calc(var(--header-offset, 64px) + env(safe-area-inset-top, 0px)) }
+.site-header{ position: fixed; top: 0; left: 0; right: 0; z-index: 100 }

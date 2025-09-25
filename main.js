@@ -8,6 +8,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     setYear();
+    syncHeaderOffset();
     splitHeroTitle();
     initSmoothScroll();
     initScrollReveal();
@@ -23,7 +24,24 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
-  /* Stagger simples (hero) — sem GSAP */
+  
+  /* Header: sincroniza o padding-top do body com a altura real do header */
+  function syncHeaderOffset(){
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+    const apply = () => {
+      const h = header.offsetHeight || 64;
+      document.documentElement.style.setProperty('--header-offset', h + 'px');
+    };
+    apply();
+    if (window.ResizeObserver){
+      const ro = new ResizeObserver(apply);
+      ro.observe(header);
+    } else {
+      window.addEventListener('resize', apply, { passive: true });
+    }
+  }
+/* Stagger simples (hero) — sem GSAP */
   function splitHeroTitle(){
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
