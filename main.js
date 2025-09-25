@@ -66,8 +66,8 @@
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
     const spans = title.querySelectorAll('span');
-    const stagger = 10; // 0.05s
-    const duration = 700; // 0.7s
+    const stagger = 100; // 0.05s
+    const duration = 1000; // 1s
     spans.forEach((s, i) => {
       s.style.transition = `opacity ${duration}ms linear`;
       s.style.transitionDelay = `${i * stagger}ms`;
