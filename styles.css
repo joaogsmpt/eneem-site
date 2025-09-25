@@ -124,3 +124,54 @@ body{
   .reveal{transition:none}
   .hero-title span{opacity:1; filter:none}
 }
+
+
+/* === Programa (tabs + timeline) === */
+.program-header{display:grid; gap:.25rem; margin-bottom: var(--space-2)}
+.program-note{color:var(--color-text-2)}
+.program-note a{color:var(--color-accent); text-underline-offset:2px}
+
+.program-tabs{display:flex; gap:.5rem; align-items:center; margin:.25rem 0 var(--space-2)}
+.program-tab{
+  appearance:none; border:1px solid rgba(255,255,255,.12);
+  background: color-mix(in oklab, var(--color-bg), white 2%);
+  color: var(--color-text-2); padding:.5rem .8rem; border-radius:999px; cursor:pointer; font-weight:600;
+  transition: transform var(--dur-1) var(--ease), background var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
+}
+.program-tab[aria-selected="true"]{
+  background: linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2));
+  border-color: rgba(255,255,255,.18); color: var(--color-text);
+  transform: translateY(-1px);
+}
+.program-tab:focus-visible{outline:2px solid var(--color-accent); outline-offset:2px}
+
+.program-panels{margin-top: .25rem}
+.program-panel[hidden]{display:none}
+.program-panel.is-active{display:block}
+
+.timeline{display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem}
+@media (max-width: 900px){ .timeline{grid-template-columns: 1fr} }
+
+.event-card{
+  grid-column: span 6;
+  background: color-mix(in oklab, var(--color-bg), white 3%);
+  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 12%);
+  border-radius: var(--radius-2);
+  padding: .9rem 1rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,.12);
+  transition: transform var(--dur-1) var(--ease);
+}
+.event-card:hover{ transform: translateY(-2px) }
+.event-time{font-size:.85rem; letter-spacing:.02em; opacity:.8; margin-bottom:.25rem}
+.event-title{margin:.2rem 0 .35rem; font-size:1.1rem}
+.event-desc{margin:0; color:var(--color-text-2)}
+
+/* Cores por tipo */
+.event-card[data-type="fair"]{ border-color: color-mix(in oklab, var(--color-accent), black 60%) }
+.event-card[data-type="ceremony"]{ border-color: #7fb4ff40 }
+.event-card[data-type="session"]{ border-color: #a9ff8a33 }
+.event-card[data-type="case"]{ border-color: #ffd37a40 }
+.event-card[data-type="visit"]{ border-color: #a5b6ff40 }
+.event-card[data-type="social"]{ border-color: #ff9bd640 }
+.event-card[data-type="dinner"]{ border-color: #ffc1a840 }
+.event-card[data-type="checkin"]{ border-color: #9be1ff40 }

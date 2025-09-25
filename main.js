@@ -14,6 +14,7 @@
     initNavSpy();
     initScrollCue();
     enhanceWithGSAP();
+    initProgramTabs();
   });
 
   /* Util: ano no footer */
@@ -136,7 +137,41 @@
     });
   }
 
-  /* GSAP (opcional) — realces adicionais se existir */
+  
+  /* Programa: tabs acessíveis e animações suaves */
+  function initProgramTabs(){
+    const tablist = document.querySelector('.program-tabs');
+    if (!tablist) return;
+    const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+    const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls'))).filter(Boolean);
+
+    function activateTab(idx){
+      tabs.forEach((t,i)=>{
+        const selected = i===idx;
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        panels[i].hidden = !selected;
+        panels[i].classList.toggle('is-active', selected);
+      });
+      tabs[idx].focus();
+    }
+
+    tabs.forEach((tab, idx)=>{
+      tab.addEventListener('click', ()=> activateTab(idx));
+      tab.addEventListener('keydown', (e)=>{
+        const key = e.key;
+        let newIdx = idx;
+        if (key === 'ArrowRight') newIdx = (idx+1) % tabs.length;
+        else if (key === 'ArrowLeft') newIdx = (idx-1+tabs.length) % tabs.length;
+        else if (key === 'Home') newIdx = 0;
+        else if (key === 'End') newIdx = tabs.length-1;
+        else if (key === 'Enter' || key === ' ') { e.preventDefault(); activateTab(idx); return; }
+        else return;
+        e.preventDefault();
+        activateTab(newIdx);
+      });
+    });
+  }
+/* GSAP (opcional) — realces adicionais se existir */
   function enhanceWithGSAP(){
     if (typeof window.gsap === 'undefined') return;
     if (reducedMotion) return;
@@ -150,6 +185,13 @@
         });
       });
       // Realce pedido para #sobre
+      // Programa — cards
+      document.querySelectorAll('#programa .event-card').forEach(el => {
+        gsap.from(el, { y: 18, autoAlpha: 0, duration: 0.55, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
       document.querySelectorAll('#sobre .reveal').forEach(el => {
         gsap.from(el, {
           y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
