@@ -68,10 +68,7 @@
     const spans = title.querySelectorAll('span');
     spans.forEach((s) => {
       s.style.transition = 'opacity 1000ms linear';
-      s.style.transitionDelay = '0ms';
       requestAnimationFrame(() => { s.style.opacity = 1; });
-    });
-  });
     });
   }
 
