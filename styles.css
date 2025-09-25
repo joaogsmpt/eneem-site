@@ -285,3 +285,10 @@ body {
 /* Center-only nav in header */
 .site-header .brand { display: none !important; }
 .site-header .container { justify-content: center !important; }
+
+
+/* Defensive hide for legacy elements */
+.skip-link, .scroll-cue { display: none !important; visibility: hidden !important; }
+.site-header .brand { display: none !important; }
+.site-header .container { justify-content: center !important; }
+.site-header .nav { margin: 0 auto !important; }
