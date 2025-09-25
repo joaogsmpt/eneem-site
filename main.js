@@ -65,14 +65,12 @@
   function splitHeroTitle(){
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
+    // spans já existem no HTML; garantimos delays
     const spans = title.querySelectorAll('span');
-    // PowerPoint-like fade: pure opacity. Total timeline 1000ms with subtle stagger (50ms).
-    const stagger = 50; // ms between spans
-    const perSpanDuration = 1000 - stagger; // ensures last span finishes at 1000ms
     spans.forEach((s, i) => {
-      s.style.transition = `opacity ${perSpanDuration}ms linear`;
-      s.style.transitionDelay = `${i * stagger}ms`;
-      requestAnimationFrame(() => { s.style.opacity = 1; });
+      s.style.transition = 'opacity 700ms var(--ease), filter 900ms var(--ease)';
+      s.style.transitionDelay = (i * 100) + 'ms';
+      requestAnimationFrame(() => { s.style.opacity = 1; s.style.filter = 'blur(0px)'; });
     });
   }
 
@@ -162,7 +160,9 @@
 
     // Animação do título (stagger suave)
     const titleSpans = document.querySelectorAll('.hero-title span');
-    gsap.fromTo(titleSpans, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.95, ease: 'none', stagger: 0.05 });
+    gsap.fromTo(titleSpans, { autoAlpha: 0, filter: 'blur(6px)' }, {
+      autoAlpha: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.08
+    });
 
     // Revelações on-scroll
     if (window.ScrollTrigger) {
