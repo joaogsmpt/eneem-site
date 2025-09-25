@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-PT" dir="ltr">
+<head>
+  <!--
+    Projeto: X ENEEM — One-page moderna e responsiva
+    Tecnologias: HTML + CSS + JS puros (sem build); GSAP opcional via CDN com fallback.
+    Objetivo Lighthouse ≥ 90 (Performance/A11y/Best Practices/SEO).
+    NOTA: Substitui os placeholders marcados com <!-- TODO -->.
+  -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>X ENEEM — Evento (nome fictício)</title>
+  <meta name="description" content="X ENEEM — Landing page cinematográfica e imersiva. <!-- TODO: atualizar descrição SEO real -->" />
+
+  <!-- Open Graph / Twitter (placeholders) -->
+  <meta property="og:title" content="X ENEEM — Evento" />
+  <meta property="og:description" content="Landing page cinematográfica e imersiva. <!-- TODO -->" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<!-- TODO: URL canónica -->" />
+  <meta property="og:image" content="<!-- TODO: URL da imagem social 1200x630 -->" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="X ENEEM — Evento" />
+  <meta name="twitter:description" content="Landing page cinematográfica e imersiva. <!-- TODO -->" />
+  <meta name="theme-color" content="#0B1222" />
+
+  <link rel="canonical" href="<!-- TODO: URL canónica -->" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Tipografia: Opção A (defeito) Poppins + Inter; Opção B Montserrat + Source Sans 3 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- GSAP opcional para micro-animações mais suaves; o site funciona sem GSAP -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+
+  <header id="topo" class="site-header" role="banner">
+    <div class="container">
+      <a class="brand" href="#topo" aria-label="Ir para o início">X ENEEM</a>
+      <nav class="nav" role="navigation" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#sobre" data-spy aria-current="page">Sobre</a></li>
+          <li><a href="#programa" data-spy>Programa</a></li>
+          <li><a href="#oradores" data-spy>Oradores</a></li>
+          <li><a href="#local" data-spy>Local</a></li>
+          <li><a href="#inscricao" data-spy>Inscrição</a></li>
+          <li><a href="#faq" data-spy>FAQ</a></li>
+          <li><a href="#contactos" data-spy>Contactos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- HERO (ecrã cheio) -->
+    <section id="hero" class="section-hero" aria-label="Abertura">
+      <!-- Camadas parallax (SVG inline) -->
+      <div class="hero-layers" aria-hidden="true">
+        <!-- Fundo gradiente é no CSS; aqui acrescentamos formas para profundidade -->
+        <svg class="layer layer-1" data-depth="0.05" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 800">
+          <path d="M0,600 C300,520 420,620 720,560 C1030,500 1160,560 1440,480 L1440,800 L0,800 Z" fill="#0D1B2A" opacity="0.9"></path>
+        </svg>
+        <svg class="layer layer-2" data-depth="0.10" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 800">
+          <path d="M0,640 C260,680 420,640 720,700 C980,750 1200,700 1440,740 L1440,800 L0,800 Z" fill="#162C4A" opacity="0.8"></path>
+        </svg>
+        <svg class="layer layer-3" data-depth="0.15" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 800">
+          <path d="M0,700 C240,740 460,720 720,760 C1000,800 1200,780 1440,800 L1440,800 L0,800 Z" fill="#1F3D66" opacity="0.7"></path>
+        </svg>
+      </div>
+
+      <div class="hero-inner container">
+        <h1 class="hero-title" data-animate="stagger-words">
+          <span>X</span> <span>ENEEM</span>
+        </h1>
+        <p class="hero-tagline reveal">Um encontro para pensar, criar e transformar. <!-- TODO: atualizar tagline --></p>
+        <p class="hero-meta reveal">Edição 10 • 15–17 Março 2026 • Lisboa <!-- TODO: atualizar data/local --></p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary reveal" href="#inscricao">Pré-inscrição</a>
+          <a class="btn btn-ghost reveal" href="#sobre" aria-label="Saber mais sobre o evento">Saber mais</a>
+        </div>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <button class="scroll-cue" aria-label="Deslizar para explorar" data-scroll-to="#sobre">
+        <span class="sr-only">Deslizar para explorar</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4v14M5 11l7 7 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Divisor com ondas/serras (parallax leve) -->
+    <section class="divider-parallax" aria-hidden="true">
+      <svg class="divider-layer" data-depth="0.10" width="100%" height="140" viewBox="0 0 1440 140" preserveAspectRatio="none">
+        <path d="M0,80 C320,120 560,60 720,100 C960,160 1200,100 1440,120 L1440,140 L0,140 Z" fill="#28528C" opacity="0.25"></path>
+      </svg>
+      <svg class="divider-layer" data-depth="0.06" width="100%" height="140" viewBox="0 0 1440 140" preserveAspectRatio="none">
+        <path d="M0,90 C280,130 560,80 720,120 C920,180 1200,120 1440,140 L1440,140 L0,140 Z" fill="#1F3D66" opacity="0.2"></path>
+      </svg>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="section section-padded" aria-labelledby="sobre-title">
+      <div class="container">
+        <h2 id="sobre-title" class="section-title reveal">Sobre o X ENEEM</h2>
+        <p class="lead reveal">Este é um texto fictício em PT-PT para contextualizar o evento, a sua missão e o público-alvo. <!-- TODO: substituir conteúdo --></p>
+        <p class="reveal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus, nibh non placerat laoreet, urna purus semper arcu, id luctus metus tortor ac lorem. Curabitur consequat, metus sed dapibus sagittis, arcu velit dapibus quam, a congue justo orci nec augue. <!-- TODO --></p>
+      </div>
+    </section>
+
+    <!-- PROGRAMA / HIGHLIGHTS -->
+    <section id="programa" class="section section-alt section-padded" aria-labelledby="programa-title">
+      <div class="container">
+        <h2 id="programa-title" class="section-title reveal">Programa &amp; Destaques</h2>
+        <div class="grid grid-3">
+          <article class="card reveal">
+            <h3>Keynote de Abertura</h3>
+            <p>Resumo placeholder do tema e do orador. <!-- TODO --></p>
+          </article>
+          <article class="card reveal">
+            <h3>Workshops Imersivos</h3>
+            <p>Breve descrição dos formatos práticos e objetivos. <!-- TODO --></p>
+          </article>
+          <article class="card reveal">
+            <h3>Expo &amp; Networking</h3>
+            <p>Espaço para demonstrações e ligações entre participantes. <!-- TODO --></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORADORES -->
+    <section id="oradores" class="section section-padded" aria-labelledby="oradores-title">
+      <div class="container">
+        <h2 id="oradores-title" class="section-title reveal">Oradores &amp; Convidados</h2>
+        <div class="grid grid-3">
+          <article class="person reveal">
+            <div class="avatar" aria-hidden="true"></div>
+            <h3>Nome do Orador</h3>
+            <p>Bio curta placeholder. <!-- TODO --></p>
+          </article>
+          <article class="person reveal">
+            <div class="avatar" aria-hidden="true"></div>
+            <h3>Nome do Orador</h3>
+            <p>Bio curta placeholder. <!-- TODO --></p>
+          </article>
+          <article class="person reveal">
+            <div class="avatar" aria-hidden="true"></div>
+            <h3>Nome do Convidado</h3>
+            <p>Bio curta placeholder. <!-- TODO --></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCAL / ACESSO -->
+    <section id="local" class="section section-alt section-padded" aria-labelledby="local-title">
+      <div class="container">
+        <h2 id="local-title" class="section-title reveal">Local &amp; Acesso</h2>
+        <div class="grid grid-2">
+          <div class="reveal">
+            <p>Morada fictícia, acessos e transportes. <!-- TODO --></p>
+            <ul>
+              <li>Metro/Comboio: <!-- TODO --></li>
+              <li>Autocarro: <!-- TODO --></li>
+              <li>Estacionamento: <!-- TODO --></li>
+            </ul>
+          </div>
+          <div class="map mock-map reveal" role="img" aria-label="Mapa estático de exemplo">
+            <!-- Placeholder de mapa em SVG (substituir por embed real se necessário) -->
+            <svg viewBox="0 0 400 260" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#28528C" opacity="0.25" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)"/>
+              <circle cx="200" cy="130" r="10" fill="#66D9FF"/>
+              <text x="200" y="155" text-anchor="middle" fill="#B6C7E5" font-size="12">Local (placeholder)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSCRIÇÃO / CTA -->
+    <section id="inscricao" class="section section-cta section-padded" aria-labelledby="inscricao-title">
+      <div class="container">
+        <h2 id="inscricao-title" class="section-title reveal">Inscrição</h2>
+        <p class="lead reveal">Garante já a tua pré-inscrição. Lugares limitados. <!-- TODO: explicar processo --></p>
+        <form class="cta-form reveal" action="<!-- TODO: endpoint real -->" method="post" novalidate>
+          <label>
+            <span class="sr-only">Email</span>
+            <input type="email" name="email" placeholder="o.teu@email.com" autocomplete="email" required />
+          </label>
+          <button type="submit" class="btn btn-primary">Pré-inscrever</button>
+          <p class="form-note">Ao enviar, aceitas os <a href="#contactos">termos</a>. <!-- TODO --></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section section-padded" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="section-title reveal">Perguntas Frequentes</h2>
+        <details class="faq-item reveal">
+          <summary>Quando e onde acontece?</summary>
+          <p>Datas e local fictícios. <!-- TODO --></p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Como funcionam as inscrições?</summary>
+          <p>Explicação breve do processo. <!-- TODO --></p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Política de devoluções?</summary>
+          <p>Texto placeholder. <!-- TODO --></p>
+        </details>
+      </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer id="contactos" class="site-footer" role="contentinfo">
+      <div class="container footer-grid">
+        <div>
+          <strong>X ENEEM</strong>
+          <p class="muted">Evento fictício para demonstração.</p>
+        </div>
+        <nav aria-label="Links úteis">
+          <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#programa">Programa</a></li>
+            <li><a href="#inscricao">Inscrição</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div>
+          <p class="muted">Contactos <!-- TODO --></p>
+          <ul class="social">
+            <li><a href="#" aria-label="Instagram (placeholder)">Instagram</a></li>
+            <li><a href="#" aria-label="LinkedIn (placeholder)">LinkedIn</a></li>
+            <li><a href="#" aria-label="YouTube (placeholder)">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="container tiny">© <span data-year></span> X ENEEM — Todos os direitos reservados. <!-- TODO --></p>
+    </footer>
+
+  </main>
+
+  <!-- GUIA DE PERSONALIZAÇÃO (comentado) -->
+  <!--
+    === Guia de Personalização ===
+
+    Paleta (CSS variables em :root, ver styles.css)
+      --color-bg: #0B1222;
+      --color-bg-2: #0E1A33;
+      Camadas parallax (exemplos): #0D1B2A, #162C4A, #1F3D66, #28528C
+      Acentos: --color-accent: #66D9FF; --color-accent-2: #A8E1FF
+      Texto: --color-text: #E8F1FF; --color-text-2: #B6C7E5
+
+    Tipografia (Google Fonts)
+      Opção A (defeito): Títulos Poppins, corpo Inter
+      Opção B: Títulos Montserrat, corpo Source Sans 3
+      Para usar a Opção B, altera no <body> o data-font="B" ou troca as variáveis font-* no CSS.
+
+    Escalas tipográficas (ver :root em styles.css)
+      --step--1: 0.875rem; --step-0: 1rem; --step-1: 1.25rem; --step-2: 1.5rem; --step-3: 2rem; --step-4: 3rem; --step-5: 4rem
+
+    Animações (ver :root)
+      --dur-1: 120ms; --dur-2: 180ms; --dur-3: 320ms; --ease: cubic-bezier(.2,.7,.2,1)
+      Para reduzir/ajustar velocidades, altera estas variáveis.
+      Suporte a prefers-reduced-motion: animações/parallax reduzem ou desligam automaticamente.
+
+    Adicionar/remover secções
+      - Duplica um bloco <section> e atualiza id/aria-labelledby.
+      - Adiciona o link na navegação com href="#novo-id".
+      - Para revelações on-scroll, coloca a classe .reveal nos elementos.
+
+    GSAP opcional
+      - O site usa IntersectionObserver/JS puro. Se GSAP carregar, melhora a animação do título e das revelações.
+      - Sem GSAP, tudo continua funcional.
+
+    Melhores práticas
+      - Substitui o mapa SVG por um embed real (p.ex., iframe com mapa) se necessário.
+      - Atualiza metadados SEO (title/description/OG/Twitter) e cria as páginas reais referenciadas.
+      - Mantém as imagens otimizadas e usa loading="lazy" em imagens fora do ecrã.
+  -->
+
+  <script defer src="main.js"></script>
+</body>
+</html>
