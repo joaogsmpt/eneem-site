@@ -280,3 +280,27 @@ body {
 .site-header .container { justify-content: center !important; }
 
 /* Hero fade mais profissional (blur->nítido controlado via JS) */
+
+/* === Sobre o ENEEM (estilos locais) === */
+.about-highlights {
+  list-style: none; padding: 0; margin: var(--space-2) 0 var(--space-3);
+  display: grid; gap: .5rem;
+}
+.about-highlights li {
+  background: color-mix(in oklab, var(--color-bg), white 3%);
+  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 12%);
+  border-radius: var(--radius-1);
+  padding: .6rem .75rem;
+}
+.about-media .about-illustration {
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-2);
+  background:
+    radial-gradient(60% 60% at 30% 30%, color-mix(in oklab, var(--color-accent-2), transparent 40%), transparent),
+    linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2));
+  box-shadow: 0 10px 20px rgba(0,0,0,.15);
+}
+
+/* micro-otimização para a revelação (reutiliza .reveal existente) */
+.reveal { will-change: opacity, transform; }
+
