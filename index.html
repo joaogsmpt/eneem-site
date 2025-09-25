@@ -32,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=eneem3" />
+  <link rel="stylesheet" href="styles.css?v=eneem4" />
 
   <!-- GSAP opcional para micro-animações mais suaves; o site funciona sem GSAP -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -40,9 +40,12 @@
 
 </head>
 <body>
-<header id="topo" class="site-header" role="banner">
+  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+
+  <header id="topo" class="site-header" role="banner">
     <div class="container">
-<nav class="nav" role="navigation" aria-label="Navegação principal">
+      <a class="brand" href="#topo" aria-label="Ir para o início">X ENEEM</a>
+      <nav class="nav" role="navigation" aria-label="Navegação principal">
         <ul>
           <li><a href="#sobre" data-spy aria-current="page">Sobre</a></li>
           <li><a href="#programa" data-spy>Programa</a></li>
@@ -85,7 +88,15 @@
           <a class="btn btn-ghost reveal" href="#sobre" aria-label="Saber mais sobre o evento">Saber mais</a>
         </div>
       </div>
-</section>
+
+      <!-- Indicador de scroll -->
+      <button class="scroll-cue" aria-label="Deslizar para explorar" data-scroll-to="#sobre">
+        <span class="sr-only">Deslizar para explorar</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4v14M5 11l7 7 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </section>
 
     <!-- Divisor com ondas/serras (parallax leve) -->
     <section class="divider-parallax" aria-hidden="true">
@@ -284,6 +295,6 @@
       - Mantém as imagens otimizadas e usa loading="lazy" em imagens fora do ecrã.
   -->
 
-  <script defer src="main.js?v=eneem3"></script>
+  <script defer src="main.js?v=eneem4"></script>
 </body>
 </html>

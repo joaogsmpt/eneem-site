@@ -280,22 +280,3 @@ body {
 .site-header .container { justify-content: center !important; }
 
 /* Hero fade mais profissional (blur->nítido controlado via JS) */
-
-
-/* Center-only nav in header */
-.site-header .brand { display: none !important; }
-.site-header .container { justify-content: center !important; }
-
-
-/* Defensive hide for legacy elements */
-.skip-link, .scroll-cue { display: none !important; visibility: hidden !important; }
-.site-header .brand { display: none !important; }
-.site-header .container { justify-content: center !important; }
-.site-header .nav { margin: 0 auto !important; }
-
-
-/* Defensive cleanup for legacy elements & strict centered nav */
-.skip-link, .scroll-cue, [aria-label="Deslizar para explorar"] { display: none !important; visibility: hidden !important; }
-.site-header .brand { display: none !important; }
-.site-header .container { display: flex !important; justify-content: center !important; }
-.site-header .nav { margin: 0 auto !important; }

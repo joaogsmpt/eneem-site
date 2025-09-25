@@ -66,11 +66,10 @@
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
     const spans = title.querySelectorAll('span');
-    const stagger = 20; // 0.05s
-    const duration = 1000; // 1s
-    spans.forEach((s, i) => {
+    const duration = 1000; // 1s total
+    spans.forEach((s) => {
       s.style.transition = `opacity ${duration}ms linear`;
-      s.style.transitionDelay = `${i * stagger}ms`;
+      s.style.transitionDelay = `0ms`;
       requestAnimationFrame(() => { s.style.opacity = 1; });
     });
   }
