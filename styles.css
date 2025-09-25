@@ -270,8 +270,6 @@ body {
 /* Reduzir movimento quando prefere-se redução */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal, .hero-title span { transition: none !important; transform: none !important; opacity: 1 !important; }
-}
   .reveal, .hero-title span { display: inline-block; opacity: 0; }
 }
 
@@ -282,3 +280,8 @@ body {
 .site-header .container { justify-content: center !important; }
 
 /* Hero fade mais profissional (blur->nítido controlado via JS) */
+
+
+/* Center-only nav in header */
+.site-header .brand { display: none !important; }
+.site-header .container { justify-content: center !important; }
