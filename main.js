@@ -65,12 +65,12 @@
   function splitHeroTitle(){
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
+    // spans já existem no HTML; garantimos delays
     const spans = title.querySelectorAll('span');
-    const duration = 1000; // 1s total
-    spans.forEach((s) => {
-      s.style.transition = `opacity ${duration}ms linear`;
-      s.style.transitionDelay = `0ms`;
-      requestAnimationFrame(() => { s.style.opacity = 1; });
+    spans.forEach((s, i) => {
+      s.style.transition = 'opacity 700ms var(--ease), filter 900ms var(--ease)';
+      s.style.transitionDelay = (i * 100) + 'ms';
+      requestAnimationFrame(() => { s.style.opacity = 1; s.style.filter = 'blur(0px)'; });
     });
   }
 
@@ -88,7 +88,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    }, { rootMargin: '0px 0px -5% 0px', threshold: 0.05 });
     els.forEach(el => io.observe(el));
   }
 
