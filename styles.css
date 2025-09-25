@@ -151,7 +151,7 @@ body {
   line-height: 0.9;
   letter-spacing: .04em;
 }
-.hero-title span { display: inline-block; opacity: 0; transform: translateY(20px); }
+.hero-title span { display: inline-block; opacity: 0; }
 .hero-tagline { color: var(--color-text-2); margin: 0 0 .25rem; }
 .hero-meta { color: var(--color-text-2); margin: 0 0 var(--space-3); }
 
@@ -272,3 +272,18 @@ body {
   html { scroll-behavior: auto; }
   .reveal, .hero-title span { transition: none !important; transform: none !important; opacity: 1 !important; }
 }
+  .reveal, .hero-title span { display: inline-block; opacity: 0; }
+}
+
+
+/* === Ajustes solicitados === */
+/* Esconder o texto da marca no cabeçalho e centrar o índice */
+.site-header .brand { display: none !important; }
+.site-header .container { justify-content: center !important; }
+
+/* Hero fade mais profissional (blur->nítido controlado via JS) */
+
+
+/* === Overrides solicitados === */
+/* Remover seta/ponto no canto superior esquerdo (skip-link oculto) */
+.skip-link { display: none !important; }
