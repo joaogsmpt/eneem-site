@@ -1,7 +1,5 @@
 /* ================================
    ENEEM — main.js
-   Interações: smooth scroll, reveal on-scroll, scroll-spy, hero stagger.
-   GSAP opcional (ScrollTrigger) com fallback completo.
    ================================ */
 (function(){
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -14,18 +12,16 @@
     initScrollReveal();
     initNavSpy();
     initScrollCue();
-    enhanceWithGSAP();
     initProgramTabs();
+    enhanceWithGSAP();
   });
 
-  /* Util: ano no footer */
   function setYear(){
     const y = document.querySelector('[data-year]');
     if (y) y.textContent = new Date().getFullYear();
   }
 
-  
-  /* Header: sincroniza o padding-top do body com a altura real do header */
+  /* Header: sincroniza padding-top com altura real */
   function syncHeaderOffset(){
     const header = document.querySelector('.site-header');
     if (!header) return;
@@ -41,7 +37,7 @@
       window.addEventListener('resize', apply, { passive: true });
     }
   }
-/* Stagger simples (hero) — sem GSAP */
+
   function splitHeroTitle(){
     const title = document.querySelector('[data-animate="stagger-words"]');
     if (!title) return;
@@ -59,7 +55,6 @@
     });
   }
 
-  /* Smooth scroll com offset do header + URL update */
   function initSmoothScroll(){
     const header = document.querySelector('.site-header');
     const links = document.querySelectorAll('a[href^="#"]');
@@ -74,17 +69,14 @@
         const y = window.scrollY + rect.top - (headerOffset + 12);
         if (reducedMotion) window.scrollTo(0, y);
         else window.scrollTo({ top: y, behavior: 'smooth' });
-        // Atualiza hash (sem saltar)
         history.pushState(null, '', id);
       });
     });
   }
 
-  /* Revelação com IntersectionObserver (fallback principal) */
   function initScrollReveal(){
     const els = document.querySelectorAll('.reveal');
     if (!els.length) return;
-
     if ('IntersectionObserver' in window){
       const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -96,12 +88,10 @@
       }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
       els.forEach(el => io.observe(el));
     } else {
-      // Fallback muito básico
       els.forEach(el => el.classList.add('is-visible'));
     }
   }
 
-  /* Scroll-Spy: marca link ativo conforme secção visível */
   function initNavSpy(){
     const navLinks = Array.from(document.querySelectorAll('[data-spy]'));
     if (!navLinks.length) return;
@@ -126,7 +116,6 @@
       }, opts);
       sections.forEach(s => io.observe(s));
     } else {
-      // Fallback
       function onScroll(){
         let best = sections[0];
         const fromTop = window.scrollY + (window.innerHeight * 0.4);
@@ -140,7 +129,6 @@
     }
   }
 
-  /* Botão cue no hero para saltar para #sobre */
   function initScrollCue(){
     const cue = document.querySelector('.scroll-cue');
     if (!cue) return;
@@ -155,8 +143,6 @@
     });
   }
 
-  
-  /* Programa: tabs acessíveis e animações suaves */
   function initProgramTabs(){
     const tablist = document.querySelector('.program-tabs');
     if (!tablist) return;
@@ -189,30 +175,27 @@
       });
     });
   }
-/* GSAP (opcional) — realces adicionais se existir */
+
   function enhanceWithGSAP(){
     if (typeof window.gsap === 'undefined') return;
     if (reducedMotion) return;
     const gsap = window.gsap;
     if (window.ScrollTrigger) {
-      // Evita duplicar: aplica GSAP nas .reveal excepto quando já visíveis
       document.querySelectorAll('.reveal:not(#sobre .reveal)').forEach(el => {
         gsap.from(el, {
           y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
           scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
         });
       });
-      // Realce pedido para #sobre
-      // Programa — cards
-      document.querySelectorAll('#programa .event-card').forEach(el => {
-        gsap.from(el, { y: 18, autoAlpha: 0, duration: 0.55, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
-        });
-      });
-
       document.querySelectorAll('#sobre .reveal').forEach(el => {
         gsap.from(el, {
           y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+      document.querySelectorAll('#programa .event-card').forEach(el => {
+        gsap.from(el, {
+          y: 18, autoAlpha: 0, duration: 0.55, ease: 'power2.out',
           scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
         });
       });
