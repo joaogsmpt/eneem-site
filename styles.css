@@ -463,3 +463,51 @@ body{
 @media (min-width: 1400px){
   #expositores .stand-map{ max-width: 320px; gap: .34rem }
 }
+
+
+/* === Expositores v6: título numa linha, quadrados 50%, colunas mais afastadas,
+   lista com a mesma altura do mapa e linhas distribuídas === */
+
+/* Título numa linha, e o conteúdo começa abaixo */
+#expositores .section-title{ white-space: nowrap; margin-bottom: .75rem }
+#expositores .expositores-wrap{ align-items: start; column-gap: clamp(6rem, 12vw, 14rem) }
+
+/* Mapa 4x5: metade do tamanho anterior */
+#expositores .stand-map{
+  max-width: 200px;             /* ~metade do v5 */
+  gap: .32rem;
+  margin-top: .75rem;
+}
+#expositores .stand-map .stand{
+  border-radius: .28rem;
+  font-size: .62rem;
+}
+
+/* Lista: altura = altura do mapa; 20 linhas exatamente */
+#expositores .expositores-list-col{ margin-top: .75rem }
+#expositores .expositores-list{
+  height: var(--expo-map-h, auto);     /* será definida via JS */
+  display: grid;
+  grid-template-rows: repeat(20, 1fr);
+  gap: .2rem;
+}
+#expositores .expositores-list li{
+  grid-template-columns: 1.1rem 1fr;
+  padding: .16rem .28rem;
+  border-radius: .24rem;
+}
+#expositores .expositores-list li .num{
+  width: 1rem; height: 1rem; border-radius: .2rem; font-size: .64rem;
+}
+#expositores .expositores-list .name{
+  font-size: .74rem; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Responsivo: mantém pequeno mesmo em ecrãs muito largos */
+@media (min-width: 1400px){
+  #expositores .stand-map{ max-width: 190px; gap: .28rem }
+}
+@media (max-width: 900px){
+  #expositores .expositores-wrap{ grid-template-columns: 1fr; column-gap: 0 }
+  #expositores .expositores-list{ height: auto; grid-template-rows: none; }
+}

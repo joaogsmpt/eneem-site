@@ -14,6 +14,7 @@
     initScrollCue();
     initProgramTabs();
     initExpositoresMap();
+    syncExpositoresHeight();
     enhanceWithGSAP();
   });
 
@@ -204,7 +205,19 @@
   }
 
 })();
-  /* Expositores: ligação entre mapa e lista */
+  
+  /* Expositores: sincroniza a altura da lista com a do mapa */
+  function syncExpositoresHeight(){
+    const map = document.querySelector('#expositores .stand-map');
+    if (!map) return;
+    const apply = () => {
+      const h = map.offsetHeight;
+      document.documentElement.style.setProperty('--expo-map-h', h ? h + 'px' : 'auto');
+    };
+    apply();
+    window.addEventListener('resize', apply, { passive: true });
+  }
+/* Expositores: ligação entre mapa e lista */
   function initExpositoresMap(){
     const map = document.querySelector('#expositores .stand-map');
     const list = document.querySelector('#expositores .expositores-list');
