@@ -342,3 +342,45 @@ body{
 }
 /* opcional: garantir que a secção seguinte volta ao comportamento padrão */
 #expositores + .section{ background: transparent }
+
+
+/* === Expositores v3: 4x5 grade compacta + lista compacta === */
+#expositores .expositores-wrap{ align-items: start; gap: 2rem }
+#expositores .stand-map{
+  --cols: 4;                          /* 4 colunas fixas */
+  max-width: 560px;                   /* controla dimensão para manter os quadrados pequenos */
+  grid-template-columns: repeat(4, 1fr);
+  gap: .7rem;
+}
+#expositores .stand-map .stand{
+  aspect-ratio: 1/1;
+  border-radius: .5rem;
+  font-size: 1rem;
+  letter-spacing: .02em;
+}
+
+/* Coluna da lista: tipografia e densidade para caber entre topo e base do mapa */
+#expositores .expositores-list{
+  gap: .35rem;
+  margin-top: 2.5rem;                 /* alinha visualmente com o topo dos quadrados */
+}
+#expositores .expositores-list li{
+  grid-template-columns: 1.8rem 1fr;
+  padding: .35rem .5rem;
+  border-radius: .45rem;
+}
+#expositores .expositores-list li .num{
+  width: 1.6rem; height: 1.6rem; border-radius: .35rem; font-size: .92rem;
+}
+#expositores .expositores-list .name{
+  font-size: .98rem; line-height: 1.25;
+}
+
+/* Responsivo: em ecrãs muito largos, mantém os quadrados pequenos; em médios, ligeiro ajuste */
+@media (min-width: 1200px){
+  #expositores .stand-map{ max-width: 520px; gap: .65rem }
+}
+@media (max-width: 900px){
+  #expositores .expositores-wrap{ grid-template-columns: 1fr; }
+  #expositores .expositores-list{ margin-top: 1rem }
+}
