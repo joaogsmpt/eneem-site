@@ -331,3 +331,14 @@ body{
   border-color: color-mix(in oklab, var(--color-accent), white 15%);
   background: color-mix(in oklab, var(--color-bg), white 6%);
 }
+
+
+/* === Expositores: fundo sólido por toda a secção (sem transições de gradiente) === */
+#expositores{
+  position: relative;
+  background: var(--color-bg-2); /* mantém cor estável até ao fim da secção */
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+/* opcional: garantir que a secção seguinte volta ao comportamento padrão */
+#expositores + .section{ background: transparent }
