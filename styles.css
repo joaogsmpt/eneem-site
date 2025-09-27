@@ -423,3 +423,43 @@ body{
   #expositores .expositores-wrap{ grid-template-columns: 1fr; }
   #expositores .expositores-list{ margin-top: 1rem }
 }
+
+
+/* === Expositores v5: ultra-compact + colunas mais afastadas === */
+#expositores .expositores-wrap{ column-gap: 5rem } /* separa mais as duas colunas */
+
+/* Mapa: 4x5 com quadrados pequenos */
+#expositores .stand-map{
+  max-width: 340px;          /* ainda menor */
+  gap: .38rem;
+}
+#expositores .stand-map .stand{
+  border-radius: .3rem;
+  font-size: .68rem;
+}
+
+/* Lista: ultra-compact para caber 20 itens no viewport */
+#expositores .expositores-list{
+  gap: .15rem;
+  margin-top: 1.2rem;
+}
+#expositores .expositores-list li{
+  grid-template-columns: 1.2rem 1fr;
+  padding: .18rem .3rem;
+  border-radius: .28rem;
+}
+#expositores .expositores-list li .num{
+  width: 1.1rem; height: 1.1rem; border-radius: .2rem; font-size: .68rem;
+}
+#expositores .expositores-list .name{
+  font-size: .76rem;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Se o ecrã for muito largo, mantemos os elementos pequenos */
+@media (min-width: 1400px){
+  #expositores .stand-map{ max-width: 320px; gap: .34rem }
+}
