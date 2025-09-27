@@ -13,6 +13,7 @@
     initNavSpy();
     initScrollCue();
     initProgramTabs();
+    initExpositoresMap();
     enhanceWithGSAP();
   });
 
@@ -203,3 +204,25 @@
   }
 
 })();
+  /* Expositores: ligação entre mapa e lista */
+  function initExpositoresMap(){
+    const map = document.querySelector('#expositores .stand-map');
+    const list = document.querySelector('#expositores .expositores-list');
+    if (!map || !list) return;
+
+    const stands = Array.from(map.querySelectorAll('.stand'));
+    const items  = Array.from(list.querySelectorAll('li'));
+
+    function highlight(n, on){
+      stands.filter(s => s.dataset.stand === n).forEach(s => s.classList.toggle('is-highlighted', on));
+      items.filter(li => li.dataset.stand === n).forEach(li => li.classList.toggle('is-highlighted', on));
+    }
+
+    function wire(el, n){
+      ['mouseenter','focus'].forEach(evt => el.addEventListener(evt, () => highlight(n, true)));
+      ['mouseleave','blur'].forEach(evt => el.addEventListener(evt, () => highlight(n, false)));
+    }
+
+    stands.forEach(s => wire(s, s.dataset.stand));
+    items.forEach(li => wire(li, li.dataset.stand));
+  }

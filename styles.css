@@ -281,3 +281,53 @@ body{
 }
 #programa .program-tab:hover::after{ transform: scaleX(1) }
 #programa .program-tab[aria-selected="true"]::after{ display: none }
+
+
+/* === Expositores — Prep Your Future === */
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#expositores .expositores-wrap{align-items:start}
+.stand-map{
+  --cols: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: .9rem;
+  margin-top: var(--space-2);
+}
+@media (min-width: 520px){ .stand-map{ --cols: 4 } }
+@media (min-width: 720px){ .stand-map{ --cols: 5 } }
+@media (min-width: 980px){ .stand-map{ --cols: 6 } }
+
+.stand-map .stand{
+  display: grid; place-items: center;
+  aspect-ratio: 1/1;
+  border-radius: .6rem;
+  font-weight: 700;
+  background: color-mix(in oklab, var(--color-bg), white 3%);
+  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 12%);
+  color: var(--color-text);
+  user-select: none;
+  outline: none;
+  transition: transform var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.stand-map .stand:hover{ transform: translateY(-2px) }
+.stand-map .stand:focus-visible{ outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.stand-map .stand.is-highlighted{
+  border-color: color-mix(in oklab, var(--color-accent), white 10%);
+  background: color-mix(in oklab, var(--color-bg), white 6%);
+}
+
+.expositores-list{ list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: .4rem }
+.expositores-list li{
+  display: grid; grid-template-columns: 2.2rem 1fr; align-items: center;
+  gap: .6rem; padding: .4rem .5rem; border-radius: .5rem;
+  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 10%);
+  background: color-mix(in oklab, var(--color-bg), white 2.5%);
+}
+.expositores-list li .num{ display:inline-grid; place-items:center; width:2rem; height:2rem; border-radius:.4rem;
+  font-weight:700; color:var(--color-text); border:1px solid color-mix(in oklab, var(--color-bg-2), white 15%);
+  background: color-mix(in oklab, var(--color-bg), white 4%);
+}
+.expositores-list li.is-highlighted{
+  border-color: color-mix(in oklab, var(--color-accent), white 15%);
+  background: color-mix(in oklab, var(--color-bg), white 6%);
+}
