@@ -511,3 +511,36 @@ body{
   #expositores .expositores-wrap{ grid-template-columns: 1fr; column-gap: 0 }
   #expositores .expositores-list{ height: auto; grid-template-rows: none; }
 }
+
+
+/* === Expositores v7: gap x4, lista em 2 colunas alinhadas === */
+
+/* Mapa com quadrados mais separados */
+#expositores .stand-map{
+  max-width: 220px;   /* mantém pequeno */
+  gap: 1.5rem;        /* ~4x maior que antes */
+}
+
+/* Lista em 2 colunas de 10, alinhada com altura do mapa */
+#expositores .expositores-list{
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: .4rem 2rem;
+}
+#expositores .expositores-list li{
+  grid-template-columns: 1.2rem 1fr;
+  padding: .2rem .35rem;
+  border-radius: .28rem;
+}
+#expositores .expositores-list li .num{
+  width: 1.1rem; height: 1.1rem;
+  font-size: .7rem;
+}
+#expositores .expositores-list .name{
+  font-size: .78rem; line-height: 1.15;
+}
+
+/* Colunas mais afastadas no wrap geral */
+#expositores .expositores-wrap{ column-gap: clamp(8rem, 14vw, 16rem) }
