@@ -195,3 +195,35 @@ body{
   .reveal{transition:none}
   .hero-title span{opacity:1; filter:none}
 }
+
+
+/* ===== Programa — versão minimalista e limpa (overrides) ===== */
+#programa .program-tabs{ gap:1rem }
+#programa .program-tab{
+  all: unset; cursor: pointer; color: var(--color-text-2); font-weight: 600;
+  padding: .25rem 0; position: relative;
+}
+#programa .program-tab::after{
+  content:""; position:absolute; left:0; bottom:-6px; height:2px; width:100%;
+  background: color-mix(in oklab, var(--color-text-2), transparent 40%);
+  transform: scaleX(0); transform-origin:left; transition: transform var(--dur-2) var(--ease);
+}
+#programa .program-tab[aria-selected="true"]{ color: var(--color-text) }
+#programa .program-tab[aria-selected="true"]::after{ transform: scaleX(1); background: var(--color-accent) }
+#programa .program-tab:focus-visible{ outline:2px solid var(--color-accent); outline-offset:4px; border-radius:4px }
+
+#programa .event-card{
+  background: color-mix(in oklab, var(--color-bg), white 2.5%);
+  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 10%);
+  box-shadow: none; transition: border-color var(--dur-1) var(--ease);
+}
+#programa .event-card:hover{ border-color: color-mix(in oklab, var(--color-bg-2), white 16%) }
+
+#programa .event-time{ background: transparent; border: 0; padding: 0; font-size: .85rem; letter-spacing: .02em; opacity: .85 }
+#programa .event-time::before{ content:none }
+
+#programa .event-title{ font-size: clamp(1.2rem, 1.6vw, 1.6rem); font-weight: 800; letter-spacing: .005em; margin-top:.15rem }
+#programa .event-desc{ color: var(--color-text-2) }
+#programa .timeline{ gap: 1.25rem }
+
+#programa.section-padded{ padding-top: calc(min(12vh, 6rem) + 2rem) }
