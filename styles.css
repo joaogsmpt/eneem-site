@@ -544,3 +544,18 @@ body{
 
 /* Colunas mais afastadas no wrap geral */
 #expositores .expositores-wrap{ column-gap: clamp(8rem, 14vw, 16rem) }
+
+
+/* === Expositores v8: alinhar topo da lista com o mapa, mais respiro acima do mapa,
+   e dobrar afastamento entre colunas === */
+
+/* Dobra o afastamento entre as colunas mapa/lista */
+#expositores .expositores-wrap{
+  column-gap: clamp(16rem, 28vw, 32rem);
+  align-items: start;
+}
+
+/* Mais espaço entre o texto e o mapa; sincroniza o offset com a lista */
+#expositores{ --expo-map-top: 1.5rem }
+#expositores .stand-map{ margin-top: var(--expo-map-top) }
+#expositores .expositores-list-col{ margin-top: var(--expo-map-top); align-self: start }
