@@ -316,7 +316,7 @@ body{
   background: color-mix(in oklab, var(--color-bg), white 6%);
 }
 
-.expositores-list{ list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: .4rem }
+.expositores-list{ list-style: none; padding: 0; margin:  0; display: grid; gap: .4rem }
 .expositores-list li{
   display: grid; grid-template-columns: 2.2rem 1fr; align-items: center;
   gap: .6rem; padding: .4rem .5rem; border-radius: .5rem;

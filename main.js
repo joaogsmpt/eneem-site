@@ -239,3 +239,26 @@
     stands.forEach(s => wire(s, s.dataset.stand));
     items.forEach(li => wire(li, li.dataset.stand));
   }
+
+/* === Align expositores list with stand map === */
+(function(){
+  const wrap = document.querySelector('#expositores .expositores-wrap');
+  if(!wrap) return;
+  const leftCol = wrap.children[0];
+  const rightCol = wrap.querySelector('.expositores-list-col');
+  if(!leftCol || !rightCol) return;
+  const map = leftCol.querySelector('.stand-map');
+  if(!map) return;
+  function alignList(){
+    const leftTop = leftCol.getBoundingClientRect().top + window.scrollY;
+    const mapTop = map.getBoundingClientRect().top + window.scrollY;
+    const offset = Math.max(0, Math.round(mapTop - leftTop));
+    rightCol.style.marginTop = offset + 'px';
+  }
+  window.addEventListener('load', alignList, {once:true});
+  window.addEventListener('resize', alignList);
+  // Also re-run after fonts load for consistent measurements
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(alignList); }
+})();
+/* === /Align expositores list === */
+
