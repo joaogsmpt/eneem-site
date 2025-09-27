@@ -291,7 +291,7 @@ body{
   display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
   gap: .9rem;
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
 }
 @media (min-width: 520px){ .stand-map{ --cols: 4 } }
 @media (min-width: 720px){ .stand-map{ --cols: 5 } }
@@ -362,7 +362,7 @@ body{
 /* Coluna da lista: tipografia e densidade para caber entre topo e base do mapa */
 #expositores .expositores-list{
   gap: .35rem;
-  margin-top: 2.5rem;                 /* alinha visualmente com o topo dos quadrados */
+  margin-top: var(--space-3);                 /* alinha visualmente com o topo dos quadrados */
 }
 #expositores .expositores-list li{
   grid-template-columns: 1.8rem 1fr;
@@ -382,13 +382,7 @@ body{
 }
 @media (max-width: 900px){
   #expositores .expositores-wrap{ grid-template-columns: 1fr; }
-  #expositores .expositores-list{ margin-top: 1rem }
-}
-
-
-/* === Expositores v4: quadrados + lista bem menores === */
-#expositores .stand-map{
-  max-width: 420px;   /* reduz largura total */
+  #expositores .expositores-list{ margin-top: var(--space-3);   /* reduz largura total */
   gap: .5rem;
 }
 #expositores .stand-map .stand{
@@ -421,16 +415,7 @@ body{
 }
 @media (max-width: 900px){
   #expositores .expositores-wrap{ grid-template-columns: 1fr; }
-  #expositores .expositores-list{ margin-top: 1rem }
-}
-
-
-/* === Expositores v5: ultra-compact + colunas mais afastadas === */
-#expositores .expositores-wrap{ column-gap: 5rem } /* separa mais as duas colunas */
-
-/* Mapa: 4x5 com quadrados pequenos */
-#expositores .stand-map{
-  max-width: 340px;          /* ainda menor */
+  #expositores .expositores-list{ margin-top: var(--space-3);          /* ainda menor */
   gap: .38rem;
 }
 #expositores .stand-map .stand{
@@ -476,7 +461,7 @@ body{
 #expositores .stand-map{
   max-width: 200px;             /* ~metade do v5 */
   gap: .32rem;
-  margin-top: .75rem;
+  margin-top: var(--space-3);
 }
 #expositores .stand-map .stand{
   border-radius: .28rem;
@@ -484,9 +469,7 @@ body{
 }
 
 /* Lista: altura = altura do mapa; 20 linhas exatamente */
-#expositores .expositores-list-col{ margin-top: .75rem }
-#expositores .expositores-list{
-  height: var(--expo-map-h, auto);     /* será definida via JS */
+#expositores .expositores-list-col{ margin-top: 0;     /* será definida via JS */
   display: grid;
   grid-template-rows: repeat(20, 1fr);
   gap: .2rem;
