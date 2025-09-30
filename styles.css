@@ -589,3 +589,18 @@ body{
   opacity: .9;
 }
 .hero .scroll-cue svg{ display:inline-block; vertical-align:middle; }
+
+/* === Compat tweaks 2025-09-30 === */
+/* Fallback outline color (overridden by color-mix when supported) */
+.expositores-list li[data-stand].is-highlighted,
+.stand-map .stand.is-highlighted{
+  outline: 2px solid var(--color-accent);
+  outline-offset: 0;
+}
+@supports (outline: 2px solid color-mix(in oklab, red, white 10%)) {
+  .expositores-list li[data-stand].is-highlighted,
+  .stand-map .stand.is-highlighted{
+    outline: 2px solid color-mix(in oklab, var(--color-accent), white 10%);
+  }
+}
+
