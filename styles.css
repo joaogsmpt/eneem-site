@@ -545,11 +545,16 @@ body{
 /* Colunas mais afastadas no wrap geral */
 #expositores .expositores-wrap{ column-gap: clamp(8rem, 14vw, 16rem) }
 
-/* --- Solid backgrounds per section to avoid mid-section color changes --- */
-#sobre{ background: var(--color-bg); position: relative; z-index: 0; }
-#programa{ background: var(--color-bg); position: relative; z-index: 0; }
-#expositores{ background: var(--color-bg-2); position: relative; z-index: 0; } /* já existia; mantém */
+/* já existia; mantém */
 #inscricoes{ background: var(--color-bg); position: relative; z-index: 0; }
 .section-hero{ background: var(--color-bg); } /* hero base */
 /* Ensure gaps use padding, not collapsing margins */
+.section > *:last-child{ margin-bottom: 0; }
+
+/* --- Alternating solid backgrounds per section --- */
+#sobre{ background: var(--color-bg); position: relative; z-index: 0; }
+#programa{ background: var(--color-bg-2); position: relative; z-index: 0; }
+#expositores{ background: var(--color-bg); position: relative; z-index: 0; }
+#inscricoes{ background: var(--color-bg-2); position: relative; z-index: 0; }
+.section-hero{ background: var(--color-bg); }
 .section > *:last-child{ margin-bottom: 0; }
