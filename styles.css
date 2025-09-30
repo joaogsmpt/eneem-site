@@ -589,3 +589,23 @@ body{
   .expositores-grid{ align-items: start; }
 }
 /* --- /Expositores alignment --- */
+
+
+/* --- Expositores: force 2-column side-by-side layout --- */
+.expositores-grid{
+  display:grid;
+  grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr);
+  gap: var(--space-2);
+  align-items:start;
+}
+.expositores-grid > *{ min-width: 0; } /* prevent overflow from breaking columns */
+.expositores-header{ grid-column: 1 / -1; } /* header spans both columns */
+.expositores-map{ grid-column: 1; }
+.expositores-list-col{ grid-column: 2; margin-top: 0; }
+@media (max-width: 860px){
+  .expositores-grid{ grid-template-columns: 1fr; }
+  .expositores-header{ grid-column: 1; }
+  .expositores-map{ grid-column: 1; }
+  .expositores-list-col{ grid-column: 1; }
+}
+/* --- /Expositores columns --- */
