@@ -290,8 +290,7 @@ body{
   --cols: 3;
   display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
-  gap: .9rem;              /* base gap */
-  row-gap: 1.8rem;         /* rows doubled */
+  gap: 1.8rem;
   margin-top: var(--space-2);
 }
 @media (min-width: 520px){ .stand-map{ --cols: 4 } }
@@ -320,7 +319,7 @@ body{
 .expositores-list{ list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: .4rem }
 .expositores-list li{
   display: grid; grid-template-columns: 2.2rem 1fr; align-items: center;
-  gap: .6rem; padding: .4rem .5rem; border-radius: .5rem;
+  gap: 1.8rem; padding: .4rem .5rem; border-radius: .5rem;
   border: 1px solid color-mix(in oklab, var(--color-bg-2), white 10%);
   background: color-mix(in oklab, var(--color-bg), white 2.5%);
 }
@@ -351,7 +350,7 @@ body{
   --cols: 4;                          /* 4 colunas fixas */
   max-width: 560px;                   /* controla dimensão para manter os quadrados pequenos */
   grid-template-columns: repeat(4, 1fr);
-  row-gap: 1.8rem; column-gap: .9rem;
+  gap: 1.8rem;
 }
 #expositores .stand-map .stand{
   aspect-ratio: 1/1;
@@ -379,7 +378,10 @@ body{
 
 /* Responsivo: em ecrãs muito largos, mantém os quadrados pequenos; em médios, ligeiro ajuste */
 @media (min-width: 1200px){
-  #expositores .stand-map{ max-width: 520px; row-gap: 1.8rem; column-gap: .9rem; }
+  #expositores .stand-map{ max-width: 520px; gap: .65rem }
+}
+@media (max-width: 900px){
+  #expositores .expositores-wrap{ grid-template-columns: 1fr; }
   #expositores .expositores-list{ margin-top: 1rem }
 }
 
@@ -387,7 +389,7 @@ body{
 /* === Expositores v4: quadrados + lista bem menores === */
 #expositores .stand-map{
   max-width: 420px;   /* reduz largura total */
-  row-gap: 1.8rem; column-gap: .9rem;
+  gap: 1.8rem;
 }
 #expositores .stand-map .stand{
   border-radius: .4rem;
@@ -415,7 +417,10 @@ body{
 
 /* Ajustes responsivos */
 @media (min-width: 1200px){
-  #expositores .stand-map{ max-width: 400px; row-gap: 1.8rem; column-gap: .9rem; }
+  #expositores .stand-map{ max-width: 400px; gap: .45rem }
+}
+@media (max-width: 900px){
+  #expositores .expositores-wrap{ grid-template-columns: 1fr; }
   #expositores .expositores-list{ margin-top: 1rem }
 }
 
@@ -426,7 +431,7 @@ body{
 /* Mapa: 4x5 com quadrados pequenos */
 #expositores .stand-map{
   max-width: 340px;          /* ainda menor */
-  row-gap: 1.8rem; column-gap: .9rem;
+  gap: 1.8rem;
 }
 #expositores .stand-map .stand{
   border-radius: .3rem;
@@ -456,13 +461,21 @@ body{
 
 /* Se o ecrã for muito largo, mantemos os elementos pequenos */
 @media (min-width: 1400px){
-  #expositores .stand-map{ max-width: 320px; row-gap: 1.8rem; column-gap: .9rem; margin-bottom: .75rem }
+  #expositores .stand-map{ max-width: 320px; gap: .34rem }
+}
+
+
+/* === Expositores v6: título numa linha, quadrados 50%, colunas mais afastadas,
+   lista com a mesma altura do mapa e linhas distribuídas === */
+
+/* Título numa linha, e o conteúdo começa abaixo */
+#expositores .section-title{ white-space: nowrap; margin-bottom: .75rem }
 #expositores .expositores-wrap{ align-items: start; column-gap: clamp(6rem, 12vw, 14rem) }
 
 /* Mapa 4x5: metade do tamanho anterior */
 #expositores .stand-map{
   max-width: 200px;             /* ~metade do v5 */
-  row-gap: 1.8rem; column-gap: .9rem;
+  gap: 1.8rem;
   margin-top: .75rem;
 }
 #expositores .stand-map .stand{
@@ -492,7 +505,10 @@ body{
 
 /* Responsivo: mantém pequeno mesmo em ecrãs muito largos */
 @media (min-width: 1400px){
-  #expositores .stand-map{ max-width: 190px; row-gap: 1.8rem; column-gap: .9rem; column-gap: 0 }
+  #expositores .stand-map{ max-width: 190px; gap: .28rem }
+}
+@media (max-width: 900px){
+  #expositores .expositores-wrap{ grid-template-columns: 1fr; column-gap: 0 }
   #expositores .expositores-list{ height: auto; grid-template-rows: none; }
 }
 
@@ -502,7 +518,7 @@ body{
 /* Mapa com quadrados mais separados */
 #expositores .stand-map{
   max-width: 220px;   /* mantém pequeno */
-  row-gap: 1.8rem; column-gap: .9rem;        /* ~4x maior que antes */
+  gap: 1.8rem;        /* ~4x maior que antes */
 }
 
 /* Lista em 2 colunas de 10, alinhada com altura do mapa */
@@ -528,3 +544,112 @@ body{
 
 /* Colunas mais afastadas no wrap geral */
 #expositores .expositores-wrap{ column-gap: clamp(8rem, 14vw, 16rem) }
+
+/* === Expositores: 2-row grid to align map and list === */
+.expositores-grid{
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  grid-template-areas:
+    "head head"
+    "map  list";
+  gap: 1.25rem;
+  align-items: start;
+}
+.expositores-header{ grid-area: head; }
+.expositores-map{ grid-area: map; }
+.expositores-grid .expositores-list-col{ grid-area: list; margin-top: 0; }
+@media (max-width: 860px){
+  .expositores-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "head"
+      "map"
+      "list";
+  }
+}
+/* === /Expositores grid === */
+
+
+/* --- Section backgrounds & stacking fix --- */
+.section{ position: relative; z-index: 0; isolation: isolate; background: transparent; }
+#sobre{ background: var(--color-bg); }
+#programa{ background: var(--color-bg-2); }
+#expositores{ background: var(--color-bg); }
+#inscricoes{ background: var(--color-bg-2); }
+/* --- /Section backgrounds --- */
+
+
+/* --- Expositores: align list top with map top --- */
+.expositores-grid{ row-gap: var(--space-3); }
+.expositores-header{ margin-bottom: var(--space-2); }
+.expositores-map .stand-map{ margin-top: 0; }
+.expositores-grid .expositores-list{ margin-top: 0; }
+.expositores-grid .expositores-list-col{ margin-top: 0; }
+@media (min-width: 861px){
+  .expositores-grid{ align-items: start; }
+}
+/* --- /Expositores alignment --- */
+
+
+/* --- Expositores: force 2-column side-by-side layout --- */
+.expositores-grid{
+  display:grid;
+  grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr);
+  gap: var(--space-2);
+  align-items:start;
+}
+.expositores-grid > *{ min-width: 0; } /* prevent overflow from breaking columns */
+.expositores-header{ grid-column: 1 / -1; } /* header spans both columns */
+.expositores-map{ grid-column: 1; }
+.expositores-list-col{ grid-column: 2; margin-top: 0; }
+@media (max-width: 860px){
+  .expositores-grid{ grid-template-columns: 1fr; }
+  .expositores-header{ grid-column: 1; }
+  .expositores-map{ grid-column: 1; }
+  .expositores-list-col{ grid-column: 1; }
+}
+/* --- /Expositores columns --- */
+
+/* --- Expositores: enlarge company list items --- */
+.expositores-list{ gap: 1.8rem; }
+.expositores-list li{
+  grid-template-columns: 2.6rem 1fr;
+  padding: .65rem .8rem;
+  gap: .75rem;
+  border-radius: .6rem;
+}
+.expositores-list .name{ font-size: 1.06rem; }
+.expositores-list .num{
+  width: 2rem; height: 2rem;
+  border-radius: .45rem;
+  font-size: .95rem; font-weight: 700;
+}
+/* --- /Expositores: enlarge company list items --- */
+
+/* --- Expositores: wider list column & right alignment --- */
+@media (min-width: 1024px){
+  .expositores-grid{
+    grid-template-columns: minmax(420px, .9fr) minmax(640px, 1.1fr);
+    justify-content: space-between;
+  }
+}
+/* list in two columns, aligned to the right with fixed max width */
+#expositores .expositores-list{
+  grid-template-columns: 1fr 1fr;
+  gap: .55rem 1.75rem;
+  max-width: 660px;
+  margin-top: 0;
+  margin-left: auto; /* push to the right edge -> center stays empty */
+}
+/* bring the whole list column slightly up */
+#expositores .expositores-list-col{ margin-top: -.25rem; }
+#expositores .expositores-list li{ padding: .7rem .9rem; }
+/* --- /Expositores: wider list column & right alignment --- */
+
+
+/* === Expositores — dobrar o espaçamento entre os quadrados do mapa ===
+   Pedido: "aumentar o espaçamento entre eles para o dobro".
+   Antes: gap: 1.8rem;  Agora: gap: 3.6rem (aplicado por último para prevalecer). */
+#expositores .stand-map{
+  gap: 3.6rem;
+}
