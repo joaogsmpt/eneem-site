@@ -290,7 +290,7 @@ body{
   --cols: 3;
   display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
-  gap: .9rem;
+  gap: 1.8rem;
   margin-top: var(--space-2);
 }
 @media (min-width: 520px){ .stand-map{ --cols: 4 } }
@@ -319,7 +319,7 @@ body{
 .expositores-list{ list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: .4rem }
 .expositores-list li{
   display: grid; grid-template-columns: 2.2rem 1fr; align-items: center;
-  gap: .6rem; padding: .4rem .5rem; border-radius: .5rem;
+  gap: 1.8rem; padding: .4rem .5rem; border-radius: .5rem;
   border: 1px solid color-mix(in oklab, var(--color-bg-2), white 10%);
   background: color-mix(in oklab, var(--color-bg), white 2.5%);
 }
@@ -350,7 +350,7 @@ body{
   --cols: 4;                          /* 4 colunas fixas */
   max-width: 560px;                   /* controla dimensão para manter os quadrados pequenos */
   grid-template-columns: repeat(4, 1fr);
-  gap: .7rem;
+  gap: 1.8rem;
 }
 #expositores .stand-map .stand{
   aspect-ratio: 1/1;
@@ -389,7 +389,7 @@ body{
 /* === Expositores v4: quadrados + lista bem menores === */
 #expositores .stand-map{
   max-width: 420px;   /* reduz largura total */
-  gap: .5rem;
+  gap: 1.8rem;
 }
 #expositores .stand-map .stand{
   border-radius: .4rem;
@@ -431,7 +431,7 @@ body{
 /* Mapa: 4x5 com quadrados pequenos */
 #expositores .stand-map{
   max-width: 340px;          /* ainda menor */
-  gap: .38rem;
+  gap: 1.8rem;
 }
 #expositores .stand-map .stand{
   border-radius: .3rem;
@@ -475,7 +475,7 @@ body{
 /* Mapa 4x5: metade do tamanho anterior */
 #expositores .stand-map{
   max-width: 200px;             /* ~metade do v5 */
-  gap: .32rem;
+  gap: 1.8rem;
   margin-top: .75rem;
 }
 #expositores .stand-map .stand{
@@ -518,7 +518,7 @@ body{
 /* Mapa com quadrados mais separados */
 #expositores .stand-map{
   max-width: 220px;   /* mantém pequeno */
-  gap: 1.5rem;        /* ~4x maior que antes */
+  gap: 1.8rem;        /* ~4x maior que antes */
 }
 
 /* Lista em 2 colunas de 10, alinhada com altura do mapa */
@@ -611,7 +611,7 @@ body{
 /* --- /Expositores columns --- */
 
 /* --- Expositores: enlarge company list items --- */
-.expositores-list{ gap: .55rem; }
+.expositores-list{ gap: 1.8rem; }
 .expositores-list li{
   grid-template-columns: 2.6rem 1fr;
   padding: .65rem .8rem;
