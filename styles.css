@@ -653,3 +653,20 @@ body{
 #expositores .stand-map{
   gap: 3.6rem;
 }
+
+
+/* === Expositores — 2x tamanho dos quadrados (mantendo gap dobrado) ===
+   Calculado a partir do estado anterior (~11.8px), agora ~23.6px ≈ 1.5rem por quadrado.
+   Remove limites antigos de largura para não encolher o mapa. */
+#expositores .stand-map{
+  max-width: none;
+  width: auto;
+  grid-template-columns: repeat(4, 1.5rem); /* ~24px por quadrado */
+  gap: 3.6rem; /* já aplicado antes; reafirmado aqui para prevalecer em todos os breakpoints */
+}
+
+/* Legibilidade do número dentro do quadrado */
+#expositores .stand-map .stand{
+  font-size: .9rem;
+  border-radius: .4rem;
+}
