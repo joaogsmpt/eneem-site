@@ -625,3 +625,23 @@ body{
   font-size: .95rem; font-weight: 700;
 }
 /* --- /Expositores: enlarge company list items --- */
+
+/* --- Expositores: wider list column & right alignment --- */
+@media (min-width: 1024px){
+  .expositores-grid{
+    grid-template-columns: minmax(420px, .9fr) minmax(640px, 1.1fr);
+    justify-content: space-between;
+  }
+}
+/* list in two columns, aligned to the right with fixed max width */
+#expositores .expositores-list{
+  grid-template-columns: 1fr 1fr;
+  gap: .55rem 1.75rem;
+  max-width: 660px;
+  margin-top: 0;
+  margin-left: auto; /* push to the right edge -> center stays empty */
+}
+/* bring the whole list column slightly up */
+#expositores .expositores-list-col{ margin-top: -.25rem; }
+#expositores .expositores-list li{ padding: .7rem .9rem; }
+/* --- /Expositores: wider list column & right alignment --- */
