@@ -262,3 +262,32 @@
 })();
 /* === /Align expositores list === */
 
+
+
+// === Enhancements 2025-09-30 ===
+(() => {
+  // Lazy-load any non-lazy images (defensive; none found means no-op)
+  document.querySelectorAll('img:not([loading])').forEach(img => img.loading = 'lazy');
+
+  // Sync hover between stand squares and list items using data-stand
+  const byStand = (sel) => Array.from(document.querySelectorAll(sel + '[data-stand]'));
+  const stands = byStand('.stand');
+  const items  = byStand('.expositores-list li');
+
+  const mapBy = arr => arr.reduce((m,el) => (m[el.getAttribute('data-stand')] = el, m), {});
+  const S = mapBy(stands), L = mapBy(items);
+
+  function linkHover(el, on){
+    const id = el && el.getAttribute('data-stand');
+    if(!id) return;
+    S[id]?.classList.toggle('is-highlighted', on);
+    L[id]?.classList.toggle('is-highlighted', on);
+  }
+
+  stands.concat(items).forEach(el => {
+    el.addEventListener('mouseenter', () => linkHover(el, true));
+    el.addEventListener('mouseleave', () => linkHover(el, false));
+    el.addEventListener('focus', () => linkHover(el, true), true);
+    el.addEventListener('blur', () => linkHover(el, false), true);
+  });
+})();

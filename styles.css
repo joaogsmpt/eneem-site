@@ -527,3 +527,65 @@ body{
 
 /* Colunas mais afastadas no wrap geral */
 #expositores .expositores-wrap{ column-gap: clamp(8rem, 14vw, 16rem) }
+
+
+/* === Enhancements 2025-09-30 === */
+#expositores .expositores-wrap{
+  display: grid;
+  grid-template-columns: minmax(0,1.25fr) minmax(0,1fr);
+  gap: clamp(1rem, 3vw, 2.25rem);
+  align-items: start;
+}
+
+#expositores .expositores-title{
+  margin-bottom: var(--space-2);
+}
+
+/* Keep tops aligned between map and list */
+#expositores .stand-map{ margin-top: 0 }
+#expositores .expositores-list{ margin-top: 0 }
+
+/* Denser rows, clear columns; fine-tune gaps */
+.stand-map{
+  column-gap: clamp(.6rem, 1.2vw, 1rem);
+  row-gap: clamp(.6rem, 1.2vw, 1rem);
+}
+
+/* Ensure numbers are perfectly centered and readable */
+.stand-map .stand{
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+/* Hover sync: highlight matching list item/stand */
+.expositores-list li[data-stand].is-highlighted,
+.stand-map .stand.is-highlighted{
+  outline: 2px solid color-mix(in oklab, var(--color-accent), white 10%);
+  outline-offset: 0;
+}
+
+/* Make the list two columns on large screens for better balance */
+@media (min-width: 980px){
+  #expositores .expositores-list{
+    columns: 2;
+    column-gap: clamp(1rem, 2vw, 2rem);
+  }
+  #expositores .expositores-list li{
+    break-inside: avoid;
+  }
+}
+
+/* Hero visual pop */
+.hero{
+  position: relative;
+}
+.hero .hero-title{
+  text-shadow: 0 10px 30px rgba(0,0,0,.25);
+  letter-spacing: .02em;
+}
+.hero .scroll-cue{
+  position: absolute; left: 50%; bottom: clamp(16px,4vh,32px); transform: translateX(-50%);
+  font-weight: 600;
+  opacity: .9;
+}
+.hero .scroll-cue svg{ display:inline-block; vertical-align:middle; }
