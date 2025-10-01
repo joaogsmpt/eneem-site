@@ -28,14 +28,20 @@ const empresaInfo = {
   19: "A empresa 19 é fixe",
   20: "A empresa 20 é fixe"
 };
-// --- Modal helpers ---
-const modalEl = document.getElementById('empresa-modal');
-const modalDialog = modalEl ? modalEl.querySelector('.modal-dialog') : null;
-const modalTitle = modalEl ? modalEl.querySelector('#empresa-modal-title') : null;
-const modalText  = modalEl ? modalEl.querySelector('#empresa-modal-text')  : null;
-let lastFocused = null;
 
+// --- Modal helpers ---
+let lastFocused = null;
+function getModalEls(){
+  const modalEl = document.getElementById('empresa-modal');
+  return {
+    modalEl,
+    modalDialog: modalEl ? modalEl.querySelector('.modal-dialog') : null,
+    modalTitle: modalEl ? modalEl.querySelector('#empresa-modal-title') : null,
+    modalText:  modalEl ? modalEl.querySelector('#empresa-modal-text')  : null,
+  };
+}
 function openEmpresaModal(n){
+  const { modalEl, modalDialog, modalTitle, modalText } = getModalEls();
   if(!modalEl || !modalDialog) return;
   lastFocused = document.activeElement;
   modalTitle && (modalTitle.textContent = "Empresa " + n);
@@ -45,7 +51,10 @@ function openEmpresaModal(n){
   setTimeout(() => modalDialog.focus(), 0);
   document.addEventListener('keydown', escToClose, { once: true });
 }
+
+
 function closeEmpresaModal(){
+  const { modalEl } = getModalEls();
   if(!modalEl) return;
   modalEl.setAttribute('aria-hidden','true');
   if (lastFocused && typeof lastFocused.focus === 'function') {
@@ -53,12 +62,12 @@ function closeEmpresaModal(){
   }
 }
 function escToClose(e){ if(e.key === 'Escape') closeEmpresaModal(); }
-if (modalEl){
-  modalEl.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target.matches('[data-close]') || target.classList.contains('modal-backdrop')) { closeEmpresaModal(); }
-  });
-}
+document.addEventListener('click', (e) => {
+  const target = e.target;
+  if (target && (target.matches('#empresa-modal [data-close]') || target.classList.contains('modal-backdrop'))) {
+    closeEmpresaModal();
+  }
+});
 document.addEventListener('DOMContentLoaded', () => {
     setYear();
     syncHeaderOffset();
@@ -259,6 +268,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+
+// Delegation for expositores (extra robust)
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('#expositores .stand, #expositores .expositores-list li');
+  if (el) {
+    const n = el.dataset.stand;
+    if (n) openEmpresaModal(n);
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.closest('#expositores .stand, #expositores .expositores-list li')) {
+    const el = e.target.closest('#expositores .stand, #expositores .expositores-list li');
+    const n = el && el.dataset.stand;
+    if (n){ e.preventDefault(); openEmpresaModal(n); }
+  }
+});
+/* Delegation for expositores */
 })();
   
   /* Expositores: sincroniza a altura da lista com a do mapa */
