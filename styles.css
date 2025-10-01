@@ -647,26 +647,20 @@ body{
 /* --- /Expositores: wider list column & right alignment --- */
 
 
-/* === Expositores — dobrar o espaçamento entre os quadrados do mapa ===
-   Pedido: "aumentar o espaçamento entre eles para o dobro".
-   Antes: gap: 1.8rem;  Agora: gap: 3.6rem (aplicado por último para prevalecer). */
+/* === Expositores — quadrados 2x novamente (agora 3rem) ===
+   Mantém o gap dobrado e força dimensões quadradas de 3rem. */
 #expositores .stand-map{
+  grid-template-columns: repeat(4, 3rem);
   gap: 3.6rem;
-}
-
-
-/* === Expositores — 2x tamanho dos quadrados (mantendo gap dobrado) ===
-   Calculado a partir do estado anterior (~11.8px), agora ~23.6px ≈ 1.5rem por quadrado.
-   Remove limites antigos de largura para não encolher o mapa. */
-#expositores .stand-map{
   max-width: none;
   width: auto;
-  grid-template-columns: repeat(4, 1.5rem); /* ~24px por quadrado */
-  gap: 3.6rem; /* já aplicado antes; reafirmado aqui para prevalecer em todos os breakpoints */
 }
-
-/* Legibilidade do número dentro do quadrado */
 #expositores .stand-map .stand{
-  font-size: .9rem;
-  border-radius: .4rem;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  border-radius: .5rem;
+  box-sizing: border-box;
 }
