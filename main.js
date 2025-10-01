@@ -4,7 +4,62 @@
 (function(){
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  document.addEventListener('DOMContentLoaded', () => {
+  
+// --- Info das empresas (placeholder; podes editar livremente) ---
+const empresaInfo = {
+  1: "A empresa 1 é fixe",
+  2: "A empresa 2 é fixe",
+  3: "A empresa 3 é fixe",
+  4: "A empresa 4 é fixe",
+  5: "A empresa 5 é fixe",
+  6: "A empresa 6 é fixe",
+  7: "A empresa 7 é fixe",
+  8: "A empresa 8 é fixe",
+  9: "A empresa 9 é fixe",
+  10: "A empresa 10 é fixe",
+  11: "A empresa 11 é fixe",
+  12: "A empresa 12 é fixe",
+  13: "A empresa 13 é fixe",
+  14: "A empresa 14 é fixe",
+  15: "A empresa 15 é fixe",
+  16: "A empresa 16 é fixe",
+  17: "A empresa 17 é fixe",
+  18: "A empresa 18 é fixe",
+  19: "A empresa 19 é fixe",
+  20: "A empresa 20 é fixe"
+};
+// --- Modal helpers ---
+const modalEl = document.getElementById('empresa-modal');
+const modalDialog = modalEl ? modalEl.querySelector('.modal-dialog') : null;
+const modalTitle = modalEl ? modalEl.querySelector('#empresa-modal-title') : null;
+const modalText  = modalEl ? modalEl.querySelector('#empresa-modal-text')  : null;
+let lastFocused = null;
+
+function openEmpresaModal(n){
+  if(!modalEl || !modalDialog) return;
+  lastFocused = document.activeElement;
+  modalTitle && (modalTitle.textContent = "Empresa " + n);
+  const txt = empresaInfo[n] || ("A empresa " + n + " é fixe");
+  modalText && (modalText.textContent = txt);
+  modalEl.setAttribute('aria-hidden','false');
+  setTimeout(() => modalDialog.focus(), 0);
+  document.addEventListener('keydown', escToClose, { once: true });
+}
+function closeEmpresaModal(){
+  if(!modalEl) return;
+  modalEl.setAttribute('aria-hidden','true');
+  if (lastFocused && typeof lastFocused.focus === 'function') {
+    setTimeout(() => lastFocused.focus(), 0);
+  }
+}
+function escToClose(e){ if(e.key === 'Escape') closeEmpresaModal(); }
+if (modalEl){
+  modalEl.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.matches('[data-close]') || target.classList.contains('modal-backdrop')) { closeEmpresaModal(); }
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
     setYear();
     syncHeaderOffset();
     splitHeroTitle();
@@ -238,4 +293,17 @@
 
     stands.forEach(s => wire(s, s.dataset.stand));
     items.forEach(li => wire(li, li.dataset.stand));
+
+// abrir modal ao clicar/pressionar Enter ou Espaço
+function makeClickable(el, n){
+  el.setAttribute('role', 'button');
+  if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+  el.addEventListener('click', () => openEmpresaModal(n));
+  el.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openEmpresaModal(n); }
+  });
+}
+stands.forEach(s => makeClickable(s, s.dataset.stand));  /* wired openEmpresaModal */
+items.forEach(li => makeClickable(li, li.dataset.stand));
+
   }

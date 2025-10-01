@@ -664,3 +664,40 @@ body{
   border-radius: .5rem;
   box-sizing: border-box;
 }
+
+
+/* === Modal (empresas) === */
+#empresa-modal{ position:fixed; inset:0; z-index:1000; display:none }
+#empresa-modal[aria-hidden="false"]{ display:block }
+#empresa-modal .modal-backdrop{
+  position:absolute; inset:0; background: rgba(7,12,24,.72);
+  backdrop-filter: blur(4px);
+}
+#empresa-modal .modal-dialog{
+  position:relative;
+  width:min(520px, 92%);
+  margin: min(20vh, 8rem) auto 0;
+  background: var(--color-layer-1);
+  border:1px solid rgba(102,217,255,.25);
+  border-radius: var(--radius-3);
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  color: var(--color-text);
+  outline: none;
+}
+#empresa-modal .modal-body h3{
+  margin: 0 0 .5rem 0; font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+}
+#empresa-modal .modal-body p{
+  margin:0; line-height:1.6; color: var(--color-text-2);
+}
+#empresa-modal .modal-close{
+  position:absolute; right:.6rem; top:.4rem;
+  background:transparent; border:0; color:var(--color-text-2);
+  font-size:1.4rem; line-height:1; cursor:pointer;
+  padding:.25rem .35rem; border-radius:.35rem;
+}
+#empresa-modal .modal-close:hover{ color:var(--color-text) }
+@media (max-width: 640px){
+  #empresa-modal .modal-dialog{ margin: 20vh auto 0; }
+}
