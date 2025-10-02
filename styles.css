@@ -645,13 +645,3 @@ body{
 #expositores .expositores-list-col{ margin-top: -.25rem; }
 #expositores .expositores-list li{ padding: .7rem .9rem; }
 /* --- /Expositores: wider list column & right alignment --- */
-
-
-/* === Tema: Azul claro (a partir da imagem) ===
-   --color-bg:  #016FEA
-   --color-bg-2:#015BC0
-   Mantém todo o resto igual; apenas muda o gradiente de fundo do site. */
-:root{
-  --color-bg: #016FEA;
-  --color-bg-2: #015BC0;
-}
