@@ -2,12 +2,12 @@
    ENEEM — styles.css (polished)
    ================================ */
 :root{
-  --color-bg: #0B1222;
-  --color-bg-2: #0E1A33;
-  --color-layer-1: #0D1B2A;
-  --color-layer-2: #162C4A;
-  --color-layer-3: #1F3D66;
-  --color-layer-4: #28528C;
+  --color-bg: #016FEA;
+  --color-bg-2: #0A56D2;
+  --color-layer-1: #0C5FE0;
+  --color-layer-2: #0A56D2;
+  --color-layer-3: #094CC0;
+  --color-layer-4: #0742AB;
   --color-accent: #66D9FF;
   --color-accent-2: #A8E1FF;
 
@@ -702,10 +702,12 @@ body{
   #empresa-modal .modal-dialog{ margin: 20vh auto 0; }
 }
 
+
 /* === Parceiros e Patrocínios === */
+#parceiros .container{ display:block; }
 .partners-grid{
-  list-style:none; padding:0; margin: var(--space-2) 0 0;
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  list-style:none; padding:0; margin: var(--space-3) 0 0;
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
 }
 .partner-card{
@@ -724,6 +726,6 @@ body{
   box-shadow: 0 6px 14px rgba(0,0,0,.14);
 }
 @media (min-width: 900px){
-  .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
+  .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
   .partner-card{ padding: 1.1rem; }
 }
