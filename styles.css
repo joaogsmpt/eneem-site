@@ -2,12 +2,12 @@
    ENEEM — styles.css (polished)
    ================================ */
 :root{
-  --color-bg: #016FEA;
-  --color-bg-2: #0A56D2;
-  --color-layer-1: #0C5FE0;
-  --color-layer-2: #0A56D2;
-  --color-layer-3: #094CC0;
-  --color-layer-4: #0742AB;
+  --color-bg: #0B1222;
+  --color-bg-2: #0E1A33;
+  --color-layer-1: #0D1B2A;
+  --color-layer-2: #162C4A;
+  --color-layer-3: #1F3D66;
+  --color-layer-4: #28528C;
   --color-accent: #66D9FF;
   --color-accent-2: #A8E1FF;
 
@@ -703,29 +703,8 @@ body{
 }
 
 
-/* === Parceiros e Patrocínios === */
-#parceiros .container{ display:block; }
-.partners-grid{
-  list-style:none; padding:0; margin: var(--space-3) 0 0;
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
-}
-.partner-card{
-  background: color-mix(in oklab, var(--color-bg), white 3%);
-  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 12%);
-  border-radius: var(--radius-1);
-  padding: .9rem;
-  display:grid; place-items:center;
-}
-.partner-logo{
-  width:100%; aspect-ratio: 3/1; 
-  border-radius: .4rem;
-  background:
-    linear-gradient(0deg, rgba(255,255,255,.1), rgba(255,255,255,0)),
-    linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2));
-  box-shadow: 0 6px 14px rgba(0,0,0,.14);
-}
-@media (min-width: 900px){
-  .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
-  .partner-card{ padding: 1.1rem; }
+#parceiros{ background: var(--color-bg-2); }
+
+@media (min-width: 1100px){
+  .partners-grid{ grid-template-columns: repeat(5, 1fr); }
 }
