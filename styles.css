@@ -37,7 +37,7 @@ body{
   margin:0;
   font-family:var(--font-body);
   color:var(--color-text);
-  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-2) 100%);
+  background: var(--color-bg);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   padding-top: calc(var(--header-offset, 64px) + env(safe-area-inset-top, 0px));
@@ -52,7 +52,7 @@ body{
 
 /* Layout utilitários */
 .container{width:min(1100px, 92%); margin-inline:auto; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
-.section{position:relative}
+.section{position:relative; background: var(--section-bg, var(--color-bg)); }
 .section-padded{padding: min(12vh,6rem) 0}
 .grid{display:grid; gap:1.25rem}
 .grid-2{grid-template-columns: 1.1fr .9fr}
@@ -707,7 +707,7 @@ body{
 #parceiros .container{ display:block; }
 .partners-grid{
   list-style:none; padding:0; margin: var(--space-3) 0 0;
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display:grid; grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
 }
 .partner-card{
@@ -725,7 +725,22 @@ body{
     linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2));
   box-shadow: 0 6px 14px rgba(0,0,0,.14);
 }
-@media (min-width: 900px){
-  .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
-  .partner-card{ padding: 1.1rem; }
+@media (min-width: 900px){ .partners-grid{ grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.2rem; } .partner-card{ padding: 1.1rem; } }
+
+
+/* === Fundo por secção (themes) === */
+.theme-hero{        --section-bg: linear-gradient(180deg, var(--color-bg),    var(--color-bg-2)); }
+.theme-sobre{       --section-bg: linear-gradient(180deg, var(--color-layer-1), var(--color-layer-2)); }
+.theme-programa{    --section-bg: linear-gradient(180deg, var(--color-layer-2), var(--color-layer-3)); }
+.theme-expositores{ --section-bg: linear-gradient(180deg, var(--color-layer-3), var(--color-layer-4)); }
+.theme-parceiros{   --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
+
+/* Parceiros: grelha 5x4 no desktop */
+.partners-grid{
+  list-style:none; padding:0; margin: var(--space-3) 0 0;
+  display:grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+@media (max-width: 900px){
+  .partners-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
