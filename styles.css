@@ -116,9 +116,9 @@ body{
 #programa
 #programa .container{ display:block }
 #programa .program-wrap{ display:grid; gap: var(--space-2) }
-#programa .program-header{ margin-bottom: .25rem }
-#programa .program-tabs{ display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin:.25rem 0 var(--space-2) }
-#programa .program-panels{ margin-top:0 }
+#programa .program-header{ margin-bottom: var(--space-2); }
+#programa .program-tabs{ display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:.75rem 0 var(--space-2); }
+#programa .program-panels{ margin-top: .25rem; }
 
 /* Tabs */
 #programa .program-tab{
@@ -200,7 +200,7 @@ body{
 }
 
 /* ===== Programa — versão minimalista e limpa (overrides) ===== */
-#programa .program-tabs{ gap:1rem }
+#programa .program-tabs{ display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:.75rem 0 var(--space-2); }
 #programa .program-tab{
   all: unset; cursor: pointer; color: var(--color-text-2); font-weight: 600;
   padding: .25rem 0; position: relative;
@@ -358,10 +358,7 @@ body{
 }
 
 /* Coluna da lista: tipografia e densidade para caber entre topo e base do mapa */
-#expositores .expositores-list{
-  gap: .35rem;
-  margin-top: 2.5rem;                 /* alinha visualmente com o topo dos quadrados */
-}
+#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 #expositores .expositores-list li{
   grid-template-columns: 1.8rem 1fr;
   padding: .35rem .5rem;
@@ -380,7 +377,7 @@ body{
 }
 @media (max-width: 900px){
   #expositores .expositores-wrap{ grid-template-columns: 1fr; }
-  #expositores .expositores-list{ margin-top: 1rem }
+  #expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 }
 
 /* === Expositores v4: quadrados + lista bem menores === */
@@ -393,10 +390,7 @@ body{
   font-size: .78rem;  /* número menor */
 }
 
-#expositores .expositores-list{
-  gap: .25rem;
-  margin-top: 1.8rem;
-}
+#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 #expositores .expositores-list li{
   grid-template-columns: 1.4rem 1fr;
   padding: .25rem .35rem;
@@ -418,7 +412,7 @@ body{
 }
 @media (max-width: 900px){
   #expositores .expositores-wrap{ grid-template-columns: 1fr; }
-  #expositores .expositores-list{ margin-top: 1rem }
+  #expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 }
 
 /* === Expositores v5: ultra-compact + colunas mais afastadas === */
@@ -435,10 +429,7 @@ body{
 }
 
 /* Lista: ultra-compact para caber 20 itens no viewport */
-#expositores .expositores-list{
-  gap: .15rem;
-  margin-top: 1.2rem;
-}
+#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 #expositores .expositores-list li{
   grid-template-columns: 1.2rem 1fr;
   padding: .18rem .3rem;
@@ -464,7 +455,7 @@ body{
    lista com a mesma altura do mapa e linhas distribuídas === */
 
 /* Título numa linha, e o conteúdo começa abaixo */
-#expositores .section-title{ white-space: nowrap; margin-bottom: .75rem }
+#expositores .section-title{ white-space: normal; margin-bottom: .75rem }
 #expositores .expositores-wrap{ align-items: start; column-gap: clamp(6rem, 12vw, 14rem) }
 
 /* Mapa 4x5: metade do tamanho anterior */
@@ -480,12 +471,7 @@ body{
 
 /* Lista: altura = altura do mapa; 20 linhas exatamente */
 #expositores .expositores-list-col{ margin-top: .75rem }
-#expositores .expositores-list{
-  height: var(--expo-map-h, auto);     /* será definida via JS */
-  display: grid;
-  grid-template-rows: repeat(20, 1fr);
-  gap: .2rem;
-}
+#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 #expositores .expositores-list li{
   grid-template-columns: 1.1rem 1fr;
   padding: .16rem .28rem;
@@ -504,7 +490,7 @@ body{
 }
 @media (max-width: 900px){
   #expositores .expositores-wrap{ grid-template-columns: 1fr; column-gap: 0 }
-  #expositores .expositores-list{ height: auto; grid-template-rows: none; }
+  #expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 }
 
 /* === Expositores v7: gap x4, lista em 2 colunas alinhadas === */
@@ -516,13 +502,7 @@ body{
 }
 
 /* Lista em 2 colunas de 10, alinhada com altura do mapa */
-#expositores .expositores-list{
-  height: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 1fr;
-  gap: .4rem 2rem;
-}
+#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 #expositores .expositores-list li{
   grid-template-columns: 1.2rem 1fr;
   padding: .2rem .35rem;
@@ -625,13 +605,7 @@ body{
   }
 }
 /* list in two columns, aligned to the right with fixed max width */
-#expositores .expositores-list{
-  grid-template-columns: 1fr 1fr;
-  gap: .55rem 1.75rem;
-  max-width: 660px;
-  margin-top: 0;
-  margin-left: auto; /* push to the right edge -> center stays empty */
-}
+#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
 /* bring the whole list column slightly up */
 #expositores .expositores-list-col{ margin-top: -.25rem; }
 #expositores .expositores-list li{ padding: .7rem .9rem; }
@@ -721,3 +695,27 @@ body{
 .theme-programa{    --section-bg: linear-gradient(180deg, var(--color-layer-2), var(--color-layer-3)); }
 .theme-expositores{ --section-bg: linear-gradient(180deg, var(--color-layer-3), var(--color-layer-4)); }
 .theme-parceiros{   --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
+
+/* ensure section backgrounds show */
+.section{background: var(--section-bg, var(--color-bg));}
+
+/* Expositores: preencher espaço vazio abaixo do mapa */
+.expositores-wrap{
+  display:grid;
+  grid-template-columns: minmax(280px, 480px) 1fr;
+  grid-template-areas:
+    "map list"
+    "list list";
+  align-items:start;
+  column-gap: clamp(2rem, 6vw, 5rem);
+  row-gap: 1.5rem;
+}
+.expositores-map{ grid-area: map; }
+.expositores-list-col{ grid-area: list; margin-top: 0; }
+@media (max-width: 900px){
+  .expositores-wrap{
+    grid-template-columns: 1fr;
+    grid-template-areas: "map" "list";
+  }
+  #expositores .expositores-list{ grid-template-columns: 1fr; }
+}
