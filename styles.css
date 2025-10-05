@@ -37,7 +37,7 @@ body{
   margin:0;
   font-family:var(--font-body);
   color:var(--color-text);
-  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-2) 100%);
+  background: var(--color-bg);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   padding-top: calc(var(--header-offset, 64px) + env(safe-area-inset-top, 0px));
@@ -52,8 +52,11 @@ body{
 
 /* Layout utilitários */
 .container{width:min(1100px, 92%); margin-inline:auto; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
-.section{position:relative}
-.section-padded{padding: min(12vh,6rem) 0}
+.section{position:relative; background: var(--section-bg, var(--color-bg)); }
+.section-padded{ padding: clamp(2.25rem, 6vh, 3.75rem) 0; }
+.section + .section{ padding-top: clamp(1rem, 4vh, 3rem); }
+
+
 .grid{display:grid; gap:1.25rem}
 .grid-2{grid-template-columns: 1.1fr .9fr}
 @media (max-width: 900px){ .grid-2{grid-template-columns:1fr} }
@@ -110,7 +113,7 @@ body{
 }
 
 /* === Programa: layout robusto + polish === */
-#programa.section-padded{ padding-top: calc(min(12vh, 6rem) + 2rem) }
+#programa
 #programa .container{ display:block }
 #programa .program-wrap{ display:grid; gap: var(--space-2) }
 #programa .program-header{ margin-bottom: .25rem }
@@ -196,7 +199,6 @@ body{
   .hero-title span{opacity:1; filter:none}
 }
 
-
 /* ===== Programa — versão minimalista e limpa (overrides) ===== */
 #programa .program-tabs{ gap:1rem }
 #programa .program-tab{
@@ -226,8 +228,7 @@ body{
 #programa .event-desc{ color: var(--color-text-2) }
 #programa .timeline{ gap: 1.25rem }
 
-#programa.section-padded{ padding-top: calc(min(12vh, 6rem) + 2rem) }
-
+#programa
 
 /* === Programa fix: corte e pill nas tabs === */
 #programa .event-card{
@@ -282,7 +283,6 @@ body{
 #programa .program-tab:hover::after{ transform: scaleX(1) }
 #programa .program-tab[aria-selected="true"]::after{ display: none }
 
-
 /* === Expositores — Prep Your Future === */
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 #expositores .expositores-wrap{align-items:start}
@@ -332,7 +332,6 @@ body{
   background: color-mix(in oklab, var(--color-bg), white 6%);
 }
 
-
 /* === Expositores: fundo sólido por toda a secção (sem transições de gradiente) === */
 #expositores{
   position: relative;
@@ -342,7 +341,6 @@ body{
 }
 /* opcional: garantir que a secção seguinte volta ao comportamento padrão */
 #expositores + .section{ background: transparent }
-
 
 /* === Expositores v3: 4x5 grade compacta + lista compacta === */
 #expositores .expositores-wrap{ align-items: start; gap: 2rem }
@@ -385,7 +383,6 @@ body{
   #expositores .expositores-list{ margin-top: 1rem }
 }
 
-
 /* === Expositores v4: quadrados + lista bem menores === */
 #expositores .stand-map{
   max-width: 420px;   /* reduz largura total */
@@ -423,7 +420,6 @@ body{
   #expositores .expositores-wrap{ grid-template-columns: 1fr; }
   #expositores .expositores-list{ margin-top: 1rem }
 }
-
 
 /* === Expositores v5: ultra-compact + colunas mais afastadas === */
 #expositores .expositores-wrap{ column-gap: 5rem } /* separa mais as duas colunas */
@@ -463,7 +459,6 @@ body{
 @media (min-width: 1400px){
   #expositores .stand-map{ max-width: 320px; gap: .34rem }
 }
-
 
 /* === Expositores v6: título numa linha, quadrados 50%, colunas mais afastadas,
    lista com a mesma altura do mapa e linhas distribuídas === */
@@ -511,7 +506,6 @@ body{
   #expositores .expositores-wrap{ grid-template-columns: 1fr; column-gap: 0 }
   #expositores .expositores-list{ height: auto; grid-template-rows: none; }
 }
-
 
 /* === Expositores v7: gap x4, lista em 2 colunas alinhadas === */
 
@@ -569,15 +563,13 @@ body{
 }
 /* === /Expositores grid === */
 
-
 /* --- Section backgrounds & stacking fix --- */
-.section{ position: relative; z-index: 0; isolation: isolate; background: transparent; }
+.section{ position:relative; z-index:0; isolation:isolate; }
 #sobre{ background: var(--color-bg); }
 #programa{ background: var(--color-bg-2); }
 #expositores{ background: var(--color-bg); }
 #inscricoes{ background: var(--color-bg-2); }
 /* --- /Section backgrounds --- */
-
 
 /* --- Expositores: align list top with map top --- */
 .expositores-grid{ row-gap: var(--space-3); }
@@ -589,7 +581,6 @@ body{
   .expositores-grid{ align-items: start; }
 }
 /* --- /Expositores alignment --- */
-
 
 /* --- Expositores: force 2-column side-by-side layout --- */
 .expositores-grid{
@@ -646,7 +637,6 @@ body{
 #expositores .expositores-list li{ padding: .7rem .9rem; }
 /* --- /Expositores: wider list column & right alignment --- */
 
-
 /* === Expositores — quadrados 2x novamente (agora 3rem) ===
    Mantém o gap dobrado e força dimensões quadradas de 3rem. */
 #expositores .stand-map{
@@ -664,7 +654,6 @@ body{
   border-radius: .5rem;
   box-sizing: border-box;
 }
-
 
 /* === Modal (empresas) === */
 #empresa-modal{ position:fixed; inset:0; z-index:1000; display:none }
@@ -702,12 +691,11 @@ body{
   #empresa-modal .modal-dialog{ margin: 20vh auto 0; }
 }
 
-
 /* === Parceiros e Patrocínios === */
 #parceiros .container{ display:block; }
 .partners-grid{
   list-style:none; padding:0; margin: var(--space-3) 0 0;
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display:grid; grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
 }
 .partner-card{
@@ -725,7 +713,11 @@ body{
     linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2));
   box-shadow: 0 6px 14px rgba(0,0,0,.14);
 }
-@media (min-width: 900px){
-  .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
-  .partner-card{ padding: 1.1rem; }
-}
+@media (min-width: 900px){ .partners-grid{ grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; } .partner-card{ padding: 1.1rem; } }
+
+/* === Fundo por secção (themes) === */
+.theme-hero{        --section-bg: linear-gradient(180deg, var(--color-bg),    var(--color-bg-2)); }
+.theme-sobre{       --section-bg: linear-gradient(180deg, var(--color-layer-1), var(--color-layer-2)); }
+.theme-programa{    --section-bg: linear-gradient(180deg, var(--color-layer-2), var(--color-layer-3)); }
+.theme-expositores{ --section-bg: linear-gradient(180deg, var(--color-layer-3), var(--color-layer-4)); }
+.theme-parceiros{   --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
