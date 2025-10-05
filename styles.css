@@ -719,3 +719,30 @@ body{
   }
   #expositores .expositores-list{ grid-template-columns: 1fr; }
 }
+
+
+/* === Programa — espaçamento e legibilidade (hotfix) === */
+#programa .program-header{ margin-bottom: clamp(1rem, 2.6vh, 1.6rem); }
+#programa .program-tabs{ gap: .75rem; margin: .9rem 0 clamp(1rem, 2.6vh, 1.4rem); }
+
+#programa .event-card{
+  padding: 1.1rem 1.25rem 1.2rem;
+  border-radius: var(--radius-2);
+  overflow: visible; /* não corta conteúdo */
+}
+
+#programa .event-time{
+  margin: 0 0 .5rem 0;
+  padding: .32rem .6rem;
+  background: color-mix(in oklab, var(--card-tint), transparent 88%);
+  border: 1px solid color-mix(in oklab, var(--card-tint), white 70%);
+}
+
+#programa .event-title{
+  white-space: normal;           /* permite quebrar */
+  overflow-wrap: anywhere;       /* evita corte em títulos longos */
+  line-height: 1.18;
+  margin: .1rem 0 0;
+}
+
+#programa .event-desc{ margin: .5rem 0 0; }
