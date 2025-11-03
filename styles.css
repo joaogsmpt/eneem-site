@@ -885,3 +885,18 @@ body{
   --color-accent: #61D0FF;
   --color-accent-2: #A9E4FF;
 }
+
+
+/* === Palette centered around base deep blue #1C355E === */
+:root{
+  --color-bg: #122548;        /* darker shade */
+  --color-bg-2: #1C355E;      /* base blue */
+  --color-layer-1: #2B4C7A;   /* slightly lighter */
+  --color-layer-2: #3E6595;
+  --color-layer-3: #537FB0;
+  --color-layer-4: #6C9ACC;   /* lightest end */
+  --color-text: #F4F7FF;
+  --color-text-2: #E2EBFF;
+  --color-accent: #3FA9FF;
+  --color-accent-2: #8BCCFF;
+}
