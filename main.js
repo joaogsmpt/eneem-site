@@ -1,119 +1,76 @@
 /* ================================
-   ENEEM — main.js (refactor)
+   ENEEM — main.js
    ================================ */
 (function(){
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // --- Info das empresas (placeholder; podes editar livremente) ---
-  const empresaInfo = {
-    1: "A empresa 1 é fixe",
-    2: "A empresa 2 é fixe",
-    3: "A empresa 3 é fixe",
-    4: "A empresa 4 é fixe",
-    5: "A empresa 5 é fixe",
-    6: "A empresa 6 é fixe",
-    7: "A empresa 7 é fixe",
-    8: "A empresa 8 é fixe",
-    9: "A empresa 9 é fixe",
-    10: "A empresa 10 é fixe",
-    11: "A empresa 11 é fixe",
-    12: "A empresa 12 é fixe",
-    13: "A empresa 13 é fixe",
-    14: "A empresa 14 é fixe",
-    15: "A empresa 15 é fixe",
-    16: "A empresa 16 é fixe",
-    17: "A empresa 17 é fixe",
-    18: "A empresa 18 é fixe",
-    19: "A empresa 19 é fixe",
-    20: "A empresa 20 é fixe"
+  
+// --- Info das empresas (placeholder; podes editar livremente) ---
+const empresaInfo = {
+  1: "A empresa 1 é fixe",
+  2: "A empresa 2 é fixe",
+  3: "A empresa 3 é fixe",
+  4: "A empresa 4 é fixe",
+  5: "A empresa 5 é fixe",
+  6: "A empresa 6 é fixe",
+  7: "A empresa 7 é fixe",
+  8: "A empresa 8 é fixe",
+  9: "A empresa 9 é fixe",
+  10: "A empresa 10 é fixe",
+  11: "A empresa 11 é fixe",
+  12: "A empresa 12 é fixe",
+  13: "A empresa 13 é fixe",
+  14: "A empresa 14 é fixe",
+  15: "A empresa 15 é fixe",
+  16: "A empresa 16 é fixe",
+  17: "A empresa 17 é fixe",
+  18: "A empresa 18 é fixe",
+  19: "A empresa 19 é fixe",
+  20: "A empresa 20 é fixe"
+};
+
+// --- Modal helpers ---
+let lastFocused = null;
+function getModalEls(){
+  const modalEl = document.getElementById('empresa-modal');
+  return {
+    modalEl,
+    modalDialog: modalEl ? modalEl.querySelector('.modal-dialog') : null,
+    modalTitle: modalEl ? modalEl.querySelector('#empresa-modal-title') : null,
+    modalText:  modalEl ? modalEl.querySelector('#empresa-modal-text')  : null,
   };
+}
+function openEmpresaModal(n){
+  const { modalEl, modalDialog, modalTitle, modalText } = getModalEls();
+  if(!modalEl || !modalDialog) return;
+  lastFocused = document.activeElement;
+  modalTitle && (modalTitle.textContent = "Empresa " + n);
+  const txt = empresaInfo[n] || ("A empresa " + n + " é fixe");
+  modalText && (modalText.textContent = txt);
+  modalEl.setAttribute('aria-hidden','false');
+  setTimeout(() => modalDialog.focus(), 0);
+  document.addEventListener('keydown', escToClose, { once: true });
+}
 
-  // --- Modal helpers & focus trap ---
-  let lastFocused = null;
-  let disableScrollPrev = "";
-  let inertTargets = [];
-  function getModalEls(){
-    const modalEl = document.getElementById('empresa-modal');
-    return {
-      modalEl,
-      modalDialog: modalEl ? modalEl.querySelector('.modal-dialog') : null,
-      modalTitle: modalEl ? modalEl.querySelector('#empresa-modal-title') : null,
-      modalText:  modalEl ? modalEl.querySelector('#empresa-modal-text')  : null,
-    };
+
+function closeEmpresaModal(){
+  const { modalEl } = getModalEls();
+  if(!modalEl) return;
+  modalEl.setAttribute('aria-hidden','true');
+  if (lastFocused && typeof lastFocused.focus === 'function') {
+    setTimeout(() => lastFocused.focus(), 0);
   }
-  function getFocusable(container){
-    if (!container) return [];
-    return Array.from(container.querySelectorAll(
-      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
-    )).filter(el => el.offsetParent !== null);
+}
+function escToClose(e){ if(e.key === 'Escape') closeEmpresaModal(); }
+document.addEventListener('click', (e) => {
+  const target = e.target;
+  if (target && (target.matches('#empresa-modal [data-close]') || target.classList.contains('modal-backdrop'))) {
+    closeEmpresaModal();
   }
-  function setInert(on){
-    // inert/aria-hidden em tudo menos o modal
-    const { modalEl } = getModalEls();
-    const kids = Array.from(document.body.children);
-    inertTargets = kids.filter(el => el !== modalEl);
-    inertTargets.forEach(el => {
-      if (on){
-        el.setAttribute('aria-hidden', 'true');
-        el.inert = true;
-      } else {
-        el.removeAttribute('aria-hidden');
-        el.inert = false;
-      }
-    });
-  }
-  function trapTab(e, list){
-    if (e.key !== 'Tab' || !list.length) return;
-    const first = list[0], last = list[list.length - 1];
-    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
-  }
-
-  function openEmpresaModal(n){
-    const { modalEl, modalDialog, modalTitle, modalText } = getModalEls();
-    if(!modalEl || !modalDialog) return;
-    lastFocused = document.activeElement;
-    modalTitle && (modalTitle.textContent = "Empresa " + n);
-    const txt = empresaInfo[n] || ("A empresa " + n + " é fixe");
-    modalText && (modalText.textContent = txt);
-
-    // focus trap + inert + disable scroll
-    setInert(true);
-    disableScrollPrev = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = 'hidden';
-
-    modalEl.setAttribute('aria-hidden','false');
-    setTimeout(() => {
-      const focusables = getFocusable(modalDialog);
-      (focusables[0] || modalDialog).focus();
-      function onKey(e){ trapTab(e, focusables); if(e.key === 'Escape') closeEmpresaModal(); }
-      modalEl._trapHandler = onKey;
-      document.addEventListener('keydown', onKey);
-    }, 0);
-  }
-
-  function closeEmpresaModal(){
-    const { modalEl } = getModalEls();
-    if(!modalEl) return;
-    modalEl.setAttribute('aria-hidden','true');
-    // restore inert & scrolling
-    setInert(false);
-    document.documentElement.style.overflow = disableScrollPrev || '';
-    if (modalEl._trapHandler){ document.removeEventListener('keydown', modalEl._trapHandler); modalEl._trapHandler = null; }
-    if (lastFocused && typeof lastFocused.focus === 'function') setTimeout(() => lastFocused.focus(), 0);
-  }
-
-  document.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target && (target.matches('#empresa-modal [data-close]') || target.classList.contains('modal-backdrop'))) {
-      closeEmpresaModal();
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
+});
+document.addEventListener('DOMContentLoaded', () => {
     setYear();
     syncHeaderOffset();
-    initHeaderScrollState();
     splitHeroTitle();
     initSmoothScroll();
     initScrollReveal();
@@ -122,6 +79,7 @@
     initProgramTabs();
     initExpositoresMap();
     syncExpositoresHeight();
+    enhanceWithGSAP();
   });
 
   function setYear(){
@@ -144,17 +102,6 @@
     } else {
       window.addEventListener('resize', apply, { passive: true });
     }
-  }
-
-  function initHeaderScrollState(){
-    const header = document.querySelector('.site-header');
-    if(!header) return;
-    const onScroll = () => {
-      if (window.scrollY > 8) header.classList.add('is-scrolled');
-      else header.classList.remove('is-scrolled');
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
   function splitHeroTitle(){
@@ -227,14 +174,20 @@
     const opts = { rootMargin: '-40% 0px -50% 0px', threshold: 0.0 };
     if ('IntersectionObserver' in window){
       const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting){ setActive(`#${entry.target.id}`); } });
+        entries.forEach(entry => {
+          if (entry.isIntersecting){
+            setActive(`#${entry.target.id}`);
+          }
+        });
       }, opts);
       sections.forEach(s => io.observe(s));
     } else {
       function onScroll(){
         let best = sections[0];
         const fromTop = window.scrollY + (window.innerHeight * 0.4);
-        for (const s of sections){ if (s.offsetTop <= fromTop) best = s; }
+        for (const s of sections){
+          if (s.offsetTop <= fromTop) best = s;
+        }
         if (best) setActive(`#${best.id}`);
       }
       window.addEventListener('scroll', onScroll, { passive: true });
@@ -289,24 +242,53 @@
     });
   }
 
-  // Delegation for expositores
-  document.addEventListener('click', (e) => {
-    const el = e.target.closest('#expositores .stand, #expositores .expositores-list li');
-    if (el) {
-      const n = el.dataset.stand;
-      if (n) openEmpresaModal(n);
+  function enhanceWithGSAP(){
+    if (typeof window.gsap === 'undefined') return;
+    if (reducedMotion) return;
+    const gsap = window.gsap;
+    if (window.ScrollTrigger) {
+      document.querySelectorAll('.reveal:not(#sobre .reveal)').forEach(el => {
+        gsap.from(el, {
+          y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        });
+      });
+      document.querySelectorAll('#sobre .reveal').forEach(el => {
+        gsap.from(el, {
+          y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+      document.querySelectorAll('#programa .event-card').forEach(el => {
+        gsap.from(el, {
+          y: 18, autoAlpha: 0, duration: 0.55, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
     }
-  });
-  document.addEventListener('keydown', (e) => {
-    if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.closest('#expositores .stand, #expositores .expositores-list li')) {
-      const el = e.target.closest('#expositores .stand, #expositores .expositores-list li');
-      const n = el && el.dataset.stand;
-      if (n){ e.preventDefault(); openEmpresaModal(n); }
-    }
-  });
+  }
 
-  // Expositores helpers
-  window.syncExpositoresHeight = function(){
+
+// Delegation for expositores (extra robust)
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('#expositores .stand, #expositores .expositores-list li');
+  if (el) {
+    const n = el.dataset.stand;
+    if (n) openEmpresaModal(n);
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.closest('#expositores .stand, #expositores .expositores-list li')) {
+    const el = e.target.closest('#expositores .stand, #expositores .expositores-list li');
+    const n = el && el.dataset.stand;
+    if (n){ e.preventDefault(); openEmpresaModal(n); }
+  }
+});
+/* Delegation for expositores */
+})();
+  
+  /* Expositores: sincroniza a altura da lista com a do mapa */
+  function syncExpositoresHeight(){
     const map = document.querySelector('#expositores .stand-map');
     if (!map) return;
     const apply = () => {
@@ -316,8 +298,8 @@
     apply();
     window.addEventListener('resize', apply, { passive: true });
   }
-
-  window.initExpositoresMap = function(){
+/* Expositores: ligação entre mapa e lista */
+  function initExpositoresMap(){
     const map = document.querySelector('#expositores .stand-map');
     const list = document.querySelector('#expositores .expositores-list');
     if (!map || !list) return;
@@ -338,15 +320,16 @@
     stands.forEach(s => wire(s, s.dataset.stand));
     items.forEach(li => wire(li, li.dataset.stand));
 
-    function makeClickable(el, n){
-      el.setAttribute('role', 'button');
-      if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-      el.addEventListener('click', () => openEmpresaModal(n));
-      el.addEventListener('keydown', (ev) => {
-        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openEmpresaModal(n); }
-      });
-    }
-    stands.forEach(s => makeClickable(s, s.dataset.stand));
-    items.forEach(li => makeClickable(li, li.dataset.stand));
+// abrir modal ao clicar/pressionar Enter ou Espaço
+function makeClickable(el, n){
+  el.setAttribute('role', 'button');
+  if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+  el.addEventListener('click', () => openEmpresaModal(n));
+  el.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openEmpresaModal(n); }
+  });
+}
+stands.forEach(s => makeClickable(s, s.dataset.stand));  /* wired openEmpresaModal */
+items.forEach(li => makeClickable(li, li.dataset.stand));
+
   }
-})();
