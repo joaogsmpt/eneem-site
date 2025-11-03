@@ -787,10 +787,80 @@ body{
 }
 
 
-/* === Adjust hero X image size and vertical position === */
-.hero-ximg{
-  height: 1.35em !important; /* 50% larger than before */
-  width: auto;
-  vertical-align: baseline;
-  transform: translateY(0.25em); /* moved slightly down */
+/* === Theme: Suave Moderno (blue base with lilac -> light blue, extra-soft gradient) === */
+:root{
+  /* Keep deep blue base and harmonize around it */
+  --color-bg:   #122548;  /* deepest */
+  --color-bg-2: #1C355E;  /* base blue */
+  --color-layer-1: #4C5FA6; /* indigo-lean lilac */
+  --color-layer-2: #6E78C8; /* lilac/indigo */
+  --color-layer-3: #97AEEF; /* light periwinkle */
+  --color-layer-4: #C9DDFE; /* airy light blue */
+  --color-text:   #F7FAFF;
+  --color-text-2: #EAF2FF;
+  --color-accent:   #7AD7F0; /* soft, cheerful but not neon */
+  --color-accent-2: #B3E7F7;
 }
+
+/* Softer, longer page-wide gradient with multiple subtle stops */
+body{
+  background:
+    linear-gradient(
+      180deg,
+      #122548 0%,
+      #1C355E 18%,
+      #4C5FA6 38%,
+      #6E78C8 55%,
+      #97AEEF 78%,
+      #C9DDFE 100%
+    ) fixed;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.section{ background: transparent !important; }
+#expositores{ background: transparent !important; border: none !important; }
+#expositores::before, #expositores::after{ display:none !important; }
+
+
+/* === Theme: Pure Blue Gradient (centered around #1976D2) === */
+:root{
+  --color-bg:   #0F4BA8;  /* deeper blue */
+  --color-bg-2: #1765BE;  /* close to base */
+  --color-layer-1: #1976D2; /* main blue */
+  --color-layer-2: #2183E0; /* slightly lighter */
+  --color-layer-3: #3692EA; /* mid-light blue */
+  --color-layer-4: #5AA8F8; /* soft light blue */
+  --color-text:   #F5F9FF;
+  --color-text-2: #E0ECFF;
+  --color-accent: #52C2FF;
+  --color-accent-2: #8EDAFF;
+}
+
+/* Smooth single-page gradient around blue tones */
+body{
+  background:
+    linear-gradient(
+      180deg,
+      #0F4BA8 0%,
+      #1765BE 25%,
+      #1976D2 50%,
+      #2183E0 70%,
+      #3692EA 85%,
+      #5AA8F8 100%
+    ) fixed;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.section{ background: transparent !important; }
+#expositores{ background: transparent !important; border: none !important; }
+#expositores::before, #expositores::after{ display:none !important; }
+
+
+/* === Hero X image sizing (replaces text 'X') === */
+.hero-title{ display: inline-flex; align-items: baseline; gap: .35ch; }
+.hero-ximg{ height: 0.9em; width: auto; vertical-align: baseline; transform: translateY(0.05em); }
+.sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
