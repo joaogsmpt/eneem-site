@@ -840,3 +840,18 @@ body{
   --color-accent: #66E0FF;
   --color-accent-2: #B6E9FF;
 }
+
+
+/* === Mid-tone palette adjustment === */
+:root{
+  --color-bg: #166DFF;
+  --color-bg-2: #2E82FF;
+  --color-layer-1: #3B8FFF;
+  --color-layer-2: #4A9BFF;
+  --color-layer-3: #63AFFF;
+  --color-layer-4: #7BBFFF;
+  --color-text: #F5F9FF;
+  --color-text-2: #E0F0FF;
+  --color-accent: #55D4FF;
+  --color-accent-2: #A2E2FF;
+}
