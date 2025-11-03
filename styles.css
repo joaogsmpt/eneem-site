@@ -822,3 +822,39 @@ body{
 .section{ background: transparent !important; }
 #expositores{ background: transparent !important; border: none !important; }
 #expositores::before, #expositores::after{ display:none !important; }
+
+
+/* === Theme: Pure Blue Gradient (centered around #1976D2) === */
+:root{
+  --color-bg:   #0F4BA8;  /* deeper blue */
+  --color-bg-2: #1765BE;  /* close to base */
+  --color-layer-1: #1976D2; /* main blue */
+  --color-layer-2: #2183E0; /* slightly lighter */
+  --color-layer-3: #3692EA; /* mid-light blue */
+  --color-layer-4: #5AA8F8; /* soft light blue */
+  --color-text:   #F5F9FF;
+  --color-text-2: #E0ECFF;
+  --color-accent: #52C2FF;
+  --color-accent-2: #8EDAFF;
+}
+
+/* Smooth single-page gradient around blue tones */
+body{
+  background:
+    linear-gradient(
+      180deg,
+      #0F4BA8 0%,
+      #1765BE 25%,
+      #1976D2 50%,
+      #2183E0 70%,
+      #3692EA 85%,
+      #5AA8F8 100%
+    ) fixed;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.section{ background: transparent !important; }
+#expositores{ background: transparent !important; border: none !important; }
+#expositores::before, #expositores::after{ display:none !important; }
