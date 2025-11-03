@@ -785,3 +785,22 @@ body{
   .powered-by{ margin-top:0.1rem; font-size:1.2rem; }
   .powered-by__logo{ height:36px; width:auto; }
 }
+
+
+/* === Smooth section transitions (only colors) === */
+
+/* Link the gradients so each section starts where the previous ended */
+.theme-hero{        --section-bg: linear-gradient(180deg, var(--color-bg),      var(--color-bg-2)); }
+.theme-sobre{       --section-bg: linear-gradient(180deg, var(--color-bg-2),    var(--color-layer-2)); }
+.theme-programa{    --section-bg: linear-gradient(180deg, var(--color-layer-2), var(--color-layer-3)); }
+.theme-expositores{ --section-bg: linear-gradient(180deg, var(--color-layer-3), var(--color-layer-4)); }
+.theme-parceiros{   --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
+
+/* Remove hard solid backgrounds that caused abrupt cuts */
+#sobre,
+#programa,
+#expositores,
+#inscricoes { background: unset !important; }
+
+/* Expositores: voltar a usar o gradiente da secção */
+#expositores { background: var(--section-bg) !important; }
