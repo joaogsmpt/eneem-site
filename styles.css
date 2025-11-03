@@ -779,3 +779,9 @@ body{
   .powered-by{ margin-top:.25rem; font-size:1rem; }
   .powered-by__logo{ height:30px; width:auto; }
 }
+
+
+@media (min-width: 1024px){
+  .powered-by{ margin-top:0.1rem; font-size:1.2rem; }
+  .powered-by__logo{ height:36px; width:auto; }
+}
