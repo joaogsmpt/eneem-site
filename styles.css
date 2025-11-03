@@ -869,16 +869,3 @@ body{
 .hero-ximg.reveal.is-visible{
   transform: translateY(0.4em);
 }
-
-
-/* === Sobre: imagem real na ilustração === */
-.about-media img.about-illustration{
-  display:block;
-  width:100%;
-  height:auto;
-  aspect-ratio:4/3;
-  object-fit:cover;
-  border-radius:var(--radius-2);
-  box-shadow: 0 8px 20px rgba(0,0,0,.12);
-  background:none !important;
-}
