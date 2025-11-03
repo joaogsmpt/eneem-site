@@ -785,30 +785,3 @@ body{
   .powered-by{ margin-top:0.1rem; font-size:1.2rem; }
   .powered-by__logo{ height:36px; width:auto; }
 }
-
-
-/* --- HERO with background image --- */
-.section-hero{
-  position: relative;
-  background: url('ENEEM.png') center center / cover no-repeat;
-  overflow: hidden;
-}
-.section-hero .hero-layers{ position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.section-hero .hero-inner{ position: relative; z-index: 2; }
-
-/* Desktop-only powered-by positioning near bottom, above overlays */
-@media (min-width: 1024px){
-  .section-hero .powered-by{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 6vh; /* well below the title */
-    margin-top: 0; /* no gap from title since it's absolutely positioned */
-    z-index: 3; /* ensure above layered images */
-    font-size: 1.4rem;
-  }
-  .section-hero .powered-by__logo{
-    height: 42px;
-    width: auto;
-  }
-}
