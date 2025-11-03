@@ -756,15 +756,15 @@ body{
     align-items:center;
     justify-content:center;
     gap:.5rem;
-    margin-top:.5rem; /* snug under the H1 */
-    font-size:.85rem; /* smaller than hero title */
+    margin-top: .25rem; /* snug under the H1 */
+    font-size: 1rem; /* smaller than hero title */
     font-weight:500;
     letter-spacing: .02em;
     color: rgba(255,255,255,.9);
     text-transform: lowercase;
   }
   .powered-by__logo{
-    height: 24px; /* keep logo proportion */
+    height: 30px; /* keep logo proportion */
     width: auto;
     aspect-ratio: auto; /* ensure natural aspect */
     image-rendering: auto;
@@ -773,3 +773,9 @@ body{
   .powered-by__text{opacity:.95}
 }
 /* === /Powered by Climacer === */
+
+
+@media (min-width: 1024px){
+  .powered-by{ margin-top:.25rem; font-size:1rem; }
+  .powered-by__logo{ height:30px; width:auto; }
+}
