@@ -858,3 +858,9 @@ body{
 .section{ background: transparent !important; }
 #expositores{ background: transparent !important; border: none !important; }
 #expositores::before, #expositores::after{ display:none !important; }
+
+
+/* === Hero X image sizing (replaces text 'X') === */
+.hero-title{ display: inline-flex; align-items: baseline; gap: .35ch; }
+.hero-ximg{ height: 0.9em; width: auto; vertical-align: baseline; transform: translateY(0.05em); }
+.sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
