@@ -804,3 +804,20 @@ body{
 
 /* Expositores: voltar a usar o gradiente da secção */
 #expositores { background: var(--section-bg) !important; }
+
+
+/* === Seamless page-wide gradient (no seams between sections) === */
+body{
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-bg) 0%,
+      var(--color-bg-2) 22%,
+      var(--color-layer-2) 44%,
+      var(--color-layer-3) 66%,
+      var(--color-layer-4) 88%
+    ) fixed;
+  background-attachment: fixed;
+}
+/* Make each section transparent so the single gradient shows through */
+.section{ background: transparent !important; }
