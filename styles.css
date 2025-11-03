@@ -746,3 +746,30 @@ body{
 }
 
 #programa .event-desc{ margin: .5rem 0 0; }
+
+
+/* === Powered by Climacer (desktop only) === */
+.powered-by{display:none;}
+@media (min-width: 1024px){
+  .powered-by{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5rem;
+    margin-top:.5rem; /* snug under the H1 */
+    font-size:.85rem; /* smaller than hero title */
+    font-weight:500;
+    letter-spacing: .02em;
+    color: rgba(255,255,255,.9);
+    text-transform: lowercase;
+  }
+  .powered-by__logo{
+    height: 24px; /* keep logo proportion */
+    width: auto;
+    aspect-ratio: auto; /* ensure natural aspect */
+    image-rendering: auto;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.2));
+  }
+  .powered-by__text{opacity:.95}
+}
+/* === /Powered by Climacer === */
