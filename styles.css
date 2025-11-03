@@ -821,3 +821,22 @@ body{
 }
 /* Make each section transparent so the single gradient shows through */
 .section{ background: transparent !important; }
+
+
+/* === Remove seams around Expositores and lighten palette === */
+#expositores{ background: transparent !important; border: none !important; }
+#expositores::before, #expositores::after{ display:none !important; }
+
+/* Lighter gradient palette */
+:root{
+  --color-bg: #2E8FFF;     /* lighter primary */
+  --color-bg-2: #4EA2FF;
+  --color-layer-1: #5AA9FF;
+  --color-layer-2: #63B1FF;
+  --color-layer-3: #7FBEFF;
+  --color-layer-4: #9ACBFF;
+  --color-text: #F7FAFF;
+  --color-text-2: #EAF4FF;
+  --color-accent: #66E0FF;
+  --color-accent-2: #B6E9FF;
+}
