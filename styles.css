@@ -855,3 +855,18 @@ body{
   --color-accent: #55D4FF;
   --color-accent-2: #A2E2FF;
 }
+
+
+/* === Slightly darker palette === */
+:root{
+  --color-bg: #0E56CC;
+  --color-bg-2: #1E66E0;
+  --color-layer-1: #2A73E8;
+  --color-layer-2: #3A80F0;
+  --color-layer-3: #4D91F5;
+  --color-layer-4: #5EA0FA;
+  --color-text: #F4F8FF;
+  --color-text-2: #D9E8FF;
+  --color-accent: #4BC8FF;
+  --color-accent-2: #99DAFF;
+}
