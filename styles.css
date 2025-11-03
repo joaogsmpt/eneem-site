@@ -874,5 +874,5 @@ body{
 
 .logo img {
   position: relative;
-  top: 3px;
+  top: 8px; /* aumentado para descer mais */
 }
