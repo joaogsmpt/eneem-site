@@ -867,5 +867,5 @@ body{
 
 /* Keep X image slightly lower after reveal animation */
 .hero-ximg.reveal.is-visible{
-  transform: translateY(0.20em);
+  transform: translateY(0.10em);
 }
