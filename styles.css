@@ -787,116 +787,38 @@ body{
 }
 
 
-/* === Smooth section transitions (only colors) === */
+/* === Theme: Suave Moderno (blue base with lilac -> light blue, extra-soft gradient) === */
+:root{
+  /* Keep deep blue base and harmonize around it */
+  --color-bg:   #122548;  /* deepest */
+  --color-bg-2: #1C355E;  /* base blue */
+  --color-layer-1: #4C5FA6; /* indigo-lean lilac */
+  --color-layer-2: #6E78C8; /* lilac/indigo */
+  --color-layer-3: #97AEEF; /* light periwinkle */
+  --color-layer-4: #C9DDFE; /* airy light blue */
+  --color-text:   #F7FAFF;
+  --color-text-2: #EAF2FF;
+  --color-accent:   #7AD7F0; /* soft, cheerful but not neon */
+  --color-accent-2: #B3E7F7;
+}
 
-/* Link the gradients so each section starts where the previous ended */
-.theme-hero{        --section-bg: linear-gradient(180deg, var(--color-bg),      var(--color-bg-2)); }
-.theme-sobre{       --section-bg: linear-gradient(180deg, var(--color-bg-2),    var(--color-layer-2)); }
-.theme-programa{    --section-bg: linear-gradient(180deg, var(--color-layer-2), var(--color-layer-3)); }
-.theme-expositores{ --section-bg: linear-gradient(180deg, var(--color-layer-3), var(--color-layer-4)); }
-.theme-parceiros{   --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
-
-/* Remove hard solid backgrounds that caused abrupt cuts */
-#sobre,
-#programa,
-#expositores,
-#inscricoes { background: unset !important; }
-
-/* Expositores: voltar a usar o gradiente da secção */
-#expositores { background: var(--section-bg) !important; }
-
-
-/* === Seamless page-wide gradient (no seams between sections) === */
+/* Softer, longer page-wide gradient with multiple subtle stops */
 body{
   background:
     linear-gradient(
       180deg,
-      var(--color-bg) 0%,
-      var(--color-bg-2) 22%,
-      var(--color-layer-2) 44%,
-      var(--color-layer-3) 66%,
-      var(--color-layer-4) 88%
+      #122548 0%,
+      #1C355E 18%,
+      #4C5FA6 38%,
+      #6E78C8 55%,
+      #97AEEF 78%,
+      #C9DDFE 100%
     ) fixed;
   background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
-/* Make each section transparent so the single gradient shows through */
+
 .section{ background: transparent !important; }
-
-
-/* === Remove seams around Expositores and lighten palette === */
 #expositores{ background: transparent !important; border: none !important; }
 #expositores::before, #expositores::after{ display:none !important; }
-
-/* Lighter gradient palette */
-:root{
-  --color-bg: #2E8FFF;     /* lighter primary */
-  --color-bg-2: #4EA2FF;
-  --color-layer-1: #5AA9FF;
-  --color-layer-2: #63B1FF;
-  --color-layer-3: #7FBEFF;
-  --color-layer-4: #9ACBFF;
-  --color-text: #F7FAFF;
-  --color-text-2: #EAF4FF;
-  --color-accent: #66E0FF;
-  --color-accent-2: #B6E9FF;
-}
-
-
-/* === Mid-tone palette adjustment === */
-:root{
-  --color-bg: #166DFF;
-  --color-bg-2: #2E82FF;
-  --color-layer-1: #3B8FFF;
-  --color-layer-2: #4A9BFF;
-  --color-layer-3: #63AFFF;
-  --color-layer-4: #7BBFFF;
-  --color-text: #F5F9FF;
-  --color-text-2: #E0F0FF;
-  --color-accent: #55D4FF;
-  --color-accent-2: #A2E2FF;
-}
-
-
-/* === Slightly darker palette === */
-:root{
-  --color-bg: #0E56CC;
-  --color-bg-2: #1E66E0;
-  --color-layer-1: #2A73E8;
-  --color-layer-2: #3A80F0;
-  --color-layer-3: #4D91F5;
-  --color-layer-4: #5EA0FA;
-  --color-text: #F4F8FF;
-  --color-text-2: #D9E8FF;
-  --color-accent: #4BC8FF;
-  --color-accent-2: #99DAFF;
-}
-
-
-/* === Palette centered around base blue #4C84C3 === */
-:root{
-  --color-bg: #3E74B2;        /* darker variant */
-  --color-bg-2: #4C84C3;      /* base blue */
-  --color-layer-1: #5B91CB;   /* slightly lighter */
-  --color-layer-2: #6EA1D4;
-  --color-layer-3: #83B1DD;
-  --color-layer-4: #9DC4E7;   /* lightest end */
-  --color-text: #F5FAFF;
-  --color-text-2: #E8F3FF;
-  --color-accent: #61D0FF;
-  --color-accent-2: #A9E4FF;
-}
-
-
-/* === Palette centered around base deep blue #1C355E === */
-:root{
-  --color-bg: #122548;        /* darker shade */
-  --color-bg-2: #1C355E;      /* base blue */
-  --color-layer-1: #2B4C7A;   /* slightly lighter */
-  --color-layer-2: #3E6595;
-  --color-layer-3: #537FB0;
-  --color-layer-4: #6C9ACC;   /* lightest end */
-  --color-text: #F4F7FF;
-  --color-text-2: #E2EBFF;
-  --color-accent: #3FA9FF;
-  --color-accent-2: #8BCCFF;
-}
