@@ -1,5 +1,5 @@
 /* ================================
-   ENEEM — styles.css (polished)
+   ENEEM — styles.css (refactor, same content; cleaner, faster)
    ================================ */
 :root{
   --color-bg: #016FEA;
@@ -16,13 +16,14 @@
 
   --radius-1: 10px;
   --radius-2: 16px;
+  --radius-3: 22px;
 
   --space-1: .5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
   --space-4: 2rem;
 
-  --dur-1: .25s;
+  --dur-1: .22s;
   --dur-2: .45s;
   --ease: cubic-bezier(.2,.6,.2,1);
 
@@ -40,7 +41,7 @@ body{
   background: var(--color-bg);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  padding-top: calc(var(--header-offset, 64px) + env(safe-area-inset-top, 0px));
+  padding-top: var(--header-offset, 64px);
 }
 
 /* A11y */
@@ -50,20 +51,20 @@ body{
   background:var(--color-layer-3); border-radius:var(--radius-1); color:var(--color-text);
 }
 
-/* Layout utilitários */
+/* Layout */
 .container{width:min(1100px, 92%); margin-inline:auto; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
 .section{position:relative; background: var(--section-bg, var(--color-bg)); }
 .section-padded{ padding: clamp(2.25rem, 6vh, 3.75rem) 0; }
 .section + .section{ padding-top: clamp(1rem, 4vh, 3rem); }
 
-
 .grid{display:grid; gap:1.25rem}
 .grid-2{grid-template-columns: 1.1fr .9fr}
 @media (max-width: 900px){ .grid-2{grid-template-columns:1fr} }
 
-/* Header fixo */
-.site-header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(11,18,34,.6); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid rgba(255,255,255,.06)}
-.site-header .container{justify-content:center}
+/* Header (shrink on scroll) */
+.site-header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(11,18,34,.55); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid rgba(255,255,255,.06); transition: backdrop-filter var(--dur-2) var(--ease), background var(--dur-2) var(--ease), padding var(--dur-2) var(--ease) }
+.site-header .container{justify-content:center; padding:.55rem 0}
+.site-header.is-scrolled{ background: rgba(9,14,28,.75); backdrop-filter: saturate(160%) blur(12px); }
 .nav{display:flex; gap:1.25rem}
 .nav a{ color:var(--color-text-2); text-decoration:none; padding:.35rem .2rem; position:relative; font-weight:600 }
 .nav a:hover,.nav a:focus{color:var(--color-text)}
@@ -85,18 +86,14 @@ body{
 .scroll-cue{background:transparent; border:1px solid rgba(255,255,255,.2); color:var(--color-text-2); border-radius:999px; padding:.4rem .8rem; cursor:pointer}
 .scroll-cue:hover{color:var(--color-text); border-color:rgba(255,255,255,.35)}
 
-/* Seções gerais */
+/* Base de secções */
 .section-title{font-family:var(--font-title); font-weight:800; font-size:clamp(1.6rem,3.4vw,2.3rem); margin:0 0 var(--space-2)}
 .lead{font-size:1.1rem; color:var(--color-text); opacity:.95}
-
 .reveal{opacity:0; transform:translateY(12px); transition:opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease); will-change:opacity, transform}
 .reveal.is-visible{opacity:1; transform:none}
 
 /* === Sobre === */
-.about-highlights{
-  list-style:none; padding:0; margin:var(--space-2) 0 var(--space-3);
-  display:grid; gap:.5rem;
-}
+.about-highlights{ list-style:none; padding:0; margin:var(--space-2) 0 var(--space-3); display:grid; gap:.5rem; }
 .about-highlights li{
   background: color-mix(in oklab, var(--color-bg), white 3%);
   border: 1px solid color-mix(in oklab, var(--color-bg-2), white 12%);
@@ -112,72 +109,53 @@ body{
   box-shadow:0 10px 20px rgba(0,0,0,.15);
 }
 
-/* === Programa: layout robusto + polish === */
-#programa
+/* === Programa === */
 #programa .container{ display:block }
 #programa .program-wrap{ display:grid; gap: var(--space-2) }
 #programa .program-header{ margin-bottom: var(--space-2); }
-#programa .program-tabs{ display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:.75rem 0 var(--space-2); }
-#programa .program-panels{ margin-top: .25rem; }
 
-/* Tabs */
+/* Tabs (clean) */
+#programa .program-tabs{ display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:.9rem 0 1.4rem; }
 #programa .program-tab{
-  appearance:none; border:1px solid color-mix(in oklab, var(--color-bg-2), white 14%);
-  background: color-mix(in oklab, var(--color-bg), white 3%);
-  color: var(--color-text-2); padding:.55rem 1rem; border-radius:999px; cursor:pointer; font-weight:600;
-  backdrop-filter: saturate(120%) blur(2px);
-  box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 4px 10px rgba(0,0,0,.15);
-  transition: transform var(--dur-1) var(--ease), background var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
+  all: unset;
+  cursor: pointer;
+  color: var(--color-text-2);
+  font-weight: 600;
+  position: relative;
+  padding: .35rem .9rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-bg), white 6%);
+  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 18%);
+  box-shadow: 0 1px 0 rgba(255,255,255,.04) inset;
+  transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
 }
-#programa .program-tab[aria-selected="true"]{
-  background: linear-gradient(145deg, var(--color-layer-4), var(--color-layer-2));
-  border-color: rgba(255,255,255,.18); color: var(--color-text);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.22);
-}
-#programa .program-tab:focus-visible{outline:2px solid var(--color-accent); outline-offset:2px}
+#programa .program-tab:hover{ transform: translateY(-1px) }
+#programa .program-tab[aria-selected="true"]{ color: var(--color-text); background: color-mix(in oklab, var(--color-bg), white 10%); }
+#programa .program-tab:focus-visible{ outline:2px solid var(--color-accent); outline-offset:4px; }
 
-/* Timeline grid */
-.timeline{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem }
+/* Panels & timeline */
+#programa .program-panels{ margin-top: .25rem; }
+.timeline{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 1.2rem }
 @media (max-width: 1200px){ .timeline{ grid-template-columns: repeat(8, 1fr) } }
 @media (max-width: 900px){ .timeline{ grid-template-columns: 1fr } }
 .event-card{ grid-column: span 6 }
 @media (max-width: 1200px){ .event-card{ grid-column: span 4 } }
 @media (max-width: 900px){ .event-card{ grid-column: auto } }
 
-/* Cards (gradient border + tint) */
 #programa .event-card{
   --card-tint: var(--color-accent);
-  position: relative; overflow: hidden;
+  position: relative; overflow: visible;
   border-radius: var(--radius-2);
-  border: 1px solid transparent;
-  background:
-    linear-gradient(180deg,
-      color-mix(in oklab, var(--color-bg), white 3%) 0%,
-      color-mix(in oklab, var(--color-bg-2), white 7%) 100%) padding-box,
-    linear-gradient(145deg,
-      color-mix(in oklab, var(--card-tint), transparent 70%),
-      rgba(255,255,255,.08)) border-box;
-  box-shadow: 0 8px 18px rgba(0,0,0,.18);
-  transition: transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 10%);
+  background: color-mix(in oklab, var(--color-bg), white 2.5%);
+  padding: 1.05rem 1.2rem 1.15rem;
+  transition: border-color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
 }
-#programa .event-card:hover{ transform: translateY(-3px); box-shadow: 0 14px 26px rgba(0,0,0,.2) }
+#programa .event-card:hover{ transform: translateY(-2px); border-color: color-mix(in oklab, var(--color-bg-2), white 16%) }
 
-#programa .event-time{
-  display:inline-flex; align-items:center; gap:.45rem;
-  font-size:.82rem; letter-spacing:.01em;
-  padding:.28rem .55rem; border-radius:999px;
-  background: color-mix(in oklab, var(--card-tint), transparent 88%);
-  border:1px solid color-mix(in oklab, var(--card-tint), white 70%);
-}
-#programa .event-time::before{
-  content:""; width:.45rem; height:.45rem; border-radius:50%;
-  background: var(--card-tint);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--card-tint), transparent 85%);
-}
-
-#programa .event-title{ font-size: clamp(1.25rem, 1.9vw, 1.7rem); font-weight: 800; letter-spacing:.01em }
-#programa .event-desc{ margin:.35rem 0 0; color:var(--color-text-2) }
+#programa .event-time{ margin: 0 0 .4rem 0; font-size: .86rem; letter-spacing: .02em; opacity: .9 }
+#programa .event-title{ font-size: clamp(1.2rem, 1.6vw, 1.6rem); font-weight: 800; letter-spacing:.005em; margin: .12rem 0 .1rem; line-height: 1.22 }
+#programa .event-desc{ margin:.45rem 0 0; color: var(--color-text-2); line-height: 1.45 }
 
 /* Tintas por tipo */
 #programa .event-card[data-type="fair"]{ --card-tint: #66D9FF }
@@ -189,118 +167,19 @@ body{
 #programa .event-card[data-type="dinner"]{ --card-tint: #FFC1A8 }
 #programa .event-card[data-type="checkin"]{ --card-tint: #9BE1FF }
 
-/* Footer */
-.site-footer{padding:2rem 0; border-top:1px solid rgba(255,255,255,.06); color:var(--color-text-2)}
-
-/* Reduzir movimento */
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  .reveal{transition:none}
-  .hero-title span{opacity:1; filter:none}
-}
-
-/* ===== Programa — versão minimalista e limpa (overrides) ===== */
-#programa .program-tabs{ display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:.75rem 0 var(--space-2); }
-#programa .program-tab{
-  all: unset; cursor: pointer; color: var(--color-text-2); font-weight: 600;
-  padding: .25rem 0; position: relative;
-}
-#programa .program-tab::after{
-  content:""; position:absolute; left:0; bottom:-6px; height:2px; width:100%;
-  background: color-mix(in oklab, var(--color-text-2), transparent 40%);
-  transform: scaleX(0); transform-origin:left; transition: transform var(--dur-2) var(--ease);
-}
-#programa .program-tab[aria-selected="true"]{ color: var(--color-text) }
-#programa .program-tab[aria-selected="true"]::after{ transform: scaleX(1); background: var(--color-accent) }
-#programa .program-tab:focus-visible{ outline:2px solid var(--color-accent); outline-offset:4px; border-radius:4px }
-
-#programa .event-card{
-  background: color-mix(in oklab, var(--color-bg), white 2.5%);
-  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 10%);
-  box-shadow: none; transition: border-color var(--dur-1) var(--ease);
-}
-#programa .event-card:hover{ border-color: color-mix(in oklab, var(--color-bg-2), white 16%) }
-
-#programa .event-time{ background: transparent; border: 0; padding: 0; font-size: .85rem; letter-spacing: .02em; opacity: .85 }
-#programa .event-time::before{ content:none }
-
-#programa .event-title{ font-size: clamp(1.2rem, 1.6vw, 1.6rem); font-weight: 800; letter-spacing: .005em; margin-top:.15rem }
-#programa .event-desc{ color: var(--color-text-2) }
-#programa .timeline{ gap: 1.25rem }
-
-#programa
-
-/* === Programa fix: corte e pill nas tabs === */
-#programa .event-card{
-  padding: 0.9rem 1.1rem 1.1rem;
-  border-radius: var(--radius-2);
-  overflow: visible;
-}
-#programa .event-time{
-  margin: 0 0 .25rem 0;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  font-size: .86rem;
-  opacity: .85;
-}
-#programa .event-title{
-  margin: .15rem 0 .25rem;
-  font-size: clamp(1.2rem, 1.6vw, 1.6rem);
-  line-height: 1.25;
-}
-#programa .event-desc{ margin: 0; line-height: 1.45 }
-#programa .timeline{ gap: 1.25rem }
-
-#programa .program-tab{
-  all: unset;
-  cursor: pointer;
-  color: var(--color-text-2);
-  font-weight: 600;
-  position: relative;
-  padding: .25rem .5rem;
-}
-#programa .program-tab[aria-selected="true"]{
-  color: var(--color-text);
-  padding: .35rem .9rem;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--color-bg), white 6%);
-  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 18%);
-  box-shadow: 0 1px 0 rgba(255,255,255,.04) inset;
-}
-#programa .program-tab::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  height: 2px;
-  width: 100%;
-  background: color-mix(in oklab, var(--color-text-2), transparent 40%);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur-2) var(--ease);
-}
-#programa .program-tab:hover::after{ transform: scaleX(1) }
-#programa .program-tab[aria-selected="true"]::after{ display: none }
-
-/* === Expositores — Prep Your Future === */
+/* === Expositores — mapa 4x5 + lista 2 colunas === */
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-#expositores .expositores-wrap{align-items:start}
+#expositores .expositores-wrap{align-items:start; gap: 2rem }
 .stand-map{
-  --cols: 3;
+  --cols: 4;
   display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
-  gap: 1.8rem;
-  margin-top: var(--space-2);
+  gap: 1rem;
 }
-@media (min-width: 520px){ .stand-map{ --cols: 4 } }
-@media (min-width: 720px){ .stand-map{ --cols: 5 } }
-@media (min-width: 980px){ .stand-map{ --cols: 6 } }
-
 .stand-map .stand{
   display: grid; place-items: center;
   aspect-ratio: 1/1;
-  border-radius: .6rem;
+  border-radius: .5rem;
   font-weight: 700;
   background: color-mix(in oklab, var(--color-bg), white 3%);
   border: 1px solid color-mix(in oklab, var(--color-bg-2), white 12%);
@@ -316,14 +195,14 @@ body{
   background: color-mix(in oklab, var(--color-bg), white 6%);
 }
 
-.expositores-list{ list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: .4rem }
+.expositores-list{ list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem 1rem; grid-template-columns: repeat(2, minmax(0,1fr)); }
 .expositores-list li{
-  display: grid; grid-template-columns: 2.2rem 1fr; align-items: center;
-  gap: 1.8rem; padding: .4rem .5rem; border-radius: .5rem;
+  display: grid; grid-template-columns: 2rem 1fr; align-items: center;
+  gap: .75rem; padding: .45rem .6rem; border-radius: .5rem;
   border: 1px solid color-mix(in oklab, var(--color-bg-2), white 10%);
   background: color-mix(in oklab, var(--color-bg), white 2.5%);
 }
-.expositores-list li .num{ display:inline-grid; place-items:center; width:2rem; height:2rem; border-radius:.4rem;
+.expositores-list li .num{ display:inline-grid; place-items:center; width:2rem; height:2rem; border-radius:.35rem;
   font-weight:700; color:var(--color-text); border:1px solid color-mix(in oklab, var(--color-bg-2), white 15%);
   background: color-mix(in oklab, var(--color-bg), white 4%);
 }
@@ -332,337 +211,9 @@ body{
   background: color-mix(in oklab, var(--color-bg), white 6%);
 }
 
-/* === Expositores: fundo sólido por toda a secção (sem transições de gradiente) === */
-#expositores{
-  position: relative;
-  background: var(--color-bg-2); /* mantém cor estável até ao fim da secção */
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-/* opcional: garantir que a secção seguinte volta ao comportamento padrão */
-#expositores + .section{ background: transparent }
-
-/* === Expositores v3: 4x5 grade compacta + lista compacta === */
-#expositores .expositores-wrap{ align-items: start; gap: 2rem }
-#expositores .stand-map{
-  --cols: 4;                          /* 4 colunas fixas */
-  max-width: 560px;                   /* controla dimensão para manter os quadrados pequenos */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.8rem;
-}
-#expositores .stand-map .stand{
-  aspect-ratio: 1/1;
-  border-radius: .5rem;
-  font-size: 1rem;
-  letter-spacing: .02em;
-}
-
-/* Coluna da lista: tipografia e densidade para caber entre topo e base do mapa */
-#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-#expositores .expositores-list li{
-  grid-template-columns: 1.8rem 1fr;
-  padding: .35rem .5rem;
-  border-radius: .45rem;
-}
-#expositores .expositores-list li .num{
-  width: 1.6rem; height: 1.6rem; border-radius: .35rem; font-size: .92rem;
-}
-#expositores .expositores-list .name{
-  font-size: .98rem; line-height: 1.25;
-}
-
-/* Responsivo: em ecrãs muito largos, mantém os quadrados pequenos; em médios, ligeiro ajuste */
-@media (min-width: 1200px){
-  #expositores .stand-map{ max-width: 520px; gap: .65rem }
-}
 @media (max-width: 900px){
   #expositores .expositores-wrap{ grid-template-columns: 1fr; }
-  #expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-}
-
-/* === Expositores v4: quadrados + lista bem menores === */
-#expositores .stand-map{
-  max-width: 420px;   /* reduz largura total */
-  gap: 1.8rem;
-}
-#expositores .stand-map .stand{
-  border-radius: .4rem;
-  font-size: .78rem;  /* número menor */
-}
-
-#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-#expositores .expositores-list li{
-  grid-template-columns: 1.4rem 1fr;
-  padding: .25rem .35rem;
-  border-radius: .35rem;
-}
-#expositores .expositores-list li .num{
-  width: 1.3rem; height: 1.3rem;
-  border-radius: .25rem;
-  font-size: .75rem;
-}
-#expositores .expositores-list .name{
-  font-size: .82rem;
-  line-height: 1.2;
-}
-
-/* Ajustes responsivos */
-@media (min-width: 1200px){
-  #expositores .stand-map{ max-width: 400px; gap: .45rem }
-}
-@media (max-width: 900px){
-  #expositores .expositores-wrap{ grid-template-columns: 1fr; }
-  #expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-}
-
-/* === Expositores v5: ultra-compact + colunas mais afastadas === */
-#expositores .expositores-wrap{ column-gap: 5rem } /* separa mais as duas colunas */
-
-/* Mapa: 4x5 com quadrados pequenos */
-#expositores .stand-map{
-  max-width: 340px;          /* ainda menor */
-  gap: 1.8rem;
-}
-#expositores .stand-map .stand{
-  border-radius: .3rem;
-  font-size: .68rem;
-}
-
-/* Lista: ultra-compact para caber 20 itens no viewport */
-#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-#expositores .expositores-list li{
-  grid-template-columns: 1.2rem 1fr;
-  padding: .18rem .3rem;
-  border-radius: .28rem;
-}
-#expositores .expositores-list li .num{
-  width: 1.1rem; height: 1.1rem; border-radius: .2rem; font-size: .68rem;
-}
-#expositores .expositores-list .name{
-  font-size: .76rem;
-  line-height: 1.15;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Se o ecrã for muito largo, mantemos os elementos pequenos */
-@media (min-width: 1400px){
-  #expositores .stand-map{ max-width: 320px; gap: .34rem }
-}
-
-/* === Expositores v6: título numa linha, quadrados 50%, colunas mais afastadas,
-   lista com a mesma altura do mapa e linhas distribuídas === */
-
-/* Título numa linha, e o conteúdo começa abaixo */
-#expositores .section-title{ white-space: normal; margin-bottom: .75rem }
-#expositores .expositores-wrap{ align-items: start; column-gap: clamp(6rem, 12vw, 14rem) }
-
-/* Mapa 4x5: metade do tamanho anterior */
-#expositores .stand-map{
-  max-width: 200px;             /* ~metade do v5 */
-  gap: 1.8rem;
-  margin-top: .75rem;
-}
-#expositores .stand-map .stand{
-  border-radius: .28rem;
-  font-size: .62rem;
-}
-
-/* Lista: altura = altura do mapa; 20 linhas exatamente */
-#expositores .expositores-list-col{ margin-top: .75rem }
-#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-#expositores .expositores-list li{
-  grid-template-columns: 1.1rem 1fr;
-  padding: .16rem .28rem;
-  border-radius: .24rem;
-}
-#expositores .expositores-list li .num{
-  width: 1rem; height: 1rem; border-radius: .2rem; font-size: .64rem;
-}
-#expositores .expositores-list .name{
-  font-size: .74rem; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-
-/* Responsivo: mantém pequeno mesmo em ecrãs muito largos */
-@media (min-width: 1400px){
-  #expositores .stand-map{ max-width: 190px; gap: .28rem }
-}
-@media (max-width: 900px){
-  #expositores .expositores-wrap{ grid-template-columns: 1fr; column-gap: 0 }
-  #expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-}
-
-/* === Expositores v7: gap x4, lista em 2 colunas alinhadas === */
-
-/* Mapa com quadrados mais separados */
-#expositores .stand-map{
-  max-width: 220px;   /* mantém pequeno */
-  gap: 1.8rem;        /* ~4x maior que antes */
-}
-
-/* Lista em 2 colunas de 10, alinhada com altura do mapa */
-#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-#expositores .expositores-list li{
-  grid-template-columns: 1.2rem 1fr;
-  padding: .2rem .35rem;
-  border-radius: .28rem;
-}
-#expositores .expositores-list li .num{
-  width: 1.1rem; height: 1.1rem;
-  font-size: .7rem;
-}
-#expositores .expositores-list .name{
-  font-size: .78rem; line-height: 1.15;
-}
-
-/* Colunas mais afastadas no wrap geral */
-#expositores .expositores-wrap{ column-gap: clamp(8rem, 14vw, 16rem) }
-
-/* === Expositores: 2-row grid to align map and list === */
-.expositores-grid{
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  grid-template-areas:
-    "head head"
-    "map  list";
-  gap: 1.25rem;
-  align-items: start;
-}
-.expositores-header{ grid-area: head; }
-.expositores-map{ grid-area: map; }
-.expositores-grid .expositores-list-col{ grid-area: list; margin-top: 0; }
-@media (max-width: 860px){
-  .expositores-grid{
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "head"
-      "map"
-      "list";
-  }
-}
-/* === /Expositores grid === */
-
-/* --- Section backgrounds & stacking fix --- */
-.section{ position:relative; z-index:0; isolation:isolate; }
-#sobre{ background: var(--color-bg); }
-#programa{ background: var(--color-bg-2); }
-#expositores{ background: var(--color-bg); }
-#inscricoes{ background: var(--color-bg-2); }
-/* --- /Section backgrounds --- */
-
-/* --- Expositores: align list top with map top --- */
-.expositores-grid{ row-gap: var(--space-3); }
-.expositores-header{ margin-bottom: var(--space-2); }
-.expositores-map .stand-map{ margin-top: 0; }
-.expositores-grid .expositores-list{ margin-top: 0; }
-.expositores-grid .expositores-list-col{ margin-top: 0; }
-@media (min-width: 861px){
-  .expositores-grid{ align-items: start; }
-}
-/* --- /Expositores alignment --- */
-
-/* --- Expositores: force 2-column side-by-side layout --- */
-.expositores-grid{
-  display:grid;
-  grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr);
-  gap: var(--space-2);
-  align-items:start;
-}
-.expositores-grid > *{ min-width: 0; } /* prevent overflow from breaking columns */
-.expositores-header{ grid-column: 1 / -1; } /* header spans both columns */
-.expositores-map{ grid-column: 1; }
-.expositores-list-col{ grid-column: 2; margin-top: 0; }
-@media (max-width: 860px){
-  .expositores-grid{ grid-template-columns: 1fr; }
-  .expositores-header{ grid-column: 1; }
-  .expositores-map{ grid-column: 1; }
-  .expositores-list-col{ grid-column: 1; }
-}
-/* --- /Expositores columns --- */
-
-/* --- Expositores: enlarge company list items --- */
-.expositores-list{ gap: 1.8rem; }
-.expositores-list li{
-  grid-template-columns: 2.6rem 1fr;
-  padding: .65rem .8rem;
-  gap: .75rem;
-  border-radius: .6rem;
-}
-.expositores-list .name{ font-size: 1.06rem; }
-.expositores-list .num{
-  width: 2rem; height: 2rem;
-  border-radius: .45rem;
-  font-size: .95rem; font-weight: 700;
-}
-/* --- /Expositores: enlarge company list items --- */
-
-/* --- Expositores: wider list column & right alignment --- */
-@media (min-width: 1024px){
-  .expositores-grid{
-    grid-template-columns: minmax(420px, .9fr) minmax(640px, 1.1fr);
-    justify-content: space-between;
-  }
-}
-/* list in two columns, aligned to the right with fixed max width */
-#expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
-/* bring the whole list column slightly up */
-#expositores .expositores-list-col{ margin-top: -.25rem; }
-#expositores .expositores-list li{ padding: .7rem .9rem; }
-/* --- /Expositores: wider list column & right alignment --- */
-
-/* === Expositores — quadrados 2x novamente (agora 3rem) ===
-   Mantém o gap dobrado e força dimensões quadradas de 3rem. */
-#expositores .stand-map{
-  grid-template-columns: repeat(4, 3rem);
-  gap: 3.6rem;
-  max-width: none;
-  width: auto;
-}
-#expositores .stand-map .stand{
-  width: 3rem;
-  height: 3rem;
-  display: grid;
-  place-items: center;
-  font-size: 1.1rem;
-  border-radius: .5rem;
-  box-sizing: border-box;
-}
-
-/* === Modal (empresas) === */
-#empresa-modal{ position:fixed; inset:0; z-index:1000; display:none }
-#empresa-modal[aria-hidden="false"]{ display:block }
-#empresa-modal .modal-backdrop{
-  position:absolute; inset:0; background: rgba(7,12,24,.72);
-  backdrop-filter: blur(4px);
-}
-#empresa-modal .modal-dialog{
-  position:relative;
-  width:min(520px, 92%);
-  margin: min(20vh, 8rem) auto 0;
-  background: var(--color-layer-1);
-  border:1px solid rgba(102,217,255,.25);
-  border-radius: var(--radius-3);
-  box-shadow: 0 10px 40px rgba(0,0,0,.45);
-  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
-  color: var(--color-text);
-  outline: none;
-}
-#empresa-modal .modal-body h3{
-  margin: 0 0 .5rem 0; font-size: clamp(1.05rem, 2.1vw, 1.35rem);
-}
-#empresa-modal .modal-body p{
-  margin:0; line-height:1.6; color: var(--color-text-2);
-}
-#empresa-modal .modal-close{
-  position:absolute; right:.6rem; top:.4rem;
-  background:transparent; border:0; color:var(--color-text-2);
-  font-size:1.4rem; line-height:1; cursor:pointer;
-  padding:.25rem .35rem; border-radius:.35rem;
-}
-#empresa-modal .modal-close:hover{ color:var(--color-text) }
-@media (max-width: 640px){
-  #empresa-modal .modal-dialog{ margin: 20vh auto 0; }
+  .expositores-list{ grid-template-columns: 1fr; }
 }
 
 /* === Parceiros e Patrocínios === */
@@ -696,53 +247,44 @@ body{
 .theme-expositores{ --section-bg: linear-gradient(180deg, var(--color-layer-3), var(--color-layer-4)); }
 .theme-parceiros{   --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
 
-/* ensure section backgrounds show */
-.section{background: var(--section-bg, var(--color-bg));}
+/* Footer */
+.site-footer{padding:2rem 0; border-top:1px solid rgba(255,255,255,.06); color:var(--color-text-2)}
 
-/* Expositores: preencher espaço vazio abaixo do mapa */
-.expositores-wrap{
-  display:grid;
-  grid-template-columns: minmax(280px, 480px) 1fr;
-  grid-template-areas:
-    "map list"
-    "list list";
-  align-items:start;
-  column-gap: clamp(2rem, 6vw, 5rem);
-  row-gap: 1.5rem;
+/* Modal (empresas) */
+#empresa-modal{ position:fixed; inset:0; z-index:1000; display:none }
+#empresa-modal[aria-hidden="false"]{ display:block }
+#empresa-modal .modal-backdrop{
+  position:absolute; inset:0; background: rgba(7,12,24,.72);
+  backdrop-filter: blur(4px);
 }
-.expositores-map{ grid-area: map; }
-.expositores-list-col{ grid-area: list; margin-top: 0; }
-@media (max-width: 900px){
-  .expositores-wrap{
-    grid-template-columns: 1fr;
-    grid-template-areas: "map" "list";
-  }
-  #expositores .expositores-list{ grid-template-columns: 1fr; }
+#empresa-modal .modal-dialog{
+  position:relative;
+  width:min(520px, 92%);
+  margin: min(20vh, 8rem) auto 0;
+  background: var(--color-layer-1);
+  border:1px solid rgba(102,217,255,.25);
+  border-radius: var(--radius-3);
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  color: var(--color-text);
+  outline: none;
 }
-
-
-/* === Programa — espaçamento e legibilidade (hotfix) === */
-#programa .program-header{ margin-bottom: clamp(1rem, 2.6vh, 1.6rem); }
-#programa .program-tabs{ gap: .75rem; margin: .9rem 0 clamp(1rem, 2.6vh, 1.4rem); }
-
-#programa .event-card{
-  padding: 1.1rem 1.25rem 1.2rem;
-  border-radius: var(--radius-2);
-  overflow: visible; /* não corta conteúdo */
+#empresa-modal .modal-body h3{ margin: 0 0 .5rem 0; font-size: clamp(1.05rem, 2.1vw, 1.35rem); }
+#empresa-modal .modal-body p{ margin:0; line-height:1.6; color: var(--color-text-2); }
+#empresa-modal .modal-close{
+  position:absolute; right:.6rem; top:.4rem;
+  background:transparent; border:0; color:var(--color-text-2);
+  font-size:1.4rem; line-height:1; cursor:pointer;
+  padding:.25rem .35rem; border-radius:.35rem;
 }
-
-#programa .event-time{
-  margin: 0 0 .5rem 0;
-  padding: .32rem .6rem;
-  background: color-mix(in oklab, var(--card-tint), transparent 88%);
-  border: 1px solid color-mix(in oklab, var(--card-tint), white 70%);
+#empresa-modal .modal-close:hover{ color:var(--color-text) }
+@media (max-width: 640px){
+  #empresa-modal .modal-dialog{ margin: 20vh auto 0; }
 }
 
-#programa .event-title{
-  white-space: normal;           /* permite quebrar */
-  overflow-wrap: anywhere;       /* evita corte em títulos longos */
-  line-height: 1.18;
-  margin: .1rem 0 0;
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{transition:none}
+  .hero-title span{opacity:1; filter:none}
 }
-
-#programa .event-desc{ margin: .5rem 0 0; }
