@@ -885,3 +885,24 @@ body{
   border-radius:0;
   box-shadow:none;
 }
+
+
+/* === Sobre: imagem à direita (prep.png) — correção minimalista === */
+#sobre .about-media{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#sobre .about-media .sobre-prep{
+  display: block;
+  width: clamp(160px, 26vw, 300px); /* smaller and responsive */
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+@media (max-width: 900px){
+  #sobre .about-media{ justify-content: center; }
+  #sobre .about-media .sobre-prep{ width: clamp(160px, 60vw, 320px); }
+}
