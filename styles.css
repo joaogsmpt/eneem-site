@@ -88,6 +88,10 @@ body{
 /* Seções gerais */
 .section-title{font-family:var(--font-title); font-weight:800; font-size:clamp(1.6rem,3.4vw,2.3rem); margin:0 0 var(--space-2)}
 .lead{font-size:1.1rem; color:var(--color-text); opacity:.95}
+/* Sobre o ENEEM – tipografia mais leve */
+#sobre p{ line-height: 1.8; }
+#sobre .lead{ line-height: 1.9; }
+
 
 .reveal{opacity:0; transform:translateY(12px); transition:opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease); will-change:opacity, transform}
 .reveal.is-visible{opacity:1; transform:none}
