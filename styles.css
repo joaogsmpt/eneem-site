@@ -873,3 +873,13 @@ body{
 .hero-ximg.reveal.is-visible{
   transform: translateY(0.4em);
 }
+
+
+/* === Sobre: imagem à direita (prep.png) === */
+#sobre .about-media img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius: var(--radius-2);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
