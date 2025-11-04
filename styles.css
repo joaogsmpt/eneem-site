@@ -890,3 +890,14 @@ body{
   height: auto;
   display: block;
 }
+
+
+/* === Sobre: ajustes de imagem (75% width, ratio preservado, centrada verticalmente) === */
+#sobre .about-media{ 
+  align-self: center;           /* centra verticalmente o bloco da imagem na linha do grid */
+}
+#sobre .about-media img{
+  width: 75%;
+  height: auto;                 /* preserva o ratio original */
+  display: block;
+}
