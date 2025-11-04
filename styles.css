@@ -875,11 +875,13 @@ body{
 }
 
 
-/* === Sobre: imagem à direita (prep.png) === */
+/* === Sobre: imagem à direita (prep.png) — versão minimalista sem moldura === */
 #sobre .about-media img{
   display:block;
-  width:100%;
+  width:70%;
   height:auto;
-  border-radius: var(--radius-2);
-  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  margin-inline:auto;
+  border:none;
+  border-radius:0;
+  box-shadow:none;
 }
