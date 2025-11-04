@@ -51,7 +51,7 @@ body{
 }
 
 /* Layout utilitários */
-.container{width:min(1100px, 92%); margin-inline:auto; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
+.container{ width:min(1280px, 96%); margin-inline:auto; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
 .section{position:relative; background: var(--section-bg, var(--color-bg)); }
 .section-padded{ padding: clamp(2.25rem, 6vh, 3.75rem) 0; }
 .section + .section{ padding-top: clamp(1rem, 4vh, 3rem); }
