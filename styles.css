@@ -979,3 +979,28 @@ body{
 @media (min-width: 1024px){
   #expositores .stand-map{ max-width: 520px; }
 }
+
+
+/* === Ajuste pedido: Secção "Sobre" — imagem encostada à margem direita
+   e texto estendido até perto da imagem, mantendo a mesma largura das restantes secções. === */
+#sobre .about-grid{
+  grid-template-columns: 1.1fr auto;
+  gap: clamp(.75rem, 2.8vw, 1.5rem);
+}
+#sobre .about-media{
+  justify-self: end;              /* encosta o bloco ao lado direito do container */
+  align-self: center;
+  display: flex;
+  justify-content: flex-end;      /* empurra a imagem para a margem direita */
+}
+#sobre .about-media img{
+  max-width: clamp(220px, 32vw, 420px); /* largura controlada para não "saltar" fora do container */
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 900px){
+  #sobre .about-media{
+    justify-content: center;      /* no mobile, centra a imagem para visual mais equilibrado */
+  }
+}
