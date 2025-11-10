@@ -5,43 +5,11 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   
-// --- Info das empresas (placeholder; podes editar livremente) ---
-const empresaInfo = {
-  1: "A empresa 1 é fixe",
-  2: "A empresa 2 é fixe",
-  3: "A empresa 3 é fixe",
-  4: "A empresa 4 é fixe",
-  5: "A empresa 5 é fixe",
-  6: "A empresa 6 é fixe",
-  7: "A empresa 7 é fixe",
-  8: "A empresa 8 é fixe",
-  9: "A empresa 9 é fixe",
-  10: "A empresa 10 é fixe",
-  11: "A empresa 11 é fixe",
-  12: "A empresa 12 é fixe",
-  13: "A empresa 13 é fixe",
-  14: "A empresa 14 é fixe",
-  15: "A empresa 15 é fixe",
-  16: "A empresa 16 é fixe",
-  17: "A empresa 17 é fixe",
-  18: "A empresa 18 é fixe",
-  19: "A empresa 19 é fixe",
-  20: "A empresa 20 é fixe"
-};
-
 // --- Modal helpers ---
 let lastFocused = null;
-function getModalEls(){
-  const modalEl = document.getElementById('empresa-modal');
-  return {
-    modalEl,
-    modalDialog: modalEl ? modalEl.querySelector('.modal-dialog') : null,
-    modalTitle: modalEl ? modalEl.querySelector('#empresa-modal-title') : null,
-    modalText:  modalEl ? modalEl.querySelector('#empresa-modal-text')  : null,
-  };
+;
 }
-function openEmpresaModal(n){
-  const { modalEl, modalDialog, modalTitle, modalText } = getModalEls();
+= getModalEls();
   if(!modalEl || !modalDialog) return;
   lastFocused = document.activeElement;
   modalTitle && (modalTitle.textContent = "Empresa " + n);
@@ -53,8 +21,7 @@ function openEmpresaModal(n){
 }
 
 
-function closeEmpresaModal(){
-  const { modalEl } = getModalEls();
+= getModalEls();
   if(!modalEl) return;
   modalEl.setAttribute('aria-hidden','true');
   if (lastFocused && typeof lastFocused.focus === 'function') {
@@ -62,11 +29,7 @@ function closeEmpresaModal(){
   }
 }
 function escToClose(e){ if(e.key === 'Escape') closeEmpresaModal(); }
-document.addEventListener('click', (e) => {
-  const target = e.target;
-  if (target && (target.matches('#empresa-modal [data-close]') || target.classList.contains('modal-backdrop'))) {
-    closeEmpresaModal();
-  }
+}
 });
 document.addEventListener('DOMContentLoaded', () => {
     setYear();
@@ -76,10 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initNavSpy();
     initScrollCue();
-    initProgramTabs();
-    initExpositoresMap();
-    syncExpositoresHeight();
-    enhanceWithGSAP();
+    initProgramTabs();enhanceWithGSAP();
   });
 
   function setYear(){
@@ -288,31 +248,12 @@ document.addEventListener('keydown', (e) => {
 })();
   
   /* Expositores: sincroniza a altura da lista com a do mapa */
-  function syncExpositoresHeight(){
-    const map = document.querySelector('#expositores .stand-map');
-    if (!map) return;
-    const apply = () => {
-      const h = map.offsetHeight;
-      document.documentElement.style.setProperty('--expo-map-h', h ? h + 'px' : 'auto');
-    };
+  ;
     apply();
     window.addEventListener('resize', apply, { passive: true });
   }
 /* Expositores: ligação entre mapa e lista */
-  function initExpositoresMap(){
-    const map = document.querySelector('#expositores .stand-map');
-    const list = document.querySelector('#expositores .expositores-list');
-    if (!map || !list) return;
-
-    const stands = Array.from(map.querySelectorAll('.stand'));
-    const items  = Array.from(list.querySelectorAll('li'));
-
-    function highlight(n, on){
-      stands.filter(s => s.dataset.stand === n).forEach(s => s.classList.toggle('is-highlighted', on));
-      items.filter(li => li.dataset.stand === n).forEach(li => li.classList.toggle('is-highlighted', on));
-    }
-
-    function wire(el, n){
+  function wire(el, n){
       ['mouseenter','focus'].forEach(evt => el.addEventListener(evt, () => highlight(n, true)));
       ['mouseleave','blur'].forEach(evt => el.addEventListener(evt, () => highlight(n, false)));
     }
