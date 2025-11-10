@@ -1,5 +1,5 @@
 /* ================================
-   ENEEM — main.js (simplified clean build)
+   ENEEM — main.js (clean + hero effect)
    ================================ */
 (function(){
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -9,16 +9,58 @@
     document.querySelectorAll('[data-year]').forEach(el => el.textContent = y);
   }
 
+  // Restore reveal behavior (opacity + unblur). Works even without hero split.
   function revealOnLoad(){
     const els = document.querySelectorAll('.reveal');
     els.forEach((el, i) => {
-      if (prefersReduced) {
-        el.classList.add('is-visible');
-        return;
-      }
-      const delay = Math.min(i * 60, 600);
+      const delay = prefersReduced ? 0 : Math.min(i * 60, 700);
+      el.style.transition = 'opacity .9s ease, filter .9s ease, transform .9s ease';
       el.style.transitionDelay = delay + 'ms';
-      requestAnimationFrame(() => el.classList.add('is-visible'));
+      // ensure starting state
+      if (!prefersReduced) {
+        el.style.opacity = 0;
+        el.style.filter = 'blur(6px)';
+      }
+      requestAnimationFrame(() => {
+        el.classList.add('is-visible');
+        el.style.opacity = 1;
+        el.style.filter = 'blur(0px)';
+      });
+    });
+  }
+
+  // Letter-by-letter stagger for the hero title
+  function splitHeroTitle(){
+    const container = document.querySelector('.hero-title .reveal');
+    if (!container) return;
+    const original = container.textContent.trim();
+    if (!original || container.dataset.enhanced === '1') return;
+
+    // keep accessible name via aria-label on parent
+    const parent = container.closest('.hero-title');
+    if (parent && !parent.hasAttribute('aria-label')) {
+      parent.setAttribute('aria-label', original);
+    }
+
+    container.textContent = '';
+    let delay = 0;
+    for (const ch of original){
+      const span = document.createElement('span');
+      span.textContent = ch;
+      span.setAttribute('aria-hidden', 'true');
+      span.style.opacity = 0;
+      span.style.filter = 'blur(8px)';
+      span.style.transition = 'opacity .9s ease, filter .9s ease';
+      span.style.transitionDelay = delay + 'ms';
+      container.appendChild(span);
+      delay += 70; // stagger
+    }
+    container.dataset.enhanced = '1';
+    requestAnimationFrame(() => {
+      container.querySelectorAll('span').forEach(s => {
+        s.style.opacity = 1;
+        s.style.filter = 'blur(0px)';
+      });
     });
   }
 
@@ -65,6 +107,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     setYear();
+    splitHeroTitle();
     revealOnLoad();
     smoothScroll();
     navSpy();
