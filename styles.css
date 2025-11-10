@@ -954,3 +954,17 @@ body{
   outline-offset: 3px;
 }
 /* === /Inscrições (CTA) === */
+
+
+/* === Inscrições: botão com contraste suavizado === */
+#inscricoes .button-primary{
+  background: linear-gradient(145deg,
+    color-mix(in oklab, var(--color-layer-2), white 14%),
+    color-mix(in oklab, var(--color-layer-3), white 18%));
+  border-color: color-mix(in oklab, var(--color-layer-3), white 28%);
+  box-shadow: 0 6px 16px rgba(0,0,0,.18);
+}
+#inscricoes .button-primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.22);
+}
