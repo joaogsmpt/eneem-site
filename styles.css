@@ -1004,3 +1004,10 @@ body{
     justify-content: center;      /* no mobile, centra a imagem para visual mais equilibrado */
   }
 }
+
+
+/* Justificar texto da secção Sobre */
+#sobre p {
+  text-align: justify;
+  text-justify: inter-word;
+}
