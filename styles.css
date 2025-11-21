@@ -1104,11 +1104,14 @@ body{
 .site-footer{
   margin-top: clamp(2.5rem, 8vh, 4rem);
   background:
-    radial-gradient(circle at top, rgba(148,163,255,.18) 0, transparent 55%),
-    linear-gradient(180deg, var(--color-layer-4), #020617);
+    radial-gradient(120% 120% at 50% -20%, color-mix(in oklab, var(--color-layer-1), transparent 55%), transparent 70%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--color-layer-3), black 6%) 0%,
+      color-mix(in oklab, var(--color-layer-4), black 10%) 44%,
+      color-mix(in oklab, var(--color-bg-2), black 14%) 100%);
   color: var(--color-text-2);
   font-size: .9rem;
-  border-top: 1px solid rgba(148,163,255,.35);
+  border-top: 1px solid color-mix(in oklab, var(--color-accent), transparent 45%);
 }
 
 .site-footer__top{
