@@ -26,6 +26,9 @@
   --dur-2: .45s;
   --ease: cubic-bezier(.2,.6,.2,1);
 
+  --page-width: 1200px;
+  --page-gutter: clamp(1.5rem, 5vw, 3.5rem);
+
   --font-title: "Clash Display", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   --font-body: "Satoshi", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
@@ -51,7 +54,12 @@ body{
 }
 
 /* Layout utilitários */
-.container{ width:min(1280px, 96%); margin-inline:auto; display:block; }
+.container{
+  width:min(var(--page-width), 100%);
+  margin-inline:auto;
+  padding-inline:var(--page-gutter);
+  display:block;
+}
 .section{position:relative; background: var(--section-bg, var(--color-bg)); }
 .section-padded{ padding: clamp(2.25rem, 6vh, 3.75rem) 0; }
 .section + .section{ padding-top: clamp(1rem, 4vh, 3rem); }
@@ -829,6 +837,7 @@ body{
 
 /* === Powered by Climacer (desktop only) === */
 .powered-by{display:none;}
+.powered-by__logo{transform:translateY(0.15em);}
 @media (min-width: 1024px){
   .powered-by{
     display:flex;
@@ -1046,7 +1055,11 @@ body{
 
 
 /* === Layout fix: unify section widths === */
-.section > .container{ width: min(1280px, 96%); margin-inline:auto; }
+.section > .container{
+  width:min(var(--page-width), 100%);
+  margin-inline:auto;
+  padding-inline:var(--page-gutter);
+}
 #sobre .container, #programa .container, #expositores .container, #parceiros .container, #inscricoes .container{ display:block; }
 /* Expositores container alignment */
 #expositores .expositores-wrap{ justify-items: stretch; }
