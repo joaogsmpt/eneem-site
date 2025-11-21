@@ -8,9 +8,9 @@
   <title>ENEEM â€” Evento</title>
   <meta name="description" content="ENEEM â€” Encontro anual com keynotes, workshops e networking para criar impacto real." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap">
 
   <link rel="stylesheet" href="styles.css" />
   <!-- <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
@@ -21,13 +21,15 @@
 
   <header class="site-header" role="banner">
     <div class="container">
-      <nav class="nav" aria-label="NavegaÃ§Ã£o principal">
+            <nav class="nav" aria-label="Navegação principal">
         <a href="#sobre" data-spy>Sobre</a>
         <a href="#programa" data-spy>Programa</a>
         <a href="#expositores" data-spy>Expositores</a>
-        <a href="#parceiros" data-spy>Parceiros e PatrocÃ­nios</a>
-        <a href="#inscricoes" data-spy>InscriÃ§Ãµes</a>
+        <a href="#patrocinios" data-spy>Patrocínios</a>
+        <a href="#parceiros" data-spy>Parceiros</a>
+        <a href="#inscricoes" data-spy>Inscrições</a>
       </nav>
+
     </div>
   </header>
 
@@ -287,10 +289,26 @@
       </div>
     </section>
   
+        <section id="patrocinios" class="section section-padded theme-patrocinios" aria-labelledby="patrocinios-title">
+      <div class="container">
+        <h2 id="patrocinios-title" class="section-title reveal">Patrocínios</h2>
+        <ul class="partners-grid" role="list" aria-label="Logótipos de patrocinadores">
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 1</span></li>
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 2</span></li>
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 3</span></li>
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 4</span></li>
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 5</span></li>
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 6</span></li>
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 7</span></li>
+          <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Patrocinador 8</span></li>
+        </ul>
+      </div>
+    </section>
+
     <section id="parceiros" class="section section-padded theme-parceiros" aria-labelledby="parceiros-title">
       <div class="container">
-        <h2 id="parceiros-title" class="section-title reveal">Parceiros e PatrocÃ­nios</h2>
-        <ul class="partners-grid" role="list" aria-label="LogÃ³tipos de parceiros e patrocinadores">
+        <h2 id="parceiros-title" class="section-title reveal">Parceiros</h2>
+        <ul class="partners-grid" role="list" aria-label="Logótipos de parceiros">
           <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Parceiro 1</span></li>
           <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Parceiro 2</span></li>
           <li class="partner-card reveal"><div class="partner-logo" aria-hidden="true"></div><span class="visually-hidden">Parceiro 3</span></li>
@@ -302,6 +320,7 @@
         </ul>
       </div>
     </section>
+
 
   
     <!-- INSCRIÃ‡Ã•ES -->

@@ -26,8 +26,8 @@
   --dur-2: .45s;
   --ease: cubic-bezier(.2,.6,.2,1);
 
-  --font-title: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --font-title: "Clash Display", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --font-body: "Satoshi", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 *{box-sizing:border-box}
@@ -772,6 +772,7 @@ body{
 .theme-sobre{       --section-bg: linear-gradient(180deg, var(--color-layer-1), var(--color-layer-2)); }
 .theme-programa{    --section-bg: linear-gradient(180deg, var(--color-layer-2), var(--color-layer-3)); }
 .theme-expositores{ --section-bg: linear-gradient(180deg, var(--color-layer-3), var(--color-layer-4)); }
+.theme-patrocinios{ --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
 .theme-parceiros{   --section-bg: linear-gradient(180deg, var(--color-layer-4), var(--color-layer-3)); }
 
 /* ensure section backgrounds show */
