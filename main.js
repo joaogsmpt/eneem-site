@@ -1,5 +1,5 @@
 /* ================================
-   ENEEM — main.js
+   ENEEM â€” main.js
    ================================ */
 (function(){
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

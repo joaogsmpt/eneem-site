@@ -1,5 +1,5 @@
 /* ================================
-   ENEEM — styles.css (polished)
+   ENEEM â€” styles.css (polished)
    ================================ */
 :root{
   --color-bg: #3B82F6;
@@ -86,7 +86,7 @@ body{
 .hero-layers{position:absolute; inset:0; pointer-events:none}
 .layer.bg-gradient{background: radial-gradient(60% 60% at 30% 30%, rgba(168,225,255,.15), transparent), linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2))}
 .hero-inner{position:relative; z-index:1; text-align:center}
-.hero-title{font-family:var(--font-title); font-weight:800; font-size:clamp(3rem,8vw,7rem); margin:0 0 var(--space-2); letter-spacing:.02em}
+.hero-title{font-family:var(--font-title); font-weight:800; font-size:clamp(3.5rem,9vw,7.5rem); margin:0 0 var(--space-2); letter-spacing:.02em}
 .hero-title span{display:inline-block; opacity:0; filter:blur(6px)}
 .hero-subtitle{color:var(--color-text-2); margin:0 0 var(--space-3)}
 .hero-countdown{
@@ -162,7 +162,7 @@ body{
 /* Seções gerais */
 .section-title{font-family:var(--font-title); font-weight:800; font-size:clamp(1.6rem,3.4vw,2.3rem); margin:0 0 var(--space-2)}
 .lead{font-size:1.1rem; color:var(--color-text); opacity:.95}
-/* Sobre o ENEEM – tipografia mais leve */
+/* Sobre o ENEEM â€“ tipografia mais leve */
 #sobre p{ line-height: 1.8; }
 #sobre .lead{ line-height: 1.9; }
 
@@ -277,7 +277,7 @@ body{
   .hero-title span{opacity:1; filter:none}
 }
 
-/* ===== Programa — versão minimalista e limpa (overrides) ===== */
+/* ===== Programa â€” versão minimalista e limpa (overrides) ===== */
 #programa .program-tabs{ display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:.75rem 0 var(--space-2); }
 #programa .program-tab{
   all: unset; cursor: pointer; color: var(--color-text-2); font-weight: 600;
@@ -361,7 +361,7 @@ body{
 #programa .program-tab:hover::after{ transform: scaleX(1) }
 #programa .program-tab[aria-selected="true"]::after{ display: none }
 
-/* === Expositores — Prep Your Future === */
+/* === Expositores â€” Prep Your Future === */
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 #expositores .expositores-wrap{align-items:start}
 .stand-map{
@@ -689,7 +689,7 @@ body{
 #expositores .expositores-list li{ padding: .7rem .9rem; }
 /* --- /Expositores: wider list column & right alignment --- */
 
-/* === Expositores — quadrados 2x novamente (agora 3rem) ===
+/* === Expositores â€” quadrados 2x novamente (agora 3rem) ===
    Mantém o gap dobrado e força dimensões quadradas de 3rem. */
 #expositores .stand-map{
   grid-template-columns: repeat(4, 3rem);
@@ -800,7 +800,7 @@ body{
 }
 
 
-/* === Programa — espaçamento e legibilidade (hotfix) === */
+/* === Programa â€” espaçamento e legibilidade (hotfix) === */
 #programa .program-header{ margin-bottom: clamp(1rem, 2.6vh, 1.6rem); }
 #programa .program-tabs{ gap: .75rem; margin: .9rem 0 clamp(1rem, 2.6vh, 1.4rem); }
 
@@ -1056,7 +1056,7 @@ body{
 }
 
 
-/* === Ajuste pedido: Secção "Sobre" — imagem encostada à margem direita
+/* === Ajuste pedido: Secção "Sobre" â€” imagem encostada à margem direita
    e texto estendido até perto da imagem, mantendo a mesma largura das restantes secções. === */
 #sobre .about-grid{
   grid-template-columns: 1.1fr auto;
