@@ -75,13 +75,87 @@ body{
 .nav a[aria-current="page"]::after{ transform:scaleX(1) }
 
 /* Hero */
-.section-hero{min-height:100svh; display:grid; place-items:center; overflow:clip}
+.section-hero{
+  min-height:100svh;
+  display:grid;
+  align-items:flex-start;
+  justify-items:center;
+  padding: clamp(4rem, 12vh, 6rem) 0 clamp(3rem, 10vh, 4.5rem);
+  overflow:clip;
+}
 .hero-layers{position:absolute; inset:0; pointer-events:none}
 .layer.bg-gradient{background: radial-gradient(60% 60% at 30% 30%, rgba(168,225,255,.15), transparent), linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2))}
 .hero-inner{position:relative; z-index:1; text-align:center}
 .hero-title{font-family:var(--font-title); font-weight:800; font-size:clamp(3rem,8vw,7rem); margin:0 0 var(--space-2); letter-spacing:.02em}
 .hero-title span{display:inline-block; opacity:0; filter:blur(6px)}
 .hero-subtitle{color:var(--color-text-2); margin:0 0 var(--space-3)}
+.hero-countdown{
+  margin-top: var(--space-3);
+  color: var(--color-text);
+}
+
+.hero-countdown__eyebrow{
+  margin: 0 0 .75rem;
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.hero-countdown-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.75rem;
+}
+
+.hero-countdown-item{
+  min-width: 90px;
+  padding:.7rem 1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--color-layer-4), var(--color-bg-2));
+  box-shadow: 0 12px 28px rgba(15,23,42,.40);
+}
+
+.hero-countdown-item:nth-child(2){
+  background: linear-gradient(135deg, var(--color-layer-3), var(--color-layer-1));
+}
+
+.hero-countdown-item:nth-child(3){
+  background: linear-gradient(135deg, var(--color-layer-2), var(--color-accent));
+}
+
+.hero-countdown-item:nth-child(4){
+  background: linear-gradient(135deg, var(--color-layer-1), var(--color-accent-2));
+}
+
+.hero-countdown-value{
+  display:block;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 800;
+  line-height:1.1;
+}
+
+.hero-countdown-label{
+  display:block;
+  font-size:.78rem;
+  text-transform: lowercase;
+  opacity:.85;
+}
+
+.hero-countdown__subtitle{
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+@media (max-width: 600px){
+  .hero-countdown-item{
+    flex: 1 1 calc(50% - .75rem);
+  }
+}
 .scroll-cue{background:transparent; border:1px solid rgba(255,255,255,.2); color:var(--color-text-2); border-radius:999px; padding:.4rem .8rem; cursor:pointer}
 .scroll-cue:hover{color:var(--color-text); border-color:rgba(255,255,255,.35)}
 

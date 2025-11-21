@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setYear();
     syncHeaderOffset();
     splitHeroTitle();
+    initCountdown();
     initSmoothScroll();
     initScrollReveal();
     initNavSpy();
@@ -207,6 +208,54 @@ document.addEventListener('DOMContentLoaded', () => {
       if (reducedMotion) window.scrollTo(0, y);
       else window.scrollTo({ top: y, behavior: 'smooth' });
     });
+  }
+
+  function initCountdown(){
+    const root = document.querySelector('[data-countdown]');
+    if (!root) return;
+
+    const parts = {
+      days: root.querySelector('[data-countdown-part="days"]'),
+      hours: root.querySelector('[data-countdown-part="hours"]'),
+      minutes: root.querySelector('[data-countdown-part="minutes"]'),
+      seconds: root.querySelector('[data-countdown-part="seconds"]'),
+    };
+
+    // 26 de março de 2026, 09:00 (hora local)
+    const target = new Date(2026, 2, 26, 9, 0, 0); // mês 2 = março
+
+    function pad(value){
+      return String(value).padStart(2, '0');
+    }
+
+    function update(){
+      const now = new Date();
+      let diff = target.getTime() - now.getTime();
+      if (diff < 0) diff = 0;
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      if (parts.days) parts.days.textContent = days;
+      if (parts.hours) parts.hours.textContent = pad(hours);
+      if (parts.minutes) parts.minutes.textContent = pad(minutes);
+      if (parts.seconds) parts.seconds.textContent = pad(seconds);
+
+      if (diff === 0){
+        root.setAttribute('data-countdown-finished', 'true');
+      }
+    }
+
+    update();
+    const timer = setInterval(() => {
+      update();
+      // Se já chegou à data, para o intervalo
+      const finished = root.getAttribute('data-countdown-finished') === 'true';
+      if (finished) clearInterval(timer);
+    }, 1000);
   }
 
   function initProgramTabs(){
