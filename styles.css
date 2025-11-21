@@ -1102,13 +1102,12 @@ body{
 
 /* === Footer === */
 .site-footer{
-  margin-top: clamp(2.5rem, 8vh, 4rem);
+  margin-top: 0;
   background:
-    radial-gradient(140% 120% at 20% -40%, color-mix(in oklab, var(--color-layer-1), transparent 70%), transparent 65%),
     linear-gradient(180deg,
-      color-mix(in oklab, var(--color-layer-2), var(--color-layer-3) 25%) 0%,
-      color-mix(in oklab, var(--color-layer-3), var(--color-layer-4) 40%) 45%,
-      color-mix(in oklab, var(--color-layer-4), black 6%) 100%);
+      color-mix(in oklab, var(--color-bg-2), var(--color-layer-2) 55%) 0%,
+      color-mix(in oklab, var(--color-layer-3), var(--color-layer-4) 40%) 55%,
+      color-mix(in oklab, var(--color-layer-4), black 8%) 100%);
   color: var(--color-text-2);
   font-size: .9rem;
   border-top: 1px solid color-mix(in oklab, var(--color-accent), transparent 55%);
