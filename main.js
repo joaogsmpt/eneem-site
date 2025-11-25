@@ -1,5 +1,5 @@
 /* ================================
-   ENEEM â€” main.js
+   ENEEM Ã¢â‚¬â€ main.js
    ================================ */
 (function(){
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -155,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
       seconds: root.querySelector('[data-countdown-part="seconds"]'),
     };
 
-    // 26 de março de 2026, 09:00 (hora local)
-    const target = new Date(2026, 2, 26, 9, 0, 0); // mês 2 = março
+    // 26 de marÃ§o de 2026, 09:00 (hora local)
+    const target = new Date(2026, 2, 26, 9, 0, 0); // mÃªs 2 = marÃ§o
 
     function pad(value){
       return String(value).padStart(2, '0');
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     update();
     const timer = setInterval(() => {
       update();
-      // Se já chegou à data, para o intervalo
+      // Se jÃ¡ chegou Ã  data, para o intervalo
       const finished = root.getAttribute('data-countdown-finished') === 'true';
       if (finished) clearInterval(timer);
     }, 1000);
