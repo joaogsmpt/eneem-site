@@ -754,26 +754,31 @@ body{
 /* === Parceiros e Patrocínios === */
 #parceiros .container{ display:block; }
 .partners-grid{
-  list-style:none; padding:0; margin: var(--space-3) 0 0;
-  display:grid; grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1rem;
+  list-style:none;
+  padding:0;
+  margin: var(--space-3) 0 0;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(1rem, 3vw, 1.8rem);
+  align-items:center;
 }
 .partner-card{
-  background: color-mix(in oklab, var(--color-bg), white 3%);
-  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 12%);
-  border-radius: var(--radius-1);
-  padding: .9rem;
-  display:grid; place-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: .5rem;
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 .partner-logo{
-  width:100%; aspect-ratio: 3/1; 
-  border-radius: .4rem;
-  background:
-    linear-gradient(0deg, rgba(255,255,255,.1), rgba(255,255,255,0)),
-    linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2));
-  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  display:block;
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
 }
-@media (min-width: 900px){ .partners-grid{ grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; } .partner-card{ padding: 1.1rem; } }
 
 /* === Fundo por secção (themes) === */
 .theme-hero{        --section-bg: linear-gradient(180deg, var(--color-bg),    var(--color-bg-2)); }
