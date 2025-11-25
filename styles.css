@@ -1,5 +1,5 @@
-/* ================================
-   ENEEM Ã¢â‚¬â€ styles.css (polished)
+﻿/* ================================
+   ENEEM ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â styles.css (polished)
    ================================ */
 :root{
   --color-bg: #3B82F6;
@@ -53,7 +53,7 @@ body{
   background:var(--color-layer-3); border-radius:var(--radius-1); color:var(--color-text);
 }
 
-/* Layout utilitÃ¡rios */
+/* Layout utilitÃƒÂ¡rios */
 .container{
   width:min(var(--page-width), 100%);
   margin-inline:auto;
@@ -167,10 +167,10 @@ body{
 .scroll-cue{background:transparent; border:1px solid rgba(255,255,255,.2); color:var(--color-text-2); border-radius:999px; padding:.4rem .8rem; cursor:pointer}
 .scroll-cue:hover{color:var(--color-text); border-color:rgba(255,255,255,.35)}
 
-/* SeÃ§Ãµes gerais */
+/* SeÃƒÂ§ÃƒÂµes gerais */
 .section-title{font-family:var(--font-title); font-weight:800; font-size:clamp(1.6rem,3.4vw,2.3rem); margin:0 0 var(--space-2)}
 .lead{font-size:1.1rem; color:var(--color-text); opacity:.95}
-/* Sobre o ENEEM Ã¢â‚¬â€œ tipografia mais leve */
+/* Sobre o ENEEM ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ tipografia mais leve */
 #sobre p{ line-height: 1.8; }
 #sobre .lead{ line-height: 1.9; }
 
@@ -285,7 +285,7 @@ body{
   .hero-title span{opacity:1; filter:none}
 }
 
-/* ===== Programa Ã¢â‚¬â€ versÃ£o minimalista e limpa (overrides) ===== */
+/* ===== Programa ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â versÃƒÂ£o minimalista e limpa (overrides) ===== */
 #programa .program-tabs{ display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:.75rem 0 var(--space-2); }
 #programa .program-tab{
   all: unset; cursor: pointer; color: var(--color-text-2); font-weight: 600;
@@ -369,7 +369,7 @@ body{
 #programa .program-tab:hover::after{ transform: scaleX(1) }
 #programa .program-tab[aria-selected="true"]::after{ display: none }
 
-/* === Expositores Ã¢â‚¬â€ Prep Your Future === */
+/* === Expositores ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Prep Your Future === */
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 #expositores .expositores-wrap{align-items:start}
 .stand-map{
@@ -418,21 +418,21 @@ body{
   background: color-mix(in oklab, var(--color-bg), white 6%);
 }
 
-/* === Expositores: fundo sÃ³lido por toda a secÃ§Ã£o (sem transiÃ§Ãµes de gradiente) === */
+/* === Expositores: fundo sÃƒÂ³lido por toda a secÃƒÂ§ÃƒÂ£o (sem transiÃƒÂ§ÃƒÂµes de gradiente) === */
 #expositores{
   position: relative;
-  background: var(--color-bg-2); /* mantÃ©m cor estÃ¡vel atÃ© ao fim da secÃ§Ã£o */
+  background: var(--color-bg-2); /* mantÃƒÂ©m cor estÃƒÂ¡vel atÃƒÂ© ao fim da secÃƒÂ§ÃƒÂ£o */
   border-top: 1px solid rgba(255,255,255,.06);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
-/* opcional: garantir que a secÃ§Ã£o seguinte volta ao comportamento padrÃ£o */
+/* opcional: garantir que a secÃƒÂ§ÃƒÂ£o seguinte volta ao comportamento padrÃƒÂ£o */
 #expositores + .section{ background: transparent }
 
 /* === Expositores v3: 4x5 grade compacta + lista compacta === */
 #expositores .expositores-wrap{ align-items: start; gap: 2rem }
 #expositores .stand-map{
   --cols: 4;                          /* 4 colunas fixas */
-  max-width: 560px;                   /* controla dimensÃ£o para manter os quadrados pequenos */
+  max-width: 560px;                   /* controla dimensÃƒÂ£o para manter os quadrados pequenos */
   grid-template-columns: repeat(4, 1fr);
   gap: 1.8rem;
 }
@@ -457,7 +457,7 @@ body{
   font-size: .98rem; line-height: 1.25;
 }
 
-/* Responsivo: em ecrÃ£s muito largos, mantÃ©m os quadrados pequenos; em mÃ©dios, ligeiro ajuste */
+/* Responsivo: em ecrÃƒÂ£s muito largos, mantÃƒÂ©m os quadrados pequenos; em mÃƒÂ©dios, ligeiro ajuste */
 @media (min-width: 1200px){
   #expositores .stand-map{ max-width: 520px; gap: .65rem }
 }
@@ -473,7 +473,7 @@ body{
 }
 #expositores .stand-map .stand{
   border-radius: .4rem;
-  font-size: .78rem;  /* nÃºmero menor */
+  font-size: .78rem;  /* nÃƒÂºmero menor */
 }
 
 #expositores .expositores-list{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1.25rem; max-width: none; margin-top: 0; }
@@ -532,15 +532,15 @@ body{
   text-overflow: ellipsis;
 }
 
-/* Se o ecrÃ£ for muito largo, mantemos os elementos pequenos */
+/* Se o ecrÃƒÂ£ for muito largo, mantemos os elementos pequenos */
 @media (min-width: 1400px){
   #expositores .stand-map{ max-width: 320px; gap: .34rem }
 }
 
-/* === Expositores v6: tÃ­tulo numa linha, quadrados 50%, colunas mais afastadas,
-   lista com a mesma altura do mapa e linhas distribuÃ­das === */
+/* === Expositores v6: tÃƒÂ­tulo numa linha, quadrados 50%, colunas mais afastadas,
+   lista com a mesma altura do mapa e linhas distribuÃƒÂ­das === */
 
-/* TÃ­tulo numa linha, e o conteÃºdo comeÃ§a abaixo */
+/* TÃƒÂ­tulo numa linha, e o conteÃƒÂºdo comeÃƒÂ§a abaixo */
 #expositores .section-title{ white-space: normal; margin-bottom: .75rem }
 #expositores .expositores-wrap{ align-items: start; column-gap: clamp(6rem, 12vw, 14rem) }
 
@@ -570,7 +570,7 @@ body{
   font-size: .74rem; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-/* Responsivo: mantÃ©m pequeno mesmo em ecrÃ£s muito largos */
+/* Responsivo: mantÃƒÂ©m pequeno mesmo em ecrÃƒÂ£s muito largos */
 @media (min-width: 1400px){
   #expositores .stand-map{ max-width: 190px; gap: .28rem }
 }
@@ -583,7 +583,7 @@ body{
 
 /* Mapa com quadrados mais separados */
 #expositores .stand-map{
-  max-width: 220px;   /* mantÃ©m pequeno */
+  max-width: 220px;   /* mantÃƒÂ©m pequeno */
   gap: 1.8rem;        /* ~4x maior que antes */
 }
 
@@ -697,8 +697,8 @@ body{
 #expositores .expositores-list li{ padding: .7rem .9rem; }
 /* --- /Expositores: wider list column & right alignment --- */
 
-/* === Expositores Ã¢â‚¬â€ quadrados 2x novamente (agora 3rem) ===
-   MantÃ©m o gap dobrado e forÃ§a dimensÃµes quadradas de 3rem. */
+/* === Expositores ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â quadrados 2x novamente (agora 3rem) ===
+   MantÃƒÂ©m o gap dobrado e forÃƒÂ§a dimensÃƒÂµes quadradas de 3rem. */
 #expositores .stand-map{
   grid-template-columns: repeat(4, 3rem);
   gap: 3.6rem;
@@ -751,7 +751,7 @@ body{
   #empresa-modal .modal-dialog{ margin: 20vh auto 0; }
 }
 
-/* === Parceiros e PatrocÃ­nios === */
+/* === Parceiros e PatrocÃƒÂ­nios === */
 #parceiros .container{ display:block; }
 .partners-grid{
   list-style:none;
@@ -790,7 +790,7 @@ body{
   max-height: clamp(45px, 7vw, 75px);
 }
 
-/* === Fundo por secÃ§Ã£o (themes) === */
+/* === Fundo por secÃƒÂ§ÃƒÂ£o (themes) === */
 .theme-hero{        --section-bg: linear-gradient(180deg, var(--color-bg),    var(--color-bg-2)); }
 .theme-sobre{       --section-bg: linear-gradient(180deg, var(--color-layer-1), var(--color-layer-2)); }
 .theme-programa{    --section-bg: linear-gradient(180deg, var(--color-layer-2), var(--color-layer-3)); }
@@ -801,7 +801,7 @@ body{
 /* ensure section backgrounds show */
 .section{background: var(--section-bg, var(--color-bg));}
 
-/* Expositores: preencher espaÃ§o vazio abaixo do mapa */
+/* Expositores: preencher espaÃƒÂ§o vazio abaixo do mapa */
 .expositores-wrap{
   display:grid;
   grid-template-columns: minmax(280px, 480px) 1fr;
@@ -823,14 +823,14 @@ body{
 }
 
 
-/* === Programa Ã¢â‚¬â€ espaÃ§amento e legibilidade (hotfix) === */
+/* === Programa ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â espaÃƒÂ§amento e legibilidade (hotfix) === */
 #programa .program-header{ margin-bottom: clamp(1rem, 2.6vh, 1.6rem); }
 #programa .program-tabs{ gap: .75rem; margin: .9rem 0 clamp(1rem, 2.6vh, 1.4rem); }
 
 #programa .event-card{
   padding: 1.1rem 1.25rem 1.2rem;
   border-radius: var(--radius-2);
-  overflow: visible; /* nÃ£o corta conteÃºdo */
+  overflow: visible; /* nÃƒÂ£o corta conteÃƒÂºdo */
 }
 
 #programa .event-time{
@@ -842,7 +842,7 @@ body{
 
 #programa .event-title{
   white-space: normal;           /* permite quebrar */
-  overflow-wrap: anywhere;       /* evita corte em tÃ­tulos longos */
+  overflow-wrap: anywhere;       /* evita corte em tÃƒÂ­tulos longos */
   line-height: 1.18;
   margin: .1rem 0 0;
 }
@@ -974,7 +974,7 @@ body{
 }
 
 
-/* === Sobre: grid 2 colunas com imagem Ã  direita (simples e responsivo) === */
+/* === Sobre: grid 2 colunas com imagem ÃƒÂ  direita (simples e responsivo) === */
 #sobre .about-grid{
   display: grid;
   grid-template-columns: 1.2fr .8fr;
@@ -984,25 +984,7 @@ body{
 @media (max-width: 900px){
   #sobre .about-grid{ grid-template-columns: 1fr; }
 }
-#sobre .about-media img{
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-
-/* === Sobre: ajustes de imagem (75% width, ratio preservado, centrada verticalmente) === */
-#sobre .about-media{ 
-  align-self: center;           /* centra verticalmente o bloco da imagem na linha do grid */
-}
-#sobre .about-media img{
-  width: 75%;
-  height: auto;                 /* preserva o ratio original */
-  display: block;
-}
-
-
-/* === InscriÃ§Ãµes (CTA) === */
+/* === InscriÃƒÂ§ÃƒÂµes (CTA) === */
 #inscricoes{ background: var(--color-bg-2); }
 #inscricoes .container{ display:block; }
 .cta-card{
@@ -1052,10 +1034,10 @@ body{
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
-/* === /InscriÃ§Ãµes (CTA) === */
+/* === /InscriÃƒÂ§ÃƒÂµes (CTA) === */
 
 
-/* === InscriÃ§Ãµes: botÃ£o com contraste suavizado === */
+/* === InscriÃƒÂ§ÃƒÂµes: botÃƒÂ£o com contraste suavizado === */
 #inscricoes .button-primary{
   background: linear-gradient(145deg,
     color-mix(in oklab, var(--color-layer-2), white 14%),
@@ -1084,32 +1066,32 @@ body{
 }
 
 
-/* === Ajuste pedido: SecÃ§Ã£o "Sobre" Ã¢â‚¬â€ imagem encostada Ã  margem direita
-   e texto estendido atÃ© perto da imagem, mantendo a mesma largura das restantes secÃ§Ãµes. === */
+/* === Sobre: poster centrado === */
 #sobre .about-grid{
-  grid-template-columns: 1.1fr auto;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, auto);
   gap: clamp(.75rem, 2.8vw, 1.5rem);
 }
 #sobre .about-media{
-  justify-self: end;              /* encosta o bloco ao lado direito do container */
   align-self: center;
+  justify-self: center;
   display: flex;
-  justify-content: flex-end;      /* empurra a imagem para a margem direita */
+  justify-content: center;
+  text-align: center;
+  margin-top: 0;
 }
-#sobre .about-media img{
-  max-width: clamp(220px, 32vw, 420px); /* largura controlada para nÃ£o "saltar" fora do container */
-  width: 100%;
-  height: auto;
+#sobre .about-media .about-poster{
   display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
 }
 @media (max-width: 900px){
   #sobre .about-media{
-    justify-content: center;      /* no mobile, centra a imagem para visual mais equilibrado */
+    margin-top: 1.5rem;
   }
 }
-
-
-/* Justificar texto da secÃ§Ã£o Sobre */
+/* Justificar texto da secÃƒÂ§ÃƒÂ£o Sobre */
 #sobre p {
   text-align: justify;
   text-justify: inter-word;
@@ -1289,3 +1271,5 @@ body{
     align-items:flex-start;
   }
 }
+
+
