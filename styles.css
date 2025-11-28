@@ -979,9 +979,13 @@ body{
 /* === Sobre: grid 2 colunas com imagem ÃƒÂ  direita (simples e responsivo) === */
 #sobre .about-grid{
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
   gap: clamp(1rem, 4vw, 2rem);
   align-items: start;
+}
+#sobre .about-text,
+#sobre .about-media{
+  min-width: 0;
 }
 @media (max-width: 900px){
   #sobre .about-grid{ grid-template-columns: 1fr; }
@@ -1070,8 +1074,12 @@ body{
 
 /* === Sobre: poster centrado === */
 #sobre .about-grid{
-  grid-template-columns: 1fr;
   gap: clamp(.75rem, 2.8vw, 1.5rem);
+}
+@media (min-width: 901px){
+  #sobre .about-grid{
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, auto);
+  }
 }
 #sobre .about-media{
   align-self: center;
