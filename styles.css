@@ -979,7 +979,7 @@ body{
 /* === Sobre: grid 2 colunas com imagem ÃƒÂ  direita (simples e responsivo) === */
 #sobre .about-grid{
   display: grid;
-  grid-template-columns: 1.2fr .8fr;
+  grid-template-columns: 1fr;
   gap: clamp(1rem, 4vw, 2rem);
   align-items: start;
 }
@@ -1070,7 +1070,7 @@ body{
 
 /* === Sobre: poster centrado === */
 #sobre .about-grid{
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, auto);
+  grid-template-columns: 1fr;
   gap: clamp(.75rem, 2.8vw, 1.5rem);
 }
 #sobre .about-media{
