@@ -43,8 +43,10 @@ body{
   background: var(--color-bg);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  overflow-x: hidden;
   padding-top: calc(var(--header-offset, 64px) + env(safe-area-inset-top, 0px));
 }
+img{max-width:100%; height:auto}
 
 /* A11y */
 .skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
@@ -93,7 +95,7 @@ body{
 }
 .hero-layers{position:absolute; inset:0; pointer-events:none}
 .layer.bg-gradient{background: radial-gradient(60% 60% at 30% 30%, rgba(168,225,255,.15), transparent), linear-gradient(135deg, var(--color-layer-4), var(--color-layer-2))}
-.hero-inner{position:relative; z-index:1; text-align:center}
+.hero-inner{position:relative; z-index:1; text-align:center; padding-inline:var(--page-gutter)}
 .hero-title{font-family:var(--font-title); font-weight:800; font-size:clamp(3.5rem,9vw,7.5rem); margin:0 0 var(--space-2); letter-spacing:.02em}
 .hero-title span{display:inline-block; opacity:0; filter:blur(6px)}
 .hero-subtitle{color:var(--color-text-2); margin:0 0 var(--space-3)}
@@ -1270,6 +1272,48 @@ body{
     flex-direction:column;
     align-items:flex-start;
   }
+}
+
+/* === Mobile layout fixes === */
+@media (max-width: 640px){
+  :root{ --page-gutter: clamp(1rem, 5vw, 1.35rem); }
+
+  .site-header{ padding:.35rem 0; }
+  .site-header .container{ justify-content:center; }
+  .nav{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .35rem .75rem;
+  }
+  .nav a{
+    font-size: .95rem;
+    padding: .35rem .6rem;
+    border-radius: 999px;
+    background: rgba(15,23,42,.25);
+  }
+  .nav a::after{ display:none; }
+
+  .section-hero{ padding: clamp(3rem, 10vh, 4rem) 0 clamp(2.3rem, 8vh, 3.3rem); align-items:center; }
+  .hero-title{ font-size: clamp(2.75rem, 10vw, 3.6rem); }
+  .hero-countdown{ margin-top: 1.6rem; }
+  .hero-countdown-item{
+    min-width: 0;
+    flex: 1 1 calc(50% - .6rem);
+    padding: .65rem .75rem;
+  }
+
+  #sobre .about-grid{ gap: 1.1rem; }
+  #sobre .about-media{ margin-top: .75rem; }
+
+  #programa .program-wrap{ gap: 1rem; }
+  #programa .program-tabs{ gap: .5rem; margin: .5rem 0 1rem; }
+  #programa .timeline{ grid-template-columns: 1fr; gap: 1rem; }
+  #programa .event-card{ grid-column: auto; padding: 1rem; }
+  #programa .event-title{ font-size: clamp(1.05rem, 5vw, 1.3rem); }
+
+  .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .cta-card{ padding: 1.1rem 1.25rem; }
+  .footer-inner{ gap: 1.25rem; }
 }
 
 
