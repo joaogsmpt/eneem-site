@@ -1009,7 +1009,10 @@ body{
 }
 .cta-card__text .section-title{ margin: 0 0 .35rem }
 .cta-card__text .lead{ margin: 0; opacity: .95 }
-.cta-card__action{ justify-self: end }
+.cta-card__action{
+  justify-self: end;
+  display: flex;
+}
 @media (max-width: 840px){
   .cta-card{ grid-template-columns: 1fr; }
   .cta-card__action{ justify-self: start }
@@ -1054,6 +1057,13 @@ body{
 #inscricoes .button-primary:hover{
   transform: translateY(-1px);
   box-shadow: 0 10px 20px rgba(0,0,0,.22);
+}
+@media (max-width: 600px){
+  #inscricoes .cta-card__action .button{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 
