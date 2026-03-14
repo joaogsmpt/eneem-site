@@ -760,9 +760,59 @@ img{max-width:100%; height:auto}
   padding:0;
   margin: var(--space-3) 0 0;
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 220px));
   gap: clamp(1rem, 3vw, 1.8rem);
   align-items:center;
+  justify-content:center;
+}
+.sponsor-tiers{
+  display:grid;
+  gap: clamp(1.8rem, 4vw, 3rem);
+  margin-top: var(--space-3);
+}
+.sponsor-tier{
+  --partner-logo-width: 210px;
+  --partner-logo-height: clamp(56px, 6vw, 78px);
+  display:grid;
+  justify-items:center;
+  gap: clamp(.9rem, 2vw, 1.35rem);
+  text-align:center;
+}
+.sponsor-tier + .sponsor-tier{
+  padding-top: clamp(1.5rem, 4vw, 2.2rem);
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+.sponsor-tier__title{
+  margin:0;
+  font-family:var(--font-title);
+  font-size:clamp(1.15rem, 2vw, 1.45rem);
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--color-text);
+}
+.sponsor-tier--diamond{
+  --partner-logo-width: 320px;
+  --partner-logo-height: clamp(84px, 10vw, 116px);
+}
+.sponsor-tier--platinum{
+  --partner-logo-width: 250px;
+  --partner-logo-height: clamp(68px, 7.4vw, 92px);
+}
+.sponsor-tier--gold{
+  --partner-logo-width: 225px;
+  --partner-logo-height: clamp(60px, 6.6vw, 84px);
+}
+.sponsor-tier--silver{
+  --partner-logo-width: 190px;
+  --partner-logo-height: clamp(50px, 5.6vw, 70px);
+}
+.sponsor-tier .partners-grid{
+  margin-top: 0;
+}
+.sponsor-tier .partner-logo{
+  width: min(var(--partner-logo-width), 100%);
+  height: var(--partner-logo-height);
 }
 .partner-card{
   display:flex;
@@ -773,6 +823,7 @@ img{max-width:100%; height:auto}
   background: none;
   border: 0;
   box-shadow: none;
+  width:100%;
 }
 .partner-logo{
   display:block;
