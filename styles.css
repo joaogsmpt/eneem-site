@@ -773,9 +773,7 @@ img{max-width:100%; height:auto}
 .sponsor-tier{
   --partner-logo-width: 210px;
   --partner-logo-height: clamp(56px, 6vw, 78px);
-  display:grid;
-  justify-items:center;
-  gap: clamp(.9rem, 2vw, 1.35rem);
+  display:block;
   text-align:center;
 }
 .sponsor-tier + .sponsor-tier{
@@ -808,7 +806,8 @@ img{max-width:100%; height:auto}
   --partner-logo-height: clamp(50px, 5.6vw, 70px);
 }
 .sponsor-tier .partners-grid{
-  margin-top: 0;
+  width:100%;
+  margin-top: clamp(.9rem, 2vw, 1.35rem);
 }
 .sponsor-tier .partner-logo{
   width: min(var(--partner-logo-width), 100%);
