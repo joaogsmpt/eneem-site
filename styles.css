@@ -768,28 +768,28 @@ img{max-width:100%; height:auto}
   display:flex;
   align-items:center;
   justify-content:center;
-  padding: .5rem;
-  min-height: clamp(90px, 12vw, 140px);
+  padding: .85rem 1rem;
+  min-height: clamp(110px, 13vw, 150px);
   background: none;
   border: 0;
   box-shadow: none;
 }
 .partner-logo{
   display:block;
-  width: auto;
-  max-width: min(220px, 90%);
-  max-height: clamp(50px, 8vw, 90px);
-  height: auto;
+  width: min(210px, 100%);
+  max-width: 100%;
+  height: clamp(56px, 6vw, 78px);
   margin: 0 auto;
   object-fit: contain;
+  object-position: center;
 }
 .partner-logo--fctuc{
-  max-width: min(250px, 95%);
-  max-height: clamp(60px, 9vw, 110px);
+  width: min(250px, 96%);
+  height: clamp(72px, 8vw, 100px);
 }
 .partner-logo--ucbusiness{
-  max-width: min(190px, 85%);
-  max-height: clamp(45px, 7vw, 75px);
+  width: min(190px, 86%);
+  height: clamp(52px, 5.8vw, 70px);
 }
 
 /* === Fundo por secÃƒÂ§ÃƒÂ£o (themes) === */
