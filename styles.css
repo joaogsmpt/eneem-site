@@ -836,10 +836,10 @@ img{max-width:100%; height:auto}
   transform-origin: center;
 }
 .partner-logo--boost{
-  --partner-logo-scale: 1.14;
+  --partner-logo-scale: 1.22;
 }
 .partner-logo--trim{
-  --partner-logo-scale: .88;
+  --partner-logo-scale: .82;
 }
 .partner-logo--fctuc{
   width: min(250px, 96%);
