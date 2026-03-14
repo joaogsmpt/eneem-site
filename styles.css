@@ -838,6 +838,9 @@ img{max-width:100%; height:auto}
 .partner-logo--boost{
   --partner-logo-scale: 1.22;
 }
+.partner-logo--boost-xl{
+  --partner-logo-scale: 1.34;
+}
 .partner-logo--trim{
   --partner-logo-scale: .82;
 }
