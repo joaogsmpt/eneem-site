@@ -832,6 +832,14 @@ img{max-width:100%; height:auto}
   margin: 0 auto;
   object-fit: contain;
   object-position: center;
+  transform: scale(var(--partner-logo-scale, 1));
+  transform-origin: center;
+}
+.partner-logo--boost{
+  --partner-logo-scale: 1.14;
+}
+.partner-logo--trim{
+  --partner-logo-scale: .88;
 }
 .partner-logo--fctuc{
   width: min(250px, 96%);
