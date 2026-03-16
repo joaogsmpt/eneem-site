@@ -824,6 +824,10 @@ img{max-width:100%; height:auto}
   box-shadow: none;
   width:100%;
 }
+.partner-card--sasuc{
+  grid-column: span 2;
+  min-height: clamp(180px, 20vw, 240px);
+}
 .partner-logo{
   display:block;
   width: min(210px, 100%);
@@ -845,8 +849,8 @@ img{max-width:100%; height:auto}
   --partner-logo-scale: .82;
 }
 .partner-logo--sasuc{
-  width: min(280px, 100%);
-  height: clamp(82px, 9vw, 110px);
+  width: min(560px, 100%);
+  height: clamp(164px, 18vw, 220px);
 }
 .partner-logo--fctuc{
   width: min(250px, 96%);
@@ -1405,6 +1409,7 @@ body{
   #programa .event-title{ font-size: clamp(1.05rem, 5vw, 1.3rem); }
 
   .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .partner-card--sasuc{ grid-column: span 1; }
   .cta-card{ padding: 1.1rem 1.25rem; }
   .footer-inner{ gap: 1.25rem; }
 }
