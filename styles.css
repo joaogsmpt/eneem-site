@@ -844,6 +844,10 @@ img{max-width:100%; height:auto}
 .partner-logo--trim{
   --partner-logo-scale: .82;
 }
+.partner-logo--sasuc{
+  width: min(280px, 100%);
+  height: clamp(82px, 9vw, 110px);
+}
 .partner-logo--fctuc{
   width: min(250px, 96%);
   height: clamp(72px, 8vw, 100px);
