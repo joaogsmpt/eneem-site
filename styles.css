@@ -850,7 +850,7 @@ img{max-width:100%; height:auto}
 .partner-logo--sasuc{
   width: min(320px, 100%);
   height: clamp(96px, 10vw, 128px);
-  --partner-logo-scale: 1.45;
+  --partner-logo-scale: 1.09;
 }
 .partner-logo--fctuc{
   width: min(250px, 96%);
