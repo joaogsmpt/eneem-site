@@ -827,6 +827,9 @@ img{max-width:100%; height:auto}
 .partner-card--sasuc{
   min-height: clamp(145px, 16vw, 190px);
 }
+.partner-card--hero{
+  min-height: clamp(180px, 20vw, 240px);
+}
 .partner-logo{
   display:block;
   width: min(210px, 100%);
@@ -841,11 +844,20 @@ img{max-width:100%; height:auto}
 .partner-logo--boost{
   --partner-logo-scale: 1.22;
 }
+.partner-logo--plus25{
+  --partner-logo-scale: 1.25;
+}
 .partner-logo--boost-xl{
   --partner-logo-scale: 2.31;
 }
+.partner-logo--double{
+  --partner-logo-scale: 2;
+}
 .partner-logo--trim{
   --partner-logo-scale: .82;
+}
+.partner-logo--minus25{
+  --partner-logo-scale: .75;
 }
 .partner-logo--sasuc{
   width: min(320px, 100%);
