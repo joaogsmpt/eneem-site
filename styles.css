@@ -647,7 +647,6 @@ img{max-width:100%; height:auto}
 #sobre{ background: var(--color-bg); }
 #programa{ background: var(--color-bg-2); }
 #expositores{ background: var(--color-bg); }
-#inscricoes{ background: var(--color-bg-2); }
 /* --- /Section backgrounds --- */
 
 /* --- Expositores: align list top with map top --- */
@@ -1082,44 +1081,6 @@ body{
 @media (max-width: 900px){
   #sobre .about-grid{ grid-template-columns: 1fr; }
 }
-/* === InscriÃƒÂ§ÃƒÂµes (CTA) === */
-#inscricoes{ background: var(--color-bg-2); }
-#inscricoes .container{ display:block; }
-.cta-card-grid{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 3vw, 1.5rem);
-  align-items:stretch;
-}
-.cta-card{
-  display: grid;
-  grid-template-columns: 1.2fr auto;
-  align-items: center;
-  gap: 1rem 2rem;
-  padding: clamp(1rem, 3.5vw, 2rem);
-  border-radius: var(--radius-2);
-  background:
-    linear-gradient(180deg,
-      color-mix(in oklab, var(--color-bg), white 4%) 0%,
-      color-mix(in oklab, var(--color-bg-2), white 9%) 100%);
-  border: 1px solid color-mix(in oklab, var(--color-bg-2), white 14%);
-  box-shadow: 0 10px 28px rgba(0,0,0,.18);
-  height:100%;
-}
-.cta-card__text .section-title{ margin: 0 0 .35rem }
-.cta-card__text .lead{ margin: 0; opacity: .95 }
-.cta-card__action{
-  justify-self: end;
-  display: flex;
-}
-@media (max-width: 980px){
-  .cta-card-grid{ grid-template-columns: 1fr; }
-}
-@media (max-width: 840px){
-  .cta-card{ grid-template-columns: 1fr; }
-  .cta-card__action{ justify-self: start }
-}
-
 /* Button style consistent with site */
 .button{
   display:inline-flex; align-items:center; justify-content:center;
@@ -1145,29 +1106,6 @@ body{
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
-/* === /InscriÃƒÂ§ÃƒÂµes (CTA) === */
-
-
-/* === InscriÃƒÂ§ÃƒÂµes: botÃƒÂ£o com contraste suavizado === */
-#inscricoes .button-primary{
-  background: linear-gradient(145deg,
-    color-mix(in oklab, var(--color-layer-2), white 14%),
-    color-mix(in oklab, var(--color-layer-3), white 18%));
-  border-color: color-mix(in oklab, var(--color-layer-3), white 28%);
-  box-shadow: 0 6px 16px rgba(0,0,0,.18);
-}
-#inscricoes .button-primary:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.22);
-}
-@media (max-width: 600px){
-  #inscricoes .cta-card__action .button{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
-}
-
 
 /* === Layout fix: unify section widths === */
 .section > .container{
@@ -1175,7 +1113,7 @@ body{
   margin-inline:auto;
   padding-inline:var(--page-gutter);
 }
-#sobre .container, #programa .container, #expositores .container, #parceiros .container, #inscricoes .container{ display:block; }
+#sobre .container, #programa .container, #expositores .container, #parceiros .container{ display:block; }
 /* Expositores container alignment */
 #expositores .expositores-wrap{ justify-items: stretch; }
 /* Avoid overly small max-widths on the stand map when space allows */
@@ -1432,7 +1370,6 @@ body{
   #programa .event-title{ font-size: clamp(1.05rem, 5vw, 1.3rem); }
 
   .partners-grid{ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-  .cta-card{ padding: 1.1rem 1.25rem; }
   .footer-inner{ gap: 1.25rem; }
 }
 
